@@ -21,3 +21,5 @@ Route::get('/','HomeController@index');
 // Route::post('/siswa/create','SiswaController@create');
 
 Route::get('/hello','HelloController@hello');
+Route::get('/dashboard','DashboardController@dashboard');
+Route::get('/awal','AwalController@awal');

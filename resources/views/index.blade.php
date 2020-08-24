@@ -1,4 +1,2 @@
-testttttttt
-
-
-index.blade.php
+<a href="/dashboard">Dashboard</a>
+<a href="/awal">Awal</a>
