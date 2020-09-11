@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','departemen','nama_unit_kerja','role','divisi_kode'
     ];
 
     /**
@@ -36,4 +36,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //relasi dengan table lain
+    //relasi dengan table Divisi
+    public function divisi()//childnya
+    {
+        return $this->belongsTo('App\Divisi','divisi_kode','kode');
+        // FK-->divisi_kode pada table departement, ID --> dari divisi
+    }
 }

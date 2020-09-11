@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{-- <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css"> --}}
-    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    {{-- <link rel="stylesheet" href="dist/css/adminlte.min.css"> --}}
+    <link rel="stylesheet" href="dist/css/adminlte.css">
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="dist/css/styles.css">
     <title>Minion Project</title>
+    
 </head>
 
 <body style="background:#e2e8f0">
@@ -48,7 +50,7 @@
             <li data-target="#myCarousel" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner">
-            <div class="carousel-item active">
+            <div class="carousel-item active center">
                 <img src="dist/img/minion/minion2.jpg" class="w-100">
             </div>
             <div class="carousel-item">
@@ -260,7 +262,7 @@ cover;border-top-left-radius: .3rem;border-top-right-radius: .3rem;">
                 <div class="list-group">
                     <a href="https://g-leads.disprz.com" class="list-group-item list-group-item-action
 border-0 shadow-sm mb-2 rounded" target="_blank"><i class="fa fa-folder-open" ariahidden="true"></i> G-Leads</a>
-                    <a href="https://kms.pegadaian.co.id" class="list-group-item list-group-item-action
+                    <a href="https://kms.pegadaian.co.id/elearning/" class="list-group-item list-group-item-action
 border-0 shadow-sm mb-2 rounded" target="_blank"><i class="fa fa-folder-open" ariahidden="true"></i> KMS</a>
                     <a href="" class="list-group-item list-group-item-action
 border-0 shadow-sm mb-2 rounded"><i class="fa fa-folder-open" ariahidden="true"></i> BERITA</a>

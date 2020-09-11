@@ -27,3 +27,10 @@ body{
 .breadcrumb-item.active {
  color: white;
 }
+
+.carousel-inner .item a img {
+
+    margin: auto;
+    
+    
+    }
