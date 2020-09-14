@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
+// Route::get('/test', function () {
+//     return view('awal');
 // });
-
+Route::get('/test','AwalController@awal');
 Route::get('/','HomeController@index');
 // Route::post('/siswa/create','SiswaController@create'); 
 

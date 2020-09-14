@@ -1,5 +1,10 @@
 @extends('layout.master')
 
+@section('pagetitle')
+Pengaturan User
+@endsection
+
+
 @section('content')
 <div>
     @if (session('sukses'))
@@ -144,6 +149,30 @@
             {data: 'action', name: 'action', orderable: false, searchable: false}
         ]
     });
+
+// Departemen
+        $('select[name="divisi_kode"]').on('change', function() {
+            var divisi_kode = $(this).val();
+            alert('tes....................'+divisi_kode);
+            // if(divisi_kode) {
+            //     $.ajax({
+            //         url: '/admin/departemen/'+divisi_kode+'/departemenbydivisi',
+            //         type: "GET",
+            //         dataType: "json",
+            //         success:function(data) {
+            //             $('select[name="departemen_kode"]').empty();
+            //             $.each(data, function(key, value) {
+            //                 $('select[name="departemen_kode"]').append('<option value="'+ value.kode +'">'+ value.nama +'</option>');
+            //             });
+            //         }
+            //     });
+            // }else{
+            //     $('select[name="departemen_kode"]').empty();
+            // }
+
+        });
+
+
 } );
 
 async function viewFunction($id) {

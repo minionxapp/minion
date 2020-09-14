@@ -1,5 +1,9 @@
 @extends('layout.master')
 
+@section('pagetitle')
+Pengaturan Divisi
+@endsection
+
 @section('content')
 <div>
     @if (session('sukses'))
