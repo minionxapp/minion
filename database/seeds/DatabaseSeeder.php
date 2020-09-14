@@ -17,7 +17,15 @@ class DatabaseSeeder extends Seeder
             'user_id'=>'admin',
             'password'=>'$2y$10$VtgMmNr7xn8ikYXqVBiOHuY.CsGqDnddBajEk/p7n4KRcRGlW3X96',
             'role'=>'ADM']
-        ]);   
-        $this->call(UserSeeder::class);
+        ]);  
+
+        DB::table('role')->insert([
+            ['role_id'=>'ADM',
+            'desc'=>'Administrator',
+            'status'=>'Y'
+            ]
+        ]);  
+
+        // $this->call(UserSeeder::class);
     }
 }

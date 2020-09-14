@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 use App\User;
 use App\Divisi;
+use App\Role;
 use DataTables;
 
 class UserController extends Controller
@@ -14,8 +16,9 @@ class UserController extends Controller
         $users = \App\User::all();
         $divisi = \App\Divisi::all();
         // return view('/user',compact('users'));
+        $roles = \App\Role::all();
 
-        return view('/user',['users'=>$users,'divisis'=>$divisi]);
+        return view('/user',['users'=>$users,'divisis'=>$divisi,'roles'=>$roles]);
 
     }
 
@@ -43,18 +46,26 @@ class UserController extends Controller
         }
     }
 
+    //buat menjadi library
+    public function tombol($row_id){
+            $btn = '<a href="#" onclick="viewFunction(\''.$row_id.'\');" class="edit btn btn-info btn-sm">View</a> ';
+            $btn = $btn.' <a href="#" onclick="editFunction(\''.$row_id.'\');" class="edit btn btn-primary btn-sm">Edit</a>';
+            $btn = $btn.' <a href="/admin/delUserbyId/'.$row_id.'" class="edit btn btn-danger btn-sm"  onclick="return confirm(\'Yakin mau dihapus\');">Delete</a>';
+            return $btn;
+        }
 
     public function getUser(){
         return Datatables::of(User::all())
+        // untuk btn. sebaiknya di bikin function biarb bisa dipakai/reuse
         ->addColumn('action', function($row){       
-            $btn = '<a href="#" onclick="viewFunction(\''.$row->id.'\');" class="edit btn btn-info btn-sm">View</a> ';
-            $btn = $btn.' <a href="#" onclick="editFunction(\''.$row->id.'\');" class="edit btn btn-primary btn-sm">Edit</a>';
-            $btn = $btn.' <a href="/admin/delUserbyId/'.$row->id.'" class="edit btn btn-danger btn-sm"  onclick="return confirm(\'Yakin mau dihapus\');">Delete</a>';
-            return $btn;
+            // $btn = '<a href="#" onclick="viewFunction(\''.$row->id.'\');" class="edit btn btn-info btn-sm">View</a> ';
+            // $btn = $btn.' <a href="#" onclick="editFunction(\''.$row->id.'\');" class="edit btn btn-primary btn-sm">Edit</a>';
+            // $btn = $btn.' <a href="/admin/delUserbyId/'.$row->id.'" class="edit btn btn-danger btn-sm"  onclick="return confirm(\'Yakin mau dihapus\');">Delete</a>';
+            // return $btn;
+            $userController = new UserController();
+            return $userController->tombol($row->id);
         })
         ->addColumn('nama_divisi', function($row){  
-            // alert($row);
-            // dd($row);
             $divisi =$row->divisi->nama;
             return $divisi;
         })

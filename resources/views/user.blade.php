@@ -96,10 +96,22 @@
                             <label for="departemen">Departemen</label>
                             <input type="text" name="departemen" class="form-control" id="departemen">
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="role">Role</label>
                             <input type="text" name="role" class="form-control" id="role" required>
+                        </div> --}}
+                        <div class="form-group">
+                            <select name="role" class="form-control" id="role">
+                                <option value="">Role</option>
+                                @foreach ($roles as $role)
+                                <option value={{$role->role_id}}>{{$role->desc}}</option>
+                                @endforeach
+                            </select>
                         </div>
+
+
+
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="submit" id="btnsubmit" class="btn btn-primary">Submit</button>
@@ -152,6 +164,7 @@ async function viewFunction($id) {
                 $('#userid').attr('readonly', true);  
                 $('#name').attr('readonly', true); 
                 $('#email').attr('readonly', true); 
+                $('#divisi_kode').attr('readonly', true); 
                 $('#nama_unit_kerja').attr('readonly', true); 
                 $('#departemen').attr('readonly', true); 
                 $('#role').attr('readonly', true); 
@@ -177,6 +190,7 @@ function addFunction() {
     $('#nama_unit_kerja').attr('readonly', false); 
     $('#departemen').attr('readonly', false); 
     $('#role').attr('readonly', false); 
+    $('#divisi_kode').attr('readonly', false); 
     $('#btnsubmit').prop("disabled",false);  
 }
 async function editFunction($id) {
@@ -186,12 +200,13 @@ async function editFunction($id) {
     $('#name').attr('readonly', false); 
     $('#email').attr('readonly', false); 
     $('#nama_unit_kerja').attr('readonly', false); 
+    $('#divisi_kode').attr('readonly', false); 
     $('#departemen').attr('readonly', false); 
     $('#role').attr('readonly', false); 
     $('#btnsubmit').prop("disabled",false); 
    unit = $('#divisi_kode').val();
-
-    $.ajax({
+// ajak option divisi
+        $.ajax({
             url: '/admin/getalldivisi/',
             type: "GET",
             async: false,
@@ -208,9 +223,24 @@ async function editFunction($id) {
                 });
             }
         });
-
-
-
+// option Role
+        $.ajax({
+            url: '/admin/getallrole/',
+            type: "GET",
+            async: false,
+            dataType: "json",
+            success:function(data) {
+                $('select[name="role"]').empty();
+                $.each(data, function(key, value) {
+                    if(unit== value.kode ){
+                        $('select[name="role"]').append('<option value="'+ value.role_id +'" selected="true">'+ value.desc +'</option>');
+                    }else{
+                        $('select[name="role"]').append('<option value="'+ value.role_id +'">'+ value.desc +'</option>');
+                
+                    }
+                });
+            }
+        });
 
 }
 
