@@ -7,6 +7,13 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="https://g-leads.disprz.com" target="_blank" class="nav-link">G-Leads</a>
       </li>
+
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href=" https://docs.google.com/spreadsheets/d/1tUFgxMVv48U_8r6J4TArUxq_2ipDWY44ry78lspba6w/edit#gid=0" target="_blank" class="nav-link">Digital</a>
+      </li>
+
+     
+
       <li class="nav-item d-none d-sm-inline-block">
         <a href="https://kms.pegadaian.co.id/login" target="_blank" class="nav-link">KMS</a>
       </li>
