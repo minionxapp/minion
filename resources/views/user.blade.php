@@ -26,7 +26,7 @@ Pengaturan User
 </div>
 
 <div>  
-  <table id="myTable" class="display" style="width:100%">
+  <table id="myTable" class="display nowrap" style="width:100%">
     <thead>
         <tr>
             <th>User ID</th>
@@ -96,11 +96,19 @@ Pengaturan User
                             </select>
                         </div>
 
-                        
                         <div class="form-group">
+                            <select name="departemen" class="form-control" id="departemen">
+                                {{-- <option value="">Divisi</option>
+                                @foreach ($divisis as $divisi)
+                                <option value={{$divisi->kode}}>{{$divisi->nama}}</option>
+                                @endforeach --}}
+                            </select>
+                        </div>
+                        
+                        {{-- <div class="form-group">
                             <label for="departemen">Departemen</label>
                             <input type="text" name="departemen" class="form-control" id="departemen">
-                        </div>
+                        </div> --}}
                         {{-- <div class="form-group">
                             <label for="role">Role</label>
                             <input type="text" name="role" class="form-control" id="role" required>
@@ -136,6 +144,10 @@ Pengaturan User
 <script type="text/javascript">
  $(document).ready(function() {
     $('#myTable').DataTable({
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+        },
+        responsive: true,
         processing: true,
         serverSide: true,
         ajax: '/admin/getuser',
@@ -150,45 +162,67 @@ Pengaturan User
         ]
     });
 
-// Departemen
+// // Departemen untu add
         $('select[name="divisi_kode"]').on('change', function() {
             var divisi_kode = $(this).val();
-            alert('tes....................'+divisi_kode);
-            // if(divisi_kode) {
-            //     $.ajax({
-            //         url: '/admin/departemen/'+divisi_kode+'/departemenbydivisi',
-            //         type: "GET",
-            //         dataType: "json",
-            //         success:function(data) {
-            //             $('select[name="departemen_kode"]').empty();
-            //             $.each(data, function(key, value) {
-            //                 $('select[name="departemen_kode"]').append('<option value="'+ value.kode +'">'+ value.nama +'</option>');
-            //             });
-            //         }
-            //     });
-            // }else{
-            //     $('select[name="departemen_kode"]').empty();
-            // }
-
+            // alert("========= "+divisi_kode);
+            $('select[name="departemen"]').empty();
+            $.ajax({
+                    url: '/admin/getdepartementbydivisi/'+divisi_kode,
+                    type: "GET",
+                    async: false,
+                    dataType: "json",
+                    success:function(data) {
+                        $('select[name="departemen"]').empty();
+                        $.each(data, function(key, value) {
+                            if(divisi_kode== value.kode ){
+                                $('select[name="departemen"]').append('<option value="'+ value.kode +'" selected="true">'+ value.nama +'</option>');
+                            }else{
+                                $('select[name="departemen"]').append('<option value="'+ value.kode +'">'+ value.nama +'</option>');
+                            }
+                        });
+                    }
+                });
         });
-
-
 } );
 
 async function viewFunction($id) {
     $.ajax({
                type:'GET',
                async: false,
-               url:'/admin/getuserbyid/'+$id, //    data:'_token = <?php echo csrf_token() ?>',
+               url:'/admin/getuserbyid/'+$id, 
                success:function(data) {
                 $("#id").val(data.id);
                 $("#userid").val(data.user_id);
                 $("#name").val(data.name);
                 $("#email").val(data.email);
                 $("#nama_unit_kerja").val(data.nama_unit_kerja);
-                $("#departemen").val(data.departemen);
                 $("#role").val(data.role);  
                 $("#divisi_kode").val(data.divisi_kode);  
+                $("#departemen").val(data.departemen);
+
+                // Departemen
+                var divisi_kode = data.divisi_kode;
+                var dept = data.departemen;
+                $.ajax({
+                    url: '/admin/getdepartementbydivisi/'+divisi_kode,
+                    type: "GET",
+                    async: false,
+                    dataType: "json",
+                    success:function(data) {
+                        $('select[name="departemen"]').empty();
+                        $.each(data, function(key, value) {
+                            if(dept == value.kode ){
+                                $('select[name="departemen"]').append('<option value="'+ value.kode +'" selected="true">'+ value.nama +'</option>');
+                            }else{
+                                $('select[name="departemen"]').append('<option value="'+ value.kode +'">'+ value.nama +'</option>');
+                            }
+                        });
+                    }
+                });
+
+                // });
+
 
                 $('#userid').attr('readonly', true);  
                 $('#name').attr('readonly', true); 

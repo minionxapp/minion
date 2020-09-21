@@ -61,4 +61,17 @@ class DepartementController extends Controller
         ->make(true);
     }
 
+    public function getalldepartement()
+    {
+        $departement = \App\Departement::all();
+        return json_encode($departement);
+    }
+
+    public function getdepartementbydivisi($divisi_kode)
+    {
+        $departement = \App\Departement::where('divisi_kode','=',$divisi_kode)->get();;
+        return json_encode($departement);
+    }
+
+    
 }
