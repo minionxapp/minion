@@ -4,37 +4,6 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="https://g-leads.disprz.com" target="_blank" class="nav-link">G-Leads</a>
-      </li>
-
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href=" https://docs.google.com/spreadsheets/d/1tUFgxMVv48U_8r6J4TArUxq_2ipDWY44ry78lspba6w/edit#gid=0" target="_blank" class="nav-link">Digital</a>
-      </li>
-
-     
-
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="https://kms.pegadaian.co.id/login" target="_blank" class="nav-link">KMS</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="https://kms.pegadaian.co.id/login" target="_blank" class="nav-link">Coahing</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="https://kms.pegadaian.co.id/login" target="_blank" class="nav-link">Mentoring</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="https://kms.pegadaian.co.id/login" target="_blank" class="nav-link">T-Wallet</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="https://kms.pegadaian.co.id/login" target="_blank" class="nav-link">Monev</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="https://kita.pegadaian.co.id/" target="_blank" class="nav-link">KITA</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="https://sites.google.com/pegadaian.co.id/cmstore/" target="_blank" class="nav-link">CM-Store</a>
-      </li>
     </ul>
 
     <!-- SEARCH FORM -->

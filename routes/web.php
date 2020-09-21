@@ -48,6 +48,12 @@ Route::group(['middleware' => ['auth','checkRole:ADM,USR']], function () {
     // Role
     Route::get('/admin/getallrole','DivisiController@getallrole');
     
+    //Departemen
+    Route::get('/admin/departement','DepartementController@departement');
+    Route::post('/admin/adddepartement','DepartementController@adddepartement');
+    Route::get('/admin/getdepartement','DepartementController@getdepartement');
+    Route::get('/admin/getdepartementbyid/{id}','DepartementController@getdepartementbyid');
+    
     // Route::get('/admin/divisi/{id}/divisiedit','DivisiController@divisiedit');
     // Route::post('/admin/divisi/{id}/divisiupdate','DivisiController@divisiupdate');
     // Route::get('/admin/divisi/{id}/divisidelete','DivisiController@divisidelete');

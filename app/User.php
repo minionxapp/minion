@@ -42,6 +42,7 @@ class User extends Authenticatable
     public function divisi()//childnya
     {
         return $this->belongsTo('App\Divisi','divisi_kode','kode');
-        // FK-->divisi_kode pada table departement, ID --> dari divisi
+        // FK-->divisi_kode pada table Chlid, kode -->PK dari divisi
+        // return $this->belongsTo('App\Models\Post', 'foreign_key', 'other_key');
     }
 }

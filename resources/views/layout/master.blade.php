@@ -86,6 +86,9 @@
 <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
 <!-- PAGE SCRIPTS -->
 {{-- <script src="dist/js/pages/dashboard2.js"></script> --}}
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/rowreorder/1.2.7/js/dataTables.rowReorder.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
 @yield('js')
 </body>
 </html>

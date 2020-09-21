@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('pagetitle')
-Pengaturan Divisi
+Pengaturan Departement
 @endsection
 
 @section('content')
@@ -25,13 +25,14 @@ Pengaturan Divisi
 </div>
 
 <div>  
-  <table id="myTable" class="display nowrap" style="width:100%" >
+  <table id="myTable" class="display nowrap" style="width:100%">
     <thead>
         <tr>
             <th>Kode</th>
             <th>Nama</th>
-            <th>Nik Kadiv</th>
-            <th>Nama Kadiv</th>            
+            <th>Nik Kadep</th>
+            <th>Nama Kadep</th>  
+            <th>Kode Divisi</th>            
             <th>Action</th>
         </tr>
     </thead>
@@ -45,19 +46,19 @@ Pengaturan Divisi
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Data Siswa</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Data Departement</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/admin/adddivisi" method="POST">
+                    <form action="/admin/adddepartement" method="POST">
                         {{ csrf_field() }}
                         {{-- <div class="form-group">
                             <input type="text" name="id" class="form-control" id="id">
                         </div> --}}
                         <div class="form-group">
-                            <label for="kode">idxxxxxxx</label>
+                            <label for="kode">id</label>
                             <input type="text" name="id" class="form-control" id="id">
                         </div>
 
@@ -71,13 +72,28 @@ Pengaturan Divisi
                             <input type="text" name="nama" class="form-control" id="nama" required>
                         </div>
                         <div class="form-group">
-                            <label for="nik_kadiv">NIK Kadiv</label>
-                            <input type="text" name="nik_kadiv" class="form-control" id="nik_kadiv" required>
+                            <label for="nik_kadept">NIK Kadept</label>
+                            <input type="text" name="nik_kadept" class="form-control" id="nik_kadept" required>
                         </div>
                         <div class="form-group">
-                            <label for="nama_kadiv">Nama Kadiv</label>
-                            <input type="text" name="nama_kadiv" class="form-control" id="nama_kadiv" required>
+                            <label for="nama_kadept">Nama Kadept</label>
+                            <input type="text" name="nama_kadept" class="form-control" id="nama_kadept" required>
                         </div>
+                        {{-- <div class="form-group">
+                            <label for="divisi_kode">Divisi</label>
+                            <input type="text" name="divisi_kode" class="form-control" id="divisi_kode" required>
+                        </div> --}}
+                        <div class="form-group">
+                            <select name="divisi_kode" class="form-control" id="divisi_kode">
+                                <option value="">Divisi</option>
+                                @foreach ($divisis as $divisi)
+                                <option value={{$divisi->kode}}>{{$divisi->nama}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="submit" id="btnsubmit" class="btn btn-primary">Submit</button>
@@ -103,15 +119,15 @@ Pengaturan Divisi
         responsive: true,
         processing: true,
         serverSide: true,
-        ajax: '/admin/getdivisi',
+        ajax: '/admin/getdepartement',
         columns: [
             { data: 'kode', name: 'kode' },
             { data: 'nama', name: 'nama' },
-            { data: 'nik_kadiv', name: 'nik_kadiv' },
-            { data: 'nama_kadiv', name: 'nama_kadiv' },
+            { data: 'nik_kadept', name: 'nik_kadept' },
+            { data: 'nama_kadept', name: 'nama_kadept' },
+            { data: 'nama_divisi', name: 'nama_divisi' },
             { data: 'action', name: 'action', orderable: false, searchable: false}
-        ],
-        
+        ]
     });
 } );
 
@@ -119,14 +135,14 @@ async function viewFunction($id) {
     $.ajax({
                type:'GET',
                async: false,
-               url:'/admin/getdivisibyid/'+$id, //    data:'_token = <?php echo csrf_token() ?>',
+               url:'/admin/getdepartementbyid/'+$id, //    data:'_token = <?php echo csrf_token() ?>',
                success:function(data) {
                 $("#id").val(data.id);
                 $("#kode").val(data.kode);
                 $("#nama").val(data.nama);
-                $("#nik_kadiv").val(data.nik_kadiv);
-                $("#nama_kadiv").val(data.nama_kadiv);
-                $("#role").val(data.role);  
+                $("#nik_kadept").val(data.nik_kadept);
+                $("#nama_kadept").val(data.nama_kadept);
+                $("#divisi_kode").val(data.divisi_kode);  
 
                 $('#id').attr('readonly', true);          
                 $('#kode').attr('readonly', true);
@@ -135,10 +151,33 @@ async function viewFunction($id) {
                 $('#nama_kadiv').attr('readonly', true);
                 $('#btnsubmit').prop("disabled",true);   
                 $('#btnsubmit').prop("disabled",true); 
+                $('#divisi_kode').attr('readonly', true); 
                }
-            });    
+            }); 
+
+
+    // ajak option divisi
+    var unit;
+    unit = $('#divisi_kode').val();
+    $.ajax({
+            url: '/admin/getalldivisi/',
+            type: "GET",
+            async: false,
+            dataType: "json",
+            success:function(data) {
+                $('select[name="divisi_kode"]').empty();
+                $.each(data, function(key, value) {
+                    if(unit== value.kode ){
+                        $('select[name="divisi_kode"]').append('<option value="'+ value.kode +'" selected="true">'+ value.nama +'</option>');
+                    }else{
+                        $('select[name="divisi_kode"]').append('<option value="'+ value.kode +'">'+ value.nama +'</option>');
+                    }
+                });
+            }
+        });
     $('#formData').modal('show');    
 }
+
 function addFunction() {
     $('#formData').modal('show');   
     // $('#id').prop("disabled",false);
@@ -147,6 +186,7 @@ function addFunction() {
     $("#nama").val("");
     $("#nik_kadiv").val("");
     $("#nama_kadiv").val("");
+    $("#divisi_kode").val("");
 
     $('#id').attr('readonly', true);          
     $('#kode').attr('readonly', false);
@@ -154,6 +194,7 @@ function addFunction() {
     $('#nik_kadiv').attr('readonly', false);
     $('#nama_kadiv').attr('readonly', false);
     $('#btnsubmit').prop("disabled",false);   
+    $('#divisi_kode').prop("disabled",false);  
 }
 async function editFunction($id) {    
     await viewFunction($id);
@@ -163,6 +204,7 @@ async function editFunction($id) {
     $('#nik_kadiv').attr('readonly', false);
     $('#nama_kadiv').attr('readonly', false);
     $('#btnsubmit').prop("disabled",false); 
+    $('#divisi_kode').prop("disabled",false); 
 }
 
 // function deleteFunction($id) {

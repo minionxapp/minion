@@ -63,54 +63,58 @@
                   <p>Divisi</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="/admin/departement" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Departement</p>
+                </a>
+              </li>
             </ul>
           </li>
     
             
-          <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Widgets
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
-          </li>
-
-         
-
-
-
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
-                Charts
+                Eksternal Link
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="https://g-leads.disprz.com" class="nav-link" target="_blank">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>ChartJS</p>
+                  <p>G-Leads</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/flot.html" class="nav-link">
+                <a href="https://docs.google.com/spreadsheets/d/1zRZL6ye45KGTf0SZIoZlvDsUaV0K_frWy0Tzv7vovUY/edit#gid=667268145" class="nav-link" target="_blank">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Flot</p>
+                  <p>Digital</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/charts/inline.html" class="nav-link">
+                <a href="https://kms.pegadaian.co.id/login" class="nav-link" target="_blank">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Inline</p>
+                  <p>KMS</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="https://sites.google.com/pegadaian.co.id/cmstore/" class="nav-link" target="_blank">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>CM-Store</p>
+                </a>
+              </li>
+
+
+
+
+              
             </ul>
           </li>
-     
+
+
           <li class="nav-header">MISCELLANEOUS</li>
           <li class="nav-item">
             <a href="https://adminlte.io/docs/3.0" class="nav-link">
@@ -118,6 +122,7 @@
               <p>Documentation</p>
             </a>
           </li>
+          
 
           <li class="nav-item">
             <a href="/logout" class="nav-link">

@@ -9,16 +9,17 @@ class Divisi extends Model
     protected $table ='divisi';
     protected $fillable = ['id','kode', 'nama','nik_kadiv','nama_kadiv' ];
 
-    // public function departemen()
-    // {
-    //     return $this->hasMany('App\Departemen','divisi_kode','kode');
-    //     // FK-->divisi_kode pada table departement, ID --> dari divisi
-    // }
+    public function departemen()
+    {
+        return $this->hasMany('App\Departemen','divisi_kode','kode');
+        // // FK-->divisi_kode pada table Chlid, kode -->PK dari divisi
+        // return $this->hasMany('App\Models\Comment', 'foreign_key', 'local_key');
+    }
 
     public function user()//masternya
     {
         return $this->hasMany('App\User','divisi_kode','kode');
-        // FK-->divisi_kode pada table departement, ID --> dari divisi
+        // // FK-->divisi_kode pada table Chlid, kode -->PK dari divisi
     }
 
     
