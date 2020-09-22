@@ -50,7 +50,7 @@ class DepartementController extends Controller
         ->addColumn('action', function($row){       
             $btn = '<a href="#" onclick="viewFunction(\''.$row->id.'\');" class="edit btn btn-info btn-sm">View</a> ';
             $btn = $btn.' <a href="#" onclick="editFunction(\''.$row->id.'\');" class="edit btn btn-primary btn-sm">Edit</a>';
-            $btn = $btn.' <a href="/admin/deldivisibyid/'.$row->id.'" class="edit btn btn-danger btn-sm" onclick="return confirm(\'Yakin mau dihapus\');">Delete</a>';
+            $btn = $btn.' <a href="/admin/deldepartementbyid/'.$row->id.'" class="edit btn btn-danger btn-sm" onclick="return confirm(\'Yakin mau dihapus\');">Delete</a>';
             return $btn;
         })
         ->addColumn('nama_divisi', function($row){  
@@ -73,5 +73,12 @@ class DepartementController extends Controller
         return json_encode($departement);
     }
 
+    public function deldepartementbyid($id)
+    {
+        $departement = \App\Departement::find($id);
+        $departement->delete();
+        return redirect('/admin/departement')->with('sukses','Data Berhasil dihapus');
+        
+    }
     
 }

@@ -156,7 +156,9 @@ Pengaturan User
             { data: 'name', name: 'name' },
             { data: 'email', name: 'email' },
             { data: 'nama_divisi', name: 'divisi' },
-            { data: 'departemen', name: 'departemen' },
+            { data: 'nama_departement', name: 'depart' },
+            
+            // { data: 'departemen', name: 'departemen' },
             { data: 'role', name: 'role' },
             {data: 'action', name: 'action', orderable: false, searchable: false}
         ]

@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
 use App\User;
 use App\Divisi;
+use App\Departement;
 use App\Role;
 use DataTables;
 
@@ -55,13 +56,10 @@ class UserController extends Controller
         }
 
     public function getUser(){
+        // dd($users = \App\User::all());
         return Datatables::of(User::all())
         // untuk btn. sebaiknya di bikin function biarb bisa dipakai/reuse
         ->addColumn('action', function($row){       
-            // $btn = '<a href="#" onclick="viewFunction(\''.$row->id.'\');" class="edit btn btn-info btn-sm">View</a> ';
-            // $btn = $btn.' <a href="#" onclick="editFunction(\''.$row->id.'\');" class="edit btn btn-primary btn-sm">Edit</a>';
-            // $btn = $btn.' <a href="/admin/delUserbyId/'.$row->id.'" class="edit btn btn-danger btn-sm"  onclick="return confirm(\'Yakin mau dihapus\');">Delete</a>';
-            // return $btn;
             $userController = new UserController();
             return $userController->tombol($row->id);
         })
@@ -69,8 +67,14 @@ class UserController extends Controller
             $divisi =$row->divisi->nama;
             return $divisi;
         })
+        ->addColumn('nama_departement', function($row){  
+            $departemen =$row->departement->nama;
+            return $departemen;
+            // $divisi =$row->divisi->nama;
+            // return "gggg";
+        })       
 
-        ->rawColumns(['action','nama_divisi'])
+        ->rawColumns(['action','nama_divisi','nama_departement'])
         ->make(true);
     }
 

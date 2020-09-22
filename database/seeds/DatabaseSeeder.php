@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
         DB::table('role')->insert([
             ['role_id'=>'ADM',
             'desc'=>'Administrator',
-            'status'=>'Y'
+            'status'=>'Y',
+            'departemen'=>'00000'
             ]
         ]);  
 

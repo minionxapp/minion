@@ -56,6 +56,7 @@ Route::group(['middleware' => ['auth','checkRole:ADM,USR']], function () {
     Route::get('/admin/getalldepartement','DepartementController@getalldepartement');
 
     Route::get('/admin/getdepartementbydivisi/{id}','DepartementController@getdepartementbydivisi');
+    Route::get('/admin/deldepartementbyid/{id}','DepartementController@deldepartementbyid');
     
     
     // Route::get('/admin/divisi/{id}/divisiedit','DivisiController@divisiedit');
