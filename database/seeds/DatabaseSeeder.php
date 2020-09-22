@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             ['name'=>'admin',
             'email'=>'admin@gmail.com',
             'user_id'=>'admin',
+            'departemen'=>'0000',
             'password'=>'$2y$10$VtgMmNr7xn8ikYXqVBiOHuY.CsGqDnddBajEk/p7n4KRcRGlW3X96',
             'role'=>'ADM']
         ]);  
@@ -23,7 +24,7 @@ class DatabaseSeeder extends Seeder
             ['role_id'=>'ADM',
             'desc'=>'Administrator',
             'status'=>'Y',
-            'departemen'=>'00000'
+            
             ]
         ]);  
 
