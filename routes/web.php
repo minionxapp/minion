@@ -25,6 +25,8 @@ Route::get('/login','LoginController@login')->name('login');
 Route::get('/logout','LoginController@logout')->name('logout');;
 Route::get('/hello','HelloController@hello');
 
+Route::get('/calendar','CalendarController@calendar');
+
 
 Route::group(['middleware' => ['auth','checkRole:ADM,USR']], function () {
     Route::get('/dashboard','DashboardController@dashboard');
