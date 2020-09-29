@@ -105,13 +105,27 @@
                   <i class="far fa-circle nav-icon"></i>
                   <p>CM-Store</p>
                 </a>
-              </li>
-
-
-
-
-              
+              </li>              
             </ul>
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-chart-pie"></i>
+                <p>
+                  Akademik
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="/corpuevent" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Event</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+
           </li>
 
 
@@ -128,8 +142,7 @@
               <i class="nav-icon fas fa-file"></i>
               <p>Calendar</p>
             </a>
-          </li>
-          
+          </li>          
 
           <li class="nav-item">
             <a href="/logout" class="nav-link">

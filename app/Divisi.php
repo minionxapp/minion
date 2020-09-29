@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\CorpuEvent;
 class Divisi extends Model
 {
     protected $table ='divisi';
@@ -13,16 +13,18 @@ class Divisi extends Model
     {
         return $this->hasMany('App\Departemen','divisi_kode','kode');
         // // FK-->divisi_kode pada table Chlid, kode -->PK dari divisi
-        // return $this->hasMany('App\Models\Comment', 'foreign_key', 'local_key');
     }
 
     public function user()//masternya
     {
         return $this->hasMany('App\User','divisi_kode','kode');
-        // // FK-->divisi_kode pada table Chlid, kode -->PK dari divisi
+    }
+    
+    public function corpuEvent()
+    {
+        return $this->hasMany('App\CorpuEvent','divisi_kode','kode');
     }
 
-    
     protected static function boot() {
         parent::boot();
 
@@ -33,4 +35,5 @@ class Divisi extends Model
             }
         });
     }
+
 }

@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use \App\CorpuEvent;
 class CalendarController extends Controller
 {
     public function calendar()
     {
-        // $divisi = \App\Divisi::all();
-        return view('/calendar');//,compact('divisi'));
+        $epent = \App\CorpuEvent::all();
+        //  dd($event->all());
+        return view('/calendar',['epentlist'=>$epent]);
     }
 }

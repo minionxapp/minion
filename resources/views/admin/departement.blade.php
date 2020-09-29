@@ -79,10 +79,6 @@ Pengaturan Departement
                             <label for="nama_kadept">Nama Kadept</label>
                             <input type="text" name="nama_kadept" class="form-control" id="nama_kadept" required>
                         </div>
-                        {{-- <div class="form-group">
-                            <label for="divisi_kode">Divisi</label>
-                            <input type="text" name="divisi_kode" class="form-control" id="divisi_kode" required>
-                        </div> --}}
                         <div class="form-group">
                             <select name="divisi_kode" class="form-control" id="divisi_kode">
                                 <option value="">Divisi</option>

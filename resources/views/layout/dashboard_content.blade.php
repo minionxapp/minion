@@ -1,9 +1,42 @@
 {{-- <div class="container-fluid"> --}}
     <!-- Info boxes -->
 
-    <div id='calendar'>kkkkkk</div>
 
-    
+ <div class="row">
+      <div class="col-md-10">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Monthly Recap Report</h5> 
+            {{-- @foreach ($epentlist as $item)
+                {{$item->departement->nama}}        
+            @endforeach   --}}
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div id='calendar'></div>
+          </div>         
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div class="row">
       <div class="col-12 col-sm-6 col-md-3">
         <div class="info-box">
