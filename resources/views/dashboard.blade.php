@@ -46,7 +46,7 @@ function kalendar2() {
                 c = i % warna.length;
                 {
                   epent.push({title: "{{$item->judul}} - {{$item->departement->nama}}",
-                  start: "{{$item->mulai}}", end:"{{$item->selesai}} ", 
+                  start: "{{$item->mulai}}", end:"{{$item->selesai}}T23:59:00", 
                   description:"{{$item->deskripsi}}",color:warna[c],allDay:false});
                 }
             @endforeach  
@@ -66,7 +66,7 @@ function kalendar2() {
           var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
             timeZone: 'UTC',
-            events: epent,
+            events: epent
             // allDay:true,
           });
           calendar.render();
