@@ -66,7 +66,9 @@ function kalendar2() {
           var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
             timeZone: 'UTC',
-            events: epent
+            events: epent,
+            timeFormat:'H(:mm)',
+            displayEventTime:false,
             // allDay:true,
           });
           calendar.render();
