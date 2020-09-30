@@ -22,7 +22,8 @@ function kalendar() {
                 i = i + 1;
                 c = i % warna.length;
                 {
-                  epent.push({title: "{{$item->judul}} - {{$item->departement->nama}}",start: "{{$item->mulai}}", end:"{{$item->selesai}}", 
+                  epent.push({title: "{{$item->judul}} - {{$item->departement->nama}}",
+                  start: "{{$item->mulai}}", end:"{{$item->selesai}} 23:01:01", 
                   description:"{{$item->deskripsi}}",color:warna[c]});
                 }
             @endforeach  
