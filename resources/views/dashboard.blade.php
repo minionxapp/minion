@@ -65,6 +65,7 @@ function kalendar2() {
       var calendarEl = document.getElementById('calendar');
           var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
+            timeZone: 'UTC',
             events: epent,
             // allDay:true,
           });
