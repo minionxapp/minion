@@ -23,7 +23,7 @@ function kalendar() {
                 c = i % warna.length;
                 {
                   epent.push({title: "{{$item->judul}} - {{$item->departement->nama}}",
-                  start: "{{$item->mulai}}", end:"{{$item->selesai}} 23:01:01", 
+                  start: "{{$item->mulai}}", end:"{{$item->selesai}}", 
                   description:"{{$item->deskripsi}}",color:warna[c]});
                 }
             @endforeach  
@@ -42,7 +42,8 @@ function kalendar() {
       var calendarEl = document.getElementById('calendar');
           var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
-            events: epent
+            events: epent,
+            allDay:true
           });
           calendar.render();
   }
