@@ -24,7 +24,12 @@ class CorpuEventController extends Controller
         return $event;
     }
 
-
+    public function getalleventapi(){
+        // $epent = \App\CorpuEvent::has('departement')->get();
+        // $ep->departement->nama
+        $epent = \App\CorpuEvent::all();//->with('departement')->get();//->sortBy('divisi_kode');;        
+        return $epent;
+    }
 
 
     public function getallevent()

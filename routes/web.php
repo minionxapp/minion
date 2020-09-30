@@ -66,7 +66,7 @@ Route::group(['middleware' => ['auth','checkRole:ADM,USR']], function () {
     Route::post('/addevent','CorpuEventController@addevent');
     Route::get('/geteventbyid/{id}','CorpuEventController@geteventbyid');
     Route::get('/deleventbyid/{id}','CorpuEventController@deleventbyid');
-   
+    Route::get('/getalleventapi','CorpuEventController@getalleventapi');
     
     // Route::get('/admin/divisi/{id}/divisiedit','DivisiController@divisiedit');
     // Route::post('/admin/divisi/{id}/divisiupdate','DivisiController@divisiupdate');

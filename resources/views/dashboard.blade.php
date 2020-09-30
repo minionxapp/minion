@@ -8,10 +8,33 @@
 <script type="text/javascript">
 
     $(document).ready(function() { 
-        kalendar();
+        kalendar2();
       }
     );
-function kalendar() {
+
+    function kalendar() {
+      $.ajax({
+                url: '/getalleventapi',
+                type: "GET",
+                async: false,
+                dataType: "json",
+                success:function(data) {
+                  alert(JSON.stringify(data));
+                    // $('select[name="departement_kode"]').empty();
+                    $.each(data, function(key, value) {
+                      alert(JSON.stringify(value));
+                    //     // if(divisi_kode== value.kode ){
+                    //     //     // $('select[name="departement_kode"]').append('<option value="'+ value.kode +'" selected="true">'+ value.nama +'</option>');
+                    //     // }else{
+                    //     //     // $('select[name="departement_kode"]').append('<option value="'+ value.kode +'">'+ value.nama +'</option>');
+                        // }
+                    });
+                }
+            });
+    }
+
+
+function kalendar2() {
     var epent=[];
     var warna =['purple','green','blue','orange','brown']
     var events = {!! $epentlist !!};
@@ -24,7 +47,7 @@ function kalendar() {
                 {
                   epent.push({title: "{{$item->judul}} - {{$item->departement->nama}}",
                   start: "{{$item->mulai}}", end:"{{$item->selesai}}", 
-                  description:"{{$item->deskripsi}}",color:warna[c]});
+                  description:"{{$item->deskripsi}}",color:warna[c],allDay:true});
                 }
             @endforeach  
     // ======================================
@@ -43,7 +66,7 @@ function kalendar() {
           var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
             events: epent,
-            allDay:true
+            // allDay:true,
           });
           calendar.render();
   }
