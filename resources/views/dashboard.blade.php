@@ -44,10 +44,14 @@ function kalendar2() {
             @foreach ($epentlist as $item)
                 i = i + 1;
                 c = i % warna.length;
+                kon = false;
+                if({{$item->mulai}} == {{$item->selesai}}){
+                  kon = true;
+                }
                 {
                   epent.push({title: "{{$item->judul}} - {{$item->departement->nama}}",
                   start: "{{$item->mulai}}T00:01:00", end:"{{$item->selesai}}T23:59:00", 
-                  description:"{{$item->deskripsi}}",color:warna[c],allDay:false});
+                  description:"{{$item->deskripsi}}",color:warna[c],allDay:kon});
                 }
             @endforeach  
     // ======================================
@@ -64,10 +68,11 @@ function kalendar2() {
   
       var calendarEl = document.getElementById('calendar');
           var calendar = new FullCalendar.Calendar(calendarEl, {
+            // height: 80%,
             initialView: 'dayGridMonth',
             timeZone: 'UTC',
             events: epent,
-            timeFormat:'H(:mm)',
+            // timeFormat:'H(:mm)',
             displayEventTime:false,
             // allDay:true,
           });

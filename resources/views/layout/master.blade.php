@@ -86,13 +86,9 @@
 <script src="../plugins/chart.js/Chart.min.js"></script>
 <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
 <!-- PAGE SCRIPTS -->
-<script src="../plugins/datatables-rowReorder/js/dataTables.rowReorder.min.js"></script>
+<script src="../plugins/datatables-rowreorder/js/dataTables.rowReorder.min.js"></script>
 <script src="../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 
-{{-- <link href='../plugins/fullcalendar/main.css' rel='stylesheet' />
-<script src='../plugins/fullcalendar/main.js'></script> --}} 
-{{-- <script src="https://unpkg.com/@fullcalendar/interaction@4.4.0/main.min.js"></script>
---}}
 <link href='../dist/calendar/lib/main.css' rel='stylesheet' />
 <script src='../dist/calendar/lib/main.js'></script>
 <script src="../plugins/moment/moment.min.js"></script>
