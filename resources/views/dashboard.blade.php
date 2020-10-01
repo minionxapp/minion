@@ -47,7 +47,7 @@ function kalendar2() {
                 {
                   epent.push({title: "{{$item->judul}} - {{$item->departement->nama}}",
                   start: "{{$item->mulai}}", end:"{{$item->selesai}}T23:59:00", 
-                  description:"{{$item->deskripsi}}",color:warna[c],allDay:false});
+                  description:"{{$item->deskripsi}}",color:warna[c],allDay:true});
                 }
             @endforeach  
     // ======================================
