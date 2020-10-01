@@ -26,34 +26,37 @@ Route::get('/logout','LoginController@logout')->name('logout');;
 Route::get('/hello','HelloController@hello');
 
 Route::get('/calendar','CalendarController@calendar');
-
-
-Route::group(['middleware' => ['auth','checkRole:ADM,USR']], function () {
-    Route::get('/dashboard','DashboardController@dashboard');
-    Route::get('/awal','AwalController@awal');
+Route::group(['middleware' => ['auth','checkRole:ADM']], function () {
     Route::get('/admin/user','UserController@user');
     Route::get('/admin/getuser','UserController@getUser');
     Route::post('/admin/adduser','UserController@addUser');
     Route::get('/admin/getuserbyid/{id}','UserController@getUserbyUserId');
     Route::get('/admin/delUserbyId/{id}','UserController@delUserbyId');
-
-    
-    Route::get('/parameter','ParameterController@parameter');
-
-    // Divisi
+    //DIVISI
     Route::get('/admin/divisi','DivisiController@divisi')->name('divisi');
     Route::get('/admin/getdivisi','DivisiController@getdivisi')->name('divisi');
     Route::post('/admin/adddivisi','DivisiController@adddivisi');
     Route::get('/admin/getdivisibyid/{id}','DivisiController@getdivisibyid');
     Route::get('/admin/deldivisibyid/{id}','DivisiController@deldivisibyid');
+
+    //Deparetement
+    Route::get('/admin/departement','DepartementController@departement');
+    Route::post('/admin/adddepartement','DepartementController@adddepartement');
+    Route::get('/admin/getdepartement','DepartementController@getdepartement');
+});
+
+Route::group(['middleware' => ['auth','checkRole:ADM,USR']], function () {
+    Route::get('/dashboard','DashboardController@dashboard');
+    Route::get('/awal','AwalController@awal');
+    Route::get('/parameter','ParameterController@parameter');
+
+    // Divisi    
     Route::get('/admin/getalldivisi','DivisiController@getAllDivisi');
     // Role
     Route::get('/admin/getallrole','DivisiController@getallrole');
     
     //Departemen
-    Route::get('/admin/departement','DepartementController@departement');
-    Route::post('/admin/adddepartement','DepartementController@adddepartement');
-    Route::get('/admin/getdepartement','DepartementController@getdepartement');
+   
     Route::get('/admin/getdepartementbyid/{id}','DepartementController@getdepartementbyid');
     Route::get('/admin/getalldepartement','DepartementController@getalldepartement');
 

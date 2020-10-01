@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Departement;//modelnya
 use DataTables;
+
 
 class DepartementController extends Controller
 {
@@ -15,7 +17,6 @@ class DepartementController extends Controller
     }
 
     public function adddepartement(Request $request){
-        // dd($request->all());
         $departement = new \App\Departement;
         $departement->kode =$request->kode;
         $departement->nama =$request->nama;
@@ -26,12 +27,10 @@ class DepartementController extends Controller
             $departement->save();
             return redirect('/admin/departement')->with('sukses','Data Berhasil di Simpan');
         }else{
-            // $user->id =$request->id;
             $departementUpdate = new \App\Departement;
             $departementUpdate = \App\Departement::find($request->id);
             $departementUpdate->update($request->all());
             return redirect('/admin/departement')->with('sukses','Data Berhasil Update');
-            
         }
     }
 
@@ -40,9 +39,6 @@ class DepartementController extends Controller
         $departement = \App\Departement::find($id);
          return $departement;
     }
-
-
-
 
     public function getdepartement()
     {
@@ -69,8 +65,15 @@ class DepartementController extends Controller
 
     public function getdepartementbydivisi($divisi_kode)
     {
-        $departement = \App\Departement::where('divisi_kode','=',$divisi_kode)->get();;
-        return json_encode($departement);
+        $user = Auth::user();
+        // dd($user->role);
+        if($user->role == 'ADM'){
+            $departement = \App\Departement::where('divisi_kode','=',$divisi_kode)->get();;
+            return json_encode($departement);
+        }else{
+            $departement = \App\Departement::where('kode','=',$user->departemen)->get();;
+            return json_encode($departement);
+        }
     }
 
     public function deldepartementbyid($id)
