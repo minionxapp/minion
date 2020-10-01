@@ -6,7 +6,7 @@
       <div class="col-md-10">
         <div class="card">
           <div class="card-header">
-            <h5 class="card-title">Event Caledar</h5> 
+            <h5 class="card-title">Event Calendar</h5> 
             {{-- @foreach ($epentlist as $item)
                 {{$item->departement->nama}}        
             @endforeach   --}}
