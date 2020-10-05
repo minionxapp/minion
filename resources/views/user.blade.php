@@ -48,7 +48,7 @@ Pengaturan User
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Data Siswa</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Data User</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -157,7 +157,9 @@ Pengaturan User
             { data: 'email', name: 'email' },
             { data: 'nama_divisi', name: 'divisi' },
             { data: 'nama_departement', name: 'depart' },
-            
+            // { data: 'nama_departement',
+            // render: function ( data, type, row ) { if(data !== null ){return data;  }else{return ""; } }   
+            // },
             // { data: 'departemen', name: 'departemen' },
             { data: 'role', name: 'role' },
             {data: 'action', name: 'action', orderable: false, searchable: false}

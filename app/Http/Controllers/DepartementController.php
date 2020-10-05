@@ -12,7 +12,7 @@ class DepartementController extends Controller
 {
     public function departement()
     {
-        $divisi = \App\Divisi::all();
+        $divisi = (new \App\Services\DivisiService)->getAllDivisi();//::all();
         return view('/admin/departement',['divisis'=>$divisi]);//,compact('divisi'));
     }
 
@@ -23,15 +23,9 @@ class DepartementController extends Controller
         $departement->nik_kadept =$request->nik_kadept;
         $departement->nama_kadept =$request->nama_kadept;
         $departement->divisi_kode =$request->divisi_kode;
-        if($request->id == null ){
-            $departement->save();
-            return redirect('/admin/departement')->with('sukses','Data Berhasil di Simpan');
-        }else{
-            $departementUpdate = new \App\Departement;
-            $departementUpdate = \App\Departement::find($request->id);
-            $departementUpdate->update($request->all());
-            return redirect('/admin/departement')->with('sukses','Data Berhasil Update');
-        }
+        $departement->id =$request->id;
+        $simpan = (new \App\services\DepartementService)->addDepartement($departement);
+        return redirect('/admin/departement')->with('sukses',$simpan);
     }
 
     public function getdepartementbyid($id)
@@ -57,11 +51,11 @@ class DepartementController extends Controller
         ->make(true);
     }
 
-    public function getalldepartement()
-    {
-        $departement = \App\Departement::all();
-        return json_encode($departement);
-    }
+    // public function getalldepartement()
+    // {
+    //     $departement = \App\Departement::all();
+    //     return json_encode($departement);
+    // }
 
     public function getdepartementbydivisi($divisi_kode)
     {
@@ -78,10 +72,7 @@ class DepartementController extends Controller
 
     public function deldepartementbyid($id)
     {
-        $departement = \App\Departement::find($id);
-        $departement->delete();
-        return redirect('/admin/departement')->with('sukses','Data Berhasil dihapus');
-        
+        return redirect('/admin/departement')->with('sukses', (new \App\Services\DepartementService)->deldepartementbyid($id));//::find($id);
     }
     
 }

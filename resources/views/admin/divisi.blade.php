@@ -45,7 +45,7 @@ Pengaturan Divisi
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Data Siswa</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Data Divisi</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -57,7 +57,7 @@ Pengaturan Divisi
                             <input type="text" name="id" class="form-control" id="id">
                         </div> --}}
                         <div class="form-group">
-                            <label for="kode">idxxxxxxx</label>
+                            <label for="kode">id</label>
                             <input type="text" name="id" class="form-control" id="id">
                         </div>
 

@@ -54,11 +54,18 @@ Pengaturan Divisi
                     <form action="/admin/xxx" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group">
-                            <label for="kode">idxxxxxxx</label>
+                            <label for="kode">id</label>
                             <input type="text" name="id" class="form-control" id="id">
                         </div>
 
-                        
+                        <div class="form-group">
+                            <label for="">xx</label>
+                            <input type="text" name="" class="form-control" id="">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" id="btnsubmit" class="btn btn-primary">Submit</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -83,9 +90,9 @@ Pengaturan Divisi
     //     ajax: '/admin/getdivisi',
     //     columns: [
     //         { data: 'kode', name: 'kode' },
-    //         { data: 'nama', name: 'nama' },
-    //         { data: 'nik_kadiv', name: 'nik_kadiv' },
-    //         { data: 'nama_kadiv', name: 'nama_kadiv' },
+    //         { data: '', name: '' },
+    //         { data: '', name: '' },
+    //         { data: '', name: '' },
     //         { data: 'action', name: 'action', orderable: false, searchable: false}
     //     ],
         
@@ -93,17 +100,18 @@ Pengaturan Divisi
 } );
 
 async function viewFunction($id) {
-    // $.ajax({
-    //            type:'GET',
-    //            async: false,
-    //            url:'/admin/getdivisibyid/'+$id, //    data:'_token = <?php echo csrf_token() ?>',
-    //            success:function(data) {
-    //             $("#id").val(data.id);
+    $.ajax({
+               type:'GET',
+               async: false,
+               url:'/admin/xxxxxxx/'+$id, //    data:'_token = <?php echo csrf_token() ?>',
+               success:function(data) {
+                $("#id").val(data.id);
+                $("#").val(data.);
 
-    //             $('#nik_kadiv').attr('readonly', true);
-    //             $('#btnsubmit').prop("disabled",true);   
-    //            }
-    //         });    
+                $('#id').attr('readonly', true);
+                $('#btnsubmit').prop("disabled",true);   
+               }
+            });    
     $('#formData').modal('show');    
 }
 function addFunction() {

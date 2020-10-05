@@ -10,15 +10,14 @@ use App\Divisi;
 use App\Departement;
 use App\Role;
 use DataTables;
+// use App\Http\Controllers\DivisiController;
 
 class UserController extends Controller
 {
     public function user(){
         $users = \App\User::all();
-        $divisi = \App\Divisi::all();
-        // return view('/user',compact('users'));
+        $divisi = (new \App\Services\DivisiService)->getAllDivisi();
         $roles = \App\Role::all();
-
         return view('/user',['users'=>$users,'divisis'=>$divisi,'roles'=>$roles]);
 
     }

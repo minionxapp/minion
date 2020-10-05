@@ -71,6 +71,8 @@ function kalendar2() {
             // height: 80%,
             initialView: 'dayGridMonth',
             timeZone: 'UTC',
+            // aspectRatio:2.1,
+            // height:'650',
             events: epent,
             // timeFormat:'H(:mm)',
             displayEventTime:false,

@@ -71,6 +71,15 @@ Route::group(['middleware' => ['auth','checkRole:ADM,USR']], function () {
     Route::get('/deleventbyid/{id}','CorpuEventController@deleventbyid');
     Route::get('/getalleventapi','CorpuEventController@getalleventapi');
     
+
+    //WALET
+    Route::get('/walet/wperiode','WPeriodeController@wperiode');
+    Route::get('/walet/getwperiode','WPeriodeController@getwperiode');
+    Route::post('/walet/addwperiode','WPeriodeController@addwperiode');
+    Route::get('/walet/getwperiodebyid/{id}','WPeriodeController@getwperiodebyid');
+    Route::get('/walet/delwperiodebyid/{id}','WPeriodeController@delwperiodebyid');
+    
+    
     // Route::get('/admin/divisi/{id}/divisiedit','DivisiController@divisiedit');
     // Route::post('/admin/divisi/{id}/divisiupdate','DivisiController@divisiupdate');
     // Route::get('/admin/divisi/{id}/divisidelete','DivisiController@divisidelete');

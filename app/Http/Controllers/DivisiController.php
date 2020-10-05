@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DataTables;
 use App\Divisi;
+use App\Services\DivisiService;
 
 class DivisiController extends Controller
 {
     public function divisi()
     {
-        // $divisi = \App\Divisi::all();
         return view('/admin/divisi');//,compact('divisi'));
     }
 
@@ -28,42 +28,29 @@ class DivisiController extends Controller
     }
 
     public function addDivisi(Request $request){
-        // dd($request->all());
         $divisi = new \App\Divisi;
         $divisi->kode =$request->kode;
         $divisi->nama =$request->nama;
         $divisi->nik_kadiv =$request->nik_kadiv;
         $divisi->nama_kadiv =$request->nama_kadiv;
-        if($request->id == null ){
-            $divisi->save();
-            return redirect('/admin/divisi')->with('sukses','Data Berhasil di Simpanxxxxxx');
-        }else{
-            // $user->id =$request->id;
-            $divisiUpdate = new \App\Divisi;
-            $divisiUpdate = \App\Divisi::find($request->id);
-            $divisiUpdate->update($request->all());
-            return redirect('/admin/divisi')->with('sukses','Data Berhasil Update');
-            
-        }
+        $divisi->id =$request->id;        
+        $simpan = (new \App\services\DivisiService)->addDivisi($divisi);
+        return redirect('/admin/divisi')->with('sukses',$simpan);
     }
+
     public function getdivisibyid($id)
     {
-        $divisi = \App\Divisi::find($id);
-         return $divisi;
+        return  (new \App\Services\DivisiService)->getdivisibyid($id);//::find($id);
     }
 
     public function deldivisibyid($id)
     {
-        $divisi = \App\Divisi::find($id);
-        $divisi->delete();
-        return redirect('/admin/divisi')->with('sukses','Data Berhasil dihapus');
-        
+        return redirect('/admin/divisi')->with('sukses', (new \App\Services\DivisiService)->deldivisibyid($id));//::find($id);
     }
-
-
+        
     public function getAllDivisi()
     {
-        $divisi = \App\Divisi::all();
-        return json_encode($divisi);
+        $divisi= (new \App\Services\DivisiService)->getAllDivisi();
+        return $divisi;
     }
 }
