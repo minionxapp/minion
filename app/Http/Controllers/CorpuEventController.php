@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\CorpuEvent;
 use App\Divisi;
@@ -34,9 +34,18 @@ class CorpuEventController extends Controller
 
     public function getallevent()
     {
-        $events = \App\CorpuEvent::all();
+
+        $user = Auth::user();
+        if($user->role =='ADM'){
+            $events = \App\CorpuEvent::all();
+        }else{
+            $events = \App\CorpuEvent::where('departement_kode','=',$user->departemen)->get();;
+        }
+
+
+        // $events = \App\CorpuEvent::all();
         // dd($events->divisi->nama);
-        return Datatables::of(CorpuEvent::all())
+        return Datatables::of(/*CorpuEvent::all()*/$events)
         ->addColumn('action', function($row){       
             $btn = '<a href="#" onclick="viewFunction(\''.$row->id.'\');" class="edit btn btn-info btn-sm">View</a> ';
             $btn = $btn.' <a href="#" onclick="editFunction(\''.$row->id.'\');" class="edit btn btn-primary btn-sm">Edit</a>';

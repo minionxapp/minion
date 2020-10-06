@@ -34,7 +34,7 @@ class DivisiController extends Controller
         $divisi->nik_kadiv =$request->nik_kadiv;
         $divisi->nama_kadiv =$request->nama_kadiv;
         $divisi->id =$request->id;        
-        $simpan = (new \App\services\DivisiService)->addDivisi($divisi);
+        $simpan = (new \App\Services\DivisiService)->addDivisi($divisi);
         return redirect('/admin/divisi')->with('sukses',$simpan);
     }
 
