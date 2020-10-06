@@ -61,6 +61,14 @@ Pengaturan Departement
                             <label for="kode">id</label>
                             <input type="text" name="id" class="form-control" id="id">
                         </div>
+                        <div class="form-group">
+                            <select name="divisi_kode" class="form-control" id="divisi_kode">
+                                <option value="">Divisi</option>
+                                @foreach ($divisis as $divisi)
+                                <option value={{$divisi->kode}}>{{$divisi->nama}}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
                         <div class="form-group">
                           <label for="kode">Kode</label>
@@ -79,14 +87,7 @@ Pengaturan Departement
                             <label for="nama_kadept">Nama Kadept</label>
                             <input type="text" name="nama_kadept" class="form-control" id="nama_kadept" required>
                         </div>
-                        <div class="form-group">
-                            <select name="divisi_kode" class="form-control" id="divisi_kode">
-                                <option value="">Divisi</option>
-                                @foreach ($divisis as $divisi)
-                                <option value={{$divisi->kode}}>{{$divisi->nama}}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                        
 
 
 
