@@ -24,7 +24,7 @@ class DepartementController extends Controller
         $departement->nama_kadept =$request->nama_kadept;
         $departement->divisi_kode =$request->divisi_kode;
         $departement->id =$request->id;
-        $simpan = (new \App\services\DepartementService)->addDepartement($departement);
+        $simpan = (new \App\Services\DepartementService)->addDepartement($departement);
         return redirect('/admin/departement')->with('sukses',$simpan);
     }
 
