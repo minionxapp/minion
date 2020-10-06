@@ -18,6 +18,7 @@ class DivisiService{
 
     public function addDivisi(Divisi $divisi){
         if($divisi->id == null ){
+            $divisi->id = (Divisi::max('id'))+1;
             $divisi->save();
             return 'Data Berhasil di Simpan';
         }else{
