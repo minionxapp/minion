@@ -61,7 +61,7 @@ Wallet Transaksi
                 </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/walet/addwtransaksiuser" method="POST">
+                    <form action="/walet/addwtransaksiuser" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="div row">
                             <div class="form-group col-md-6">
@@ -134,8 +134,8 @@ Wallet Transaksi
 
 
                         <div class="form-group">
-                            <label for="file1">file1</label>
-                            <input type="text" name="file1" class="form-control" id="file1">
+                        <label for="file1" id='file1'>file1</label> 
+                            <input type="file" name="file1" class="form-control" id="file1">
                         </div>
                         <div class="form-group">
                             <label for="file2">file2</label>
@@ -208,12 +208,31 @@ Wallet Transaksi
 } );
 
 async function viewFunction($id) {
+    // <div><a href="/images/ahnaf_dazkwan.jpeg">dddddddd</a></div>
+    // $("#file1").empty();
+   
     $.ajax({
                type:'GET',
                async: false,
-               url:'/admin/xxxxxxx/'+$id, //    data:'_token = <?php echo csrf_token() ?>',
+               url:'/walet/getwtransaksiuser_byid/'+$id, //    data:'_token = <?php echo csrf_token() ?>',
                success:function(data) {
-                $("#id").val(data.id);              
+                $("#periode_kode").val(data.periode_kode); 
+                $("#user_id").val(data.user_id); 
+                $("#jenis").val(data.jenis); 
+                $("#keterangan").val(data.keterangan); 
+                $("#mulai").val(data.mulai); 
+                $("#akhir").val(data.akhir); 
+                $("#lokasi").val(data.lokasi); 
+                $("#jml_training").val(data.jml_training); 
+                $("#jml_lain").val(data.jml_lain); 
+                $("#jml_total").val(data.jml_total); 
+                $("#status").val(data.status); 
+                // $("#file1").val(data.file1); 
+                $("#file1").empty();
+                $("#file1").append('File :  <a href="/images/'+data.file1+'">'+
+                data.file1+'</a>');
+                // $("#file2").val(data.file2);
+                // $("#file3").val(data.file3); 
 
                 $('#id').attr('readonly', true);
                 $('#btnsubmit').prop("disabled",true);   
@@ -223,6 +242,19 @@ async function viewFunction($id) {
 }
 function addFunction() {
     $('#formData').modal('show');   
+    $("#file1").empty();
+    $("#file1").append('File :');
+    $("#periode_kode").val(""); 
+                $("#user_id").val(""); 
+                $("#jenis").val(""); 
+                $("#keterangan").val(""); 
+                $("#mulai").val(""); 
+                $("#akhir").val(""); 
+                $("#lokasi").val(""); 
+                $("#jml_training").val("0"); 
+                $("#jml_lain").val("0"); 
+                $("#jml_total").val("0"); 
+                $("#status").val("DRF"); 
     $('#btnsubmit').prop("disabled",false);   
 }
 async function editFunction($id) {    

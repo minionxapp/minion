@@ -30,11 +30,20 @@ class WTransaksiUserController extends Controller
         $model->jml_training =$request->jml_training;
         $model->jml_lain =$request->jml_lain;
         $model->jml_total =$request->jml_total;
-        $model->file1 =$request->file1;
+        
+        
+        if($request->hasfile('file1')){
+            $request->file('file1')->move('images/',$request->file('file1')->getClientOriginalName());
+            // $prokertask->doc_path =$request->file('file1')->getClientOriginalName();
+        }
+        
+        $model->file1 =$request->file('file1')->getClientOriginalName();//$request->file1;
         $model->file2 =$request->file2;
         $model->file3 =$request->file3;
         $model->status =$request->status;
         $model->save();
+
+
         return redirect('/walet/wtransaksiuser')->with('sukses','Data Berhasil di Simpan');
         // // $member = new WMember;
         // if($request->id == null){
@@ -71,11 +80,25 @@ class WTransaksiUserController extends Controller
         ->addColumn('action', function($row){       
             $btn = '<a href="#" onclick="viewFunction(\''.$row->id.'\');" class="edit btn btn-info btn-sm">View</a> ';
             $btn = $btn.' <a href="#" onclick="editFunction(\''.$row->id.'\');" class="edit btn btn-primary btn-sm">Edit</a>';
-            $btn = $btn.' <a href="/walet/delwmemberbyid/'.$row->id.'" class="edit btn btn-danger btn-sm" onclick="return confirm(\'Yakin mau dihapus\');">Delete</a>';
+            $btn = $btn.' <a href="/walet/delwtransaksiuserbyid/'.$row->id.'" class="edit btn btn-danger btn-sm" onclick="return confirm(\'Yakin mau dihapus\');">Delete</a>';
             return $btn;
         })
         ->rawColumns(['action'])
         ->make(true);
     }
+
+    public function getwtransaksiuser_byid($id){  
+        return WTransaksiUser::find($id);
+    }
+
+    public function delwtransaksiuserbyid($id)
+    {
+        $model =WTransaksiUser::find($id);
+        $model->delete();
+        return redirect('/walet/wtransaksiuser')->with('sukses','Data Berhasil dihapus');
+        
+    }
+
+    
 
 }
