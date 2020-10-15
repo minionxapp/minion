@@ -229,7 +229,7 @@ async function viewFunction($id) {
                 $("#status").val(data.status); 
                 // $("#file1").val(data.file1); 
                 $("#file1").empty();
-                $("#file1").append('File :  <a href="/images/'+data.file1+'">'+
+                $("#file1").append('File :  <a href="/images/'+data.file1+'" target=\"_blank\"">'+
                 data.file1+'</a>');
                 // $("#file2").val(data.file2);
                 // $("#file3").val(data.file3); 
