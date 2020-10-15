@@ -38,6 +38,12 @@ class DivisiController extends Controller
         return redirect('/admin/divisi')->with('sukses',$simpan);
     }
 
+    public function getdivisibydivisi_kode($id)
+    {
+        $divisi = \App\Divisi::where('kode','=',$id)->first();;
+        return $divisi;
+    }
+
     public function getdivisibyid($id)
     {
         return  (new \App\Services\DivisiService)->getdivisibyid($id);//::find($id);

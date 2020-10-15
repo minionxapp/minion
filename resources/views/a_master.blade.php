@@ -97,6 +97,10 @@ Pengaturan Divisi
     //     ],
         
     // });
+
+    // $("#user_id").change(function(){
+    //     alert("lllll");
+    // });
 } );
 
 async function viewFunction($id) {
@@ -106,7 +110,7 @@ async function viewFunction($id) {
                url:'/admin/xxxxxxx/'+$id, //    data:'_token = <?php echo csrf_token() ?>',
                success:function(data) {
                 $("#id").val(data.id);
-                $("#").val(data.);
+                //$("#").val(data.);
 
                 $('#id').attr('readonly', true);
                 $('#btnsubmit').prop("disabled",true);   

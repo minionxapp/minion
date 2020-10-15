@@ -34,6 +34,13 @@ class DepartementController extends Controller
          return $departement;
     }
 
+    public function getdepartementbykode($id)
+    {
+        $departement = \App\Departement::where('kode','=',$id)->first();;
+        // $user = \App\User::where('user_id','=',$id)->first();;
+         return $departement;
+    }
+
     public function getdepartement()
     {
         return Datatables::of(Departement::all())

@@ -78,9 +78,16 @@ class UserController extends Controller
     }
 
 
-    public function getUserbyUserId($id)
+    public function getUserbyId($id)
     {
         $user = \App\User::find($id);
+         return $user;
+    }
+
+    public function getUserbyUserId($id)
+    {
+        // $departement = \App\Departement::where('divisi_kode','=',$divisi_kode)->get();;
+        $user = \App\User::where('user_id','=',$id)->first();;
          return $user;
     }
 

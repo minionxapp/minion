@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('pagetitle')
-Pengaturan Divisi
+Wallet Periode Setup
 @endsection
 
 @section('content')
@@ -34,7 +34,8 @@ Pengaturan Divisi
             <th>awal</th>  
             <th>akhir</th> 
             <th>sawal</th> 
-            <th>sakhir</th>           
+            <th>sakhir</th>     
+            <th>status</th>       
             <th>Action</th>
         </tr>
     </thead>
@@ -88,6 +89,13 @@ Pengaturan Divisi
                             <label for="sakhir">sakhir</label>
                             <input type="text" name="sakhir" class="form-control" id="sakhir">
                         </div>
+                        <div class="form-group col-md-3">
+                            <label for="status">status</label>
+                            <select name="status" class="form-control" id="status">
+                                <option value="A">Aktif</option>
+                                <option value="N">Non Aktif</option>
+                            </select>
+                        </div>
                         {{-- <div class="form-group">
                             <label for=""></label>
                             <input type="text" name="" class="form-control" id="">
@@ -127,7 +135,8 @@ Pengaturan Divisi
             { data: 'awal', name: 'awal' },
             { data: 'akhir', name: 'akhir' },
             { data: 'sawal', name: 'sawal' },
-            { data: 'sakhir', name: 'sakhir' },            
+            { data: 'sakhir', name: 'sakhir' },      
+            { data: 'status', name: 'status' },        
             { data: 'action', name: 'action', orderable: false, searchable: false},
             // {defaultContent: "Not set</i>"}
         ],
