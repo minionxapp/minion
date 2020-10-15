@@ -33,6 +33,7 @@ class WTransaksiUserController extends Controller
         $model->file1 =$request->file1;
         $model->file2 =$request->file2;
         $model->file3 =$request->file3;
+        $model->status =$request->status;
         $model->save();
         return redirect('/walet/wtransaksiuser')->with('sukses','Data Berhasil di Simpan');
         // // $member = new WMember;

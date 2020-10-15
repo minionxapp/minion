@@ -25,6 +25,11 @@ class CreateWTransaksiUsersTable extends Migration
             $table->decimal('jml_training', 12, 0);
             $table->decimal('jml_lain', 12, 0);
             $table->decimal('jml_total', 12, 0);
+            
+            $table->string('status')->nullable();
+            $table->string('approve_by')->nullable();
+            $table->date('tgl_pengajuan')->nullable();
+            $table->date('tgl_approve')->nullable();
 
 
             $table->string('file1')->nullable();

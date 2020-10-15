@@ -38,6 +38,7 @@ Wallet Transaksi
             <th>jml_training</th>
             <th>jml_lain</th>
             <th>jml_total</th>  
+            <th>status</th>  
             <th>file1</th>
             <th>file2</th>
             <th>file3</th>
@@ -120,6 +121,18 @@ Wallet Transaksi
                                 <input type="number" value="0" name="jml_total" class="form-control" id="jml_total">
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label for="status">status</label>
+                            {{-- <input type="status" name="file3" class="form-control" id="status"> --}}
+                            <select name="status" class="form-control" id="status">
+                                <option value='DRF'>DRAFT</option>
+                                <option value='AJU'>Pengajuan</option>
+                                {{-- <option value='SLS'>Selesai</option> --}}
+                            </select>
+                        </div>   
+
+
                         <div class="form-group">
                             <label for="file1">file1</label>
                             <input type="text" name="file1" class="form-control" id="file1">
@@ -131,7 +144,10 @@ Wallet Transaksi
                         <div class="form-group">
                             <label for="file3">file3</label>
                             <input type="text" name="file3" class="form-control" id="file3">
-                        </div>                       
+                        </div>  
+                         
+                        
+                        
                         
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -170,6 +186,7 @@ Wallet Transaksi
             { data: 'jml_training', name: 'jml_training' },
             { data: 'jml_lain', name: 'jml_lain' },
             { data: 'jml_total', name: 'jml_total' },
+            { data: 'status', name: 'status' },
             { data: 'file1', name: 'file1' },
             { data: 'file2', name: 'file2' },
             { data: 'file3', name: 'file3' },
@@ -196,8 +213,7 @@ async function viewFunction($id) {
                async: false,
                url:'/admin/xxxxxxx/'+$id, //    data:'_token = <?php echo csrf_token() ?>',
                success:function(data) {
-                $("#id").val(data.id);
-                //$("#").val(data.);
+                $("#id").val(data.id);              
 
                 $('#id').attr('readonly', true);
                 $('#btnsubmit').prop("disabled",true);   

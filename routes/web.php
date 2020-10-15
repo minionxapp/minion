@@ -32,6 +32,7 @@ Route::group(['middleware' => ['auth','checkRole:ADM']], function () {
     Route::get('/admin/getuser','UserController@getUser');
     Route::post('/admin/adduser','UserController@addUser');
     Route::get('/admin/getuserbyuserid/{id}','UserController@getUserbyUserId');
+    Route::get('/admin/getuserbyid/{id}','UserController@getuserbyid');
     Route::get('/admin/delUserbyId/{id}','UserController@delUserbyId');
     //DIVISI
     Route::get('/admin/divisi','DivisiController@divisi')->name('divisi');
@@ -59,7 +60,7 @@ Route::group(['middleware' => ['auth','checkRole:ADM,USR']], function () {
     // Divisi    
     Route::get('/admin/getalldivisi','DivisiController@getAllDivisi');
     // Role
-    Route::get('/admin/getallrole','DivisiController@getallrole');
+    Route::get('/admin/getallrole','RoleController@getallrole');
     
     //Departemen
    
