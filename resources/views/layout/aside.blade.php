@@ -98,7 +98,7 @@
               <li class="nav-item">
                 <a href="/walet/wtransaksiuser" class="nav-link" >
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Wallet Transaksi</p>
+                  <p>Pengajuan Wallet Transaksi</p>
                 </a>
               </li>
             </ul>
