@@ -21,10 +21,7 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
                <li class="nav-item has-treeview">   
-                 {{-- menu-open --}}
                  @if(in_array(Auth::user()->role,['ADM','USR']))  
                     <a href="#" class="nav-link">{{-- active --}}
                       <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -78,59 +75,64 @@
                         </a>
                       </li>
                     </ul>
-                  </li>
-                @endif 
+                    @endif 
+                </li>
 
-            @if(in_array(Auth::user()->role,['ADM','USR']))            
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-chart-pie"></i>
-                <p>
-                  GWallet
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-            @endif
 
-            <ul class="nav nav-treeview">
-              @if(in_array(Auth::user()->role,['ADM'])) 
-                <li class="nav-item">
-                  <a href="/walet/wperiode" class="nav-link" >
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Setup Periode</p>
-                  </a>
-                </li>
-              @endif
-              @if(in_array(Auth::user()->role,['ADM']))              
-                <li class="nav-item">
-                  <a href="/walet/wmember" class="nav-link" >
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Wallet Member</p>
-                  </a>
-                </li>
-              @endif
-              @if(in_array(Auth::user()->role,['USR']))   
-                <li class="nav-item">
-                  <a href="/walet/wtransaksiuser" class="nav-link" >
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Pengajuan Wallet Trans</p>
-                  </a>
-                </li>
+
+
+
+
+
+                
+            <li class="nav-item has-treeview">        
+              @if(in_array(Auth::user()->role,['ADM','USR']))            
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-chart-pie"></i>
+                  <p>
+                    GWallet
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
               @endif
 
-              @if(in_array(Auth::user()->role,['ADM'])) 
-                <li class="nav-item">
-                  <a href="/walet/wtransaksiadmin" class="nav-link" >
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Approval Wallet Trans</p>
-                  </a>
-                </li>
-              @endif
+              <ul class="nav nav-treeview">
+                    @if(in_array(Auth::user()->role,['ADM'])) 
+                      <li class="nav-item">
+                        <a href="/walet/wperiode" class="nav-link" >
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Setup Periode</p>
+                        </a>
+                      </li>
+                    @endif
+                    @if(in_array(Auth::user()->role,['ADM']))              
+                      <li class="nav-item">
+                        <a href="/walet/wmember" class="nav-link" >
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Wallet Member</p>
+                        </a>
+                      </li>
+                    @endif
+                    @if(in_array(Auth::user()->role,['USR']))    --}}
+                      <li class="nav-item">
+                        <a href="/walet/wtransaksiuser" class="nav-link" >
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Pengajuan Wallet Trans</p>
+                        </a>
+                      </li>
+                    @endif
 
-            </ul>
+                    @if(in_array(Auth::user()->role,['ADM'])) 
+                      <li class="nav-item">
+                        <a href="/walet/wtransaksiadmin" class="nav-link" >
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Approval Wallet Trans</p>
+                        </a>
+                      </li>
+                    @endif
 
-
-
-
+              </ul>
+            </li>
 
             <li class="nav-item has-treeview">
               @if(in_array(Auth::user()->role,['ADM'])) 
@@ -153,7 +155,11 @@
                 </ul>
               @endif
             </li>
-          </li>
+          
+
+
+
+
           @if(in_array(Auth::user()->role,['ADM'])) 
               <li class="nav-header">MISCELLANEOUS</li>
               <li class="nav-item has-treeview">
@@ -207,6 +213,7 @@
                   <p>Calendar</p>
                 </a>
               </li>          
+              @endif
 
               <li class="nav-item">
                 <a href="/logout" class="nav-link">
@@ -214,7 +221,6 @@
                   <p>Logout</p>
                 </a>
               </li>
-            @endif
 
         </ul>
       </nav>
