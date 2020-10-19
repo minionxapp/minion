@@ -53,7 +53,7 @@ Route::group(['middleware' => ['auth','checkRole:ADM']], function () {
 });
 
 Route::group(['middleware' => ['auth','checkRole:ADM,USR']], function () {
-    Route::get('/dashboard','DashboardController@dashboard');
+    Route::get('/dashboard','DashboardController@dashboard')->name('dashboard');
     Route::get('/awal','AwalController@awal');
     Route::get('/parameter','ParameterController@parameter');
 

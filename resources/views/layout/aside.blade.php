@@ -21,9 +21,9 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-               <li class="nav-item has-treeview">   
+               <li class="nav-item has-treeview {!! Request::is(['dashboard']) ? 'menu-open' : '' !!}">   
                  @if(in_array(Auth::user()->role,['ADM','USR']))  
-                    <a href="#" class="nav-link">{{-- active --}}
+                    <a href="#" class="nav-link">
                       <i class="nav-icon fas fa-tachometer-alt"></i>
                       <p>
                         Dashboard 
@@ -35,7 +35,7 @@
                   @if(in_array(Auth::user()->role,['ADM','USR']))  
                   <ul class="nav nav-treeview">
                     <li class="nav-item">
-                      <a href="../dashboard" class="nav-link">
+                      <a href="../dashboard" class="nav-link {!! Request::is('dashboard') ? 'active' : '' !!}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Dashboard v1</p>
                       </a>
@@ -47,7 +47,7 @@
               
               <li class="nav-item has-treeview">
                 @if(in_array(Auth::user()->role,['ADM']))                  
-                  <li class="nav-item has-treeview">
+                  <li class="nav-item has-treeview  {!! Request::is(['admin/*']) ? 'menu-open' : '' !!}">
                     <a href="#" class="nav-link">
                       <i class="nav-icon fas fa-chart-pie"></i>
                       <p>
@@ -57,19 +57,19 @@
                     </a>
                     <ul class="nav nav-treeview">
                       <li class="nav-item">
-                        <a href="/admin/user" class="nav-link">
+                        <a href="/admin/user" class="nav-link {!! Request::is('admin/user') ? 'active' : '' !!}">
                           <i class="far fa-circle nav-icon"></i>
                           <p>User</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="/admin/divisi" class="nav-link">
+                        <a href="/admin/divisi" class="nav-link {!! Request::is('admin/divisi') ? 'active' : '' !!}">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Divisi</p>
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a href="/admin/departement" class="nav-link">
+                        <a href="/admin/departement" class="nav-link {!! Request::is('admin/departement') ? 'active' : '' !!}">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Departement</p>
                         </a>
@@ -85,7 +85,7 @@
 
 
                 
-            <li class="nav-item has-treeview">        
+            <li class="nav-item has-treeview {!! Request::is(['walet/*']) ? 'menu-open' : '' !!}">        
               @if(in_array(Auth::user()->role,['ADM','USR']))            
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-chart-pie"></i>
@@ -98,7 +98,7 @@
               <ul class="nav nav-treeview">
                     @if(in_array(Auth::user()->role,['ADM'])) 
                       <li class="nav-item">
-                        <a href="/walet/wperiode" class="nav-link" >
+                        <a href="/walet/wperiode" class="nav-link {!! Request::is('walet/wperiode') ? 'active' : '' !!}" >
                           <i class="far fa-circle nav-icon"></i>
                           <p>Setup Periode</p>
                         </a>
@@ -106,7 +106,7 @@
                     @endif
                     @if(in_array(Auth::user()->role,['ADM']))              
                       <li class="nav-item">
-                        <a href="/walet/wmember" class="nav-link" >
+                        <a href="/walet/wmember" class="nav-link {!! Request::is('walet/wmember') ? 'active' : '' !!}" >
                           <i class="far fa-circle nav-icon"></i>
                           <p>Wallet Member</p>
                         </a>
@@ -114,7 +114,7 @@
                     @endif
                     @if(in_array(Auth::user()->role,['USR']))
                       <li class="nav-item">
-                        <a href="/walet/wtransaksiuser" class="nav-link" >
+                        <a href="/walet/wtransaksiuser" class="nav-link {!! Request::is('walet/wtransaksiuser') ? 'active' : '' !!}" >
                           <i class="far fa-circle nav-icon"></i>
                           <p>Pengajuan Wallet Trans</p>
                         </a>
@@ -123,7 +123,7 @@
 
                     @if(in_array(Auth::user()->role,['ADM'])) 
                       <li class="nav-item">
-                        <a href="/walet/wtransaksiadmin" class="nav-link" >
+                        <a href="/walet/wtransaksiadmin" class="nav-link {!! Request::is('walet/wtransaksiadmin') ? 'active' : '' !!}" >
                           <i class="far fa-circle nav-icon"></i>
                           <p>Approval Wallet Trans</p>
                         </a>
@@ -133,7 +133,7 @@
               </ul>
             </li>
 
-            <li class="nav-item has-treeview">
+            <li class="nav-item has-treeview   {!! Request::is(['corpuevent*']) ? 'menu-open' : '' !!}">
               @if(in_array(Auth::user()->role,['ADM'])) 
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-chart-pie"></i>
@@ -146,7 +146,7 @@
               @if(in_array(Auth::user()->role,['ADM'])) 
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="/corpuevent" class="nav-link">
+                    <a href="/corpuevent" class="nav-link  {!! Request::is('corpuevent') ? 'active' : '' !!}">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Event</p>
                     </a>
@@ -159,7 +159,7 @@
 
 
 
-          @if(in_array(Auth::user()->role,['ADM'])) 
+          @if(in_array(Auth::user()->role,['ADM','USR'])) 
               <li class="nav-header">MISCELLANEOUS</li>
               <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
@@ -196,24 +196,23 @@
                   </li>              
                 </ul>
                 
-
-
               </li>
-              <li class="nav-item">
-                <a href="https://adminlte.io/docs/3.0" class="nav-link">
-                  <i class="nav-icon fas fa-file"></i>
-                  <p>Documentation</p>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="/calendar" class="nav-link">
-                  <i class="nav-icon fas fa-file"></i>
-                  <p>Calendar</p>
-                </a>
-              </li>          
               @endif
+              @if(in_array(Auth::user()->role,['ADM'])) 
+                <li class="nav-item">
+                  <a href="https://adminlte.io/docs/3.0" class="nav-link">
+                    <i class="nav-icon fas fa-file"></i>
+                    <p>Documentation</p>
+                  </a>
+                </li>
 
+                <li class="nav-item">
+                  <a href="/calendar" class="nav-link">
+                    <i class="nav-icon fas fa-file"></i>
+                    <p>Calendar</p>
+                  </a>
+                </li>          
+              @endif
               <li class="nav-item">
                 <a href="/logout" class="nav-link">
                   <i class="nav-icon fas fa-file"></i>

@@ -49,8 +49,6 @@ class WTransaksiUserController extends Controller
             $model->file3 =Carbon\Carbon::now()->timestamp.'_'.($request->file('file3')->getClientOriginalName());//$request->file1;
         }
 
-
-
         $model->status =$request->status;
         if($request->id == null ){
             $model->save();
@@ -58,33 +56,7 @@ class WTransaksiUserController extends Controller
             $modelUpdate = WTransaksiUser::find($request->id);
             $modelUpdate->update($model->toArray());
         }
-
-
         return redirect('/walet/wtransaksiuser')->with('sukses','Data Berhasil di Simpan');
-        // // $member = new WMember;
-        // if($request->id == null){
-        //     $member2 = \App\WMember::where('periode_kode','=',$request->periode_kode)
-        //     ->where('user_id','=',$request->user_id)
-        //     ->first();
-        //     if ($member2 == null){
-        //         $wmember->sakhir =$request->sawal;// samakan dengan saldo awal$request->sakhir;
-        //         $controller = new WMemberController();
-        //         if ($controller->kurangSaldo($request->periode_kode,$request->sawal,$request->user_id)){
-        //             $wmember->save();
-        //             return redirect('/walet/wmember')->with('sukses','Data Berhasil di Simpan');
-        //         }else{
-        //             return redirect('/walet/wmember')->with('sukses','Simpan Gagal');
-        //         }
-        //     }else{
-        //         return redirect('/walet/wmember')->with('sukses','Data Sudah Ada');
-        //     }
-        // }else{
-        //     $wmember3 = WMember::find($request->id);
-        //     $wmember->sakhir =$request->sakhir;
-        //     $wmember3->update($wmember->toArray());
-        //     return redirect('/walet/wmember')->with('sukses','Update Sukses');
-        // }
-        
     }
 
 
@@ -114,8 +86,13 @@ class WTransaksiUserController extends Controller
     public function delwtransaksiuserbyid($id)
     {
         $model =WTransaksiUser::find($id);
-        $model->delete();
-        return redirect('/walet/wtransaksiuser')->with('sukses','Data Berhasil dihapus');
+        if($model->user_id == (Auth::user())->user_id){
+
+            $model->delete();
+            return redirect('/walet/wtransaksiuser')->with('sukses','Data Berhasil dihapus');
+        }else{
+            return redirect('/walet/wtransaksiuser')->with('sukses','Hapus Gagal...........');
+        }
         
     }
 
