@@ -90,12 +90,11 @@
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-chart-pie"></i>
                   <p>
-                    GWallet
+                    Learning Wallet
                     <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
               @endif
-
               <ul class="nav nav-treeview">
                     @if(in_array(Auth::user()->role,['ADM'])) 
                       <li class="nav-item">
@@ -113,7 +112,7 @@
                         </a>
                       </li>
                     @endif
-                    @if(in_array(Auth::user()->role,['USR']))    --}}
+                    @if(in_array(Auth::user()->role,['USR']))
                       <li class="nav-item">
                         <a href="/walet/wtransaksiuser" class="nav-link" >
                           <i class="far fa-circle nav-icon"></i>
