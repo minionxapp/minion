@@ -25,63 +25,72 @@
                with font-awesome or any other icon font library -->
                <li class="nav-item has-treeview">   
                  {{-- menu-open --}}
-                <a href="#" class="nav-link">{{-- active --}}
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p>
-                    Dashboard 
-                    <i class="right fas fa-angle-left"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="../dashboard" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Dashboard v1</p>
+                 @if(in_array(Auth::user()->role,['ADM','USR']))  
+                    <a href="#" class="nav-link">{{-- active --}}
+                      <i class="nav-icon fas fa-tachometer-alt"></i>
+                      <p>
+                        Dashboard 
+                        <i class="right fas fa-angle-left"></i>
+                        </p>
                     </a>
-                  </li>                                 
-                </ul>
-              </li>
-              @if(in_array(Auth::user()->role,['ADM']))                  
-                <li class="nav-item has-treeview">
-                  <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-chart-pie"></i>
-                    <p>
-                      Admin
-                      <i class="right fas fa-angle-left"></i>
-                    </p>
-                  </a>
+                  @endif
+
+                  @if(in_array(Auth::user()->role,['ADM','USR']))  
                   <ul class="nav nav-treeview">
                     <li class="nav-item">
-                      <a href="/admin/user" class="nav-link">
+                      <a href="../dashboard" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>User</p>
+                        <p>Dashboard v1</p>
                       </a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="/admin/divisi" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Divisi</p>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="/admin/departement" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Departement</p>
-                      </a>
-                    </li>
+                    </li>                                 
                   </ul>
-                </li>
-              @endif 
-            
-          
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                GWallet
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
+                  @endif
+              </li>
+              
+              
+              <li class="nav-item has-treeview">
+                @if(in_array(Auth::user()->role,['ADM']))                  
+                  <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-chart-pie"></i>
+                      <p>
+                        Admin
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        <a href="/admin/user" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>User</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="/admin/divisi" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Divisi</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="/admin/departement" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Departement</p>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                @endif 
+
+            @if(in_array(Auth::user()->role,['ADM','USR']))            
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-chart-pie"></i>
+                <p>
+                  GWallet
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+            @endif
+
             <ul class="nav nav-treeview">
               @if(in_array(Auth::user()->role,['ADM'])) 
                 <li class="nav-item">
@@ -90,21 +99,23 @@
                     <p>Setup Periode</p>
                   </a>
                 </li>
-              
+              @endif
+              @if(in_array(Auth::user()->role,['ADM']))              
                 <li class="nav-item">
                   <a href="/walet/wmember" class="nav-link" >
                     <i class="far fa-circle nav-icon"></i>
                     <p>Wallet Member</p>
                   </a>
                 </li>
-
               @endif
-              <li class="nav-item">
-                <a href="/walet/wtransaksiuser" class="nav-link" >
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Pengajuan Wallet Trans</p>
-                </a>
-              </li>
+              @if(in_array(Auth::user()->role,['USR']))   
+                <li class="nav-item">
+                  <a href="/walet/wtransaksiuser" class="nav-link" >
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Pengajuan Wallet Trans</p>
+                  </a>
+                </li>
+              @endif
 
               @if(in_array(Auth::user()->role,['ADM'])) 
                 <li class="nav-item">
@@ -114,92 +125,96 @@
                   </a>
                 </li>
               @endif
-              
+
             </ul>
 
 
 
 
 
-            
             <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-chart-pie"></i>
-                <p>
-                  Akademik
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="/corpuevent" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Event</p>
-                  </a>
-                </li>
-              </ul>
+              @if(in_array(Auth::user()->role,['ADM'])) 
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-chart-pie"></i>
+                  <p>
+                    Akademik
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+              @endif
+              @if(in_array(Auth::user()->role,['ADM'])) 
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="/corpuevent" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Event</p>
+                    </a>
+                  </li>
+                </ul>
+              @endif
             </li>
           </li>
-
-          <li class="nav-header">MISCELLANEOUS</li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                Eksternal Link
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="https://g-leads.disprz.com" class="nav-link" target="_blank">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>G-Leads</p>
+          @if(in_array(Auth::user()->role,['ADM'])) 
+              <li class="nav-header">MISCELLANEOUS</li>
+              <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-chart-pie"></i>
+                  <p>
+                    Eksternal Link
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
                 </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="https://g-leads.disprz.com" class="nav-link" target="_blank">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>G-Leads</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="https://docs.google.com/spreadsheets/d/1zRZL6ye45KGTf0SZIoZlvDsUaV0K_frWy0Tzv7vovUY/edit#gid=667268145" class="nav-link" target="_blank">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Digital</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="https://kms.pegadaian.co.id/login" class="nav-link" target="_blank">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>KMS</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="https://sites.google.com/pegadaian.co.id/cmstore/" class="nav-link" target="_blank">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>CM-Store</p>
+                    </a>
+                  </li>              
+                </ul>
+                
+
+
               </li>
               <li class="nav-item">
-                <a href="https://docs.google.com/spreadsheets/d/1zRZL6ye45KGTf0SZIoZlvDsUaV0K_frWy0Tzv7vovUY/edit#gid=667268145" class="nav-link" target="_blank">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Digital</p>
+                <a href="https://adminlte.io/docs/3.0" class="nav-link">
+                  <i class="nav-icon fas fa-file"></i>
+                  <p>Documentation</p>
                 </a>
               </li>
+
               <li class="nav-item">
-                <a href="https://kms.pegadaian.co.id/login" class="nav-link" target="_blank">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>KMS</p>
+                <a href="/calendar" class="nav-link">
+                  <i class="nav-icon fas fa-file"></i>
+                  <p>Calendar</p>
+                </a>
+              </li>          
+
+              <li class="nav-item">
+                <a href="/logout" class="nav-link">
+                  <i class="nav-icon fas fa-file"></i>
+                  <p>Logout</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="https://sites.google.com/pegadaian.co.id/cmstore/" class="nav-link" target="_blank">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>CM-Store</p>
-                </a>
-              </li>              
-            </ul>
-            
-
-
-          </li>
-          <li class="nav-item">
-            <a href="https://adminlte.io/docs/3.0" class="nav-link">
-              <i class="nav-icon fas fa-file"></i>
-              <p>Documentation</p>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a href="/calendar" class="nav-link">
-              <i class="nav-icon fas fa-file"></i>
-              <p>Calendar</p>
-            </a>
-          </li>          
-
-          <li class="nav-item">
-            <a href="/logout" class="nav-link">
-              <i class="nav-icon fas fa-file"></i>
-              <p>Logout</p>
-            </a>
-          </li>
+            @endif
 
         </ul>
       </nav>

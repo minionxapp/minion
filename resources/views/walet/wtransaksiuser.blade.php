@@ -257,6 +257,7 @@ function addFunction() {
     $("#jml_lain").val("0"); 
     $("#jml_total").val("0"); 
     $("#status").val("DRF"); 
+    $('#user_id').attr('readonly', true);
     $('#btnsubmit').prop("disabled",false);   
 }
 async function editFunction($id) {    
