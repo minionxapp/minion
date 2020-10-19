@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('pagetitle')
-Pengajuan Wallet Transaksi
+Approval Wallet Transaksi
 @endsection
 
 @section('content')
@@ -18,8 +18,8 @@ Pengajuan Wallet Transaksi
 {{-- data-target="#addData" --}}
 <div class="row text-nowrap">
   <div class="col-12" style="padding-top: 5px;">
-    <button type="button" class="btn btn-primary btn-sm float-left"  
-    data-toggle="modal" onclick="addFunction();" >Add
+    {{-- <button type="button" class="btn btn-primary btn-sm float-left"  
+    data-toggle="modal" onclick="addFunction();" >Add --}}
 </button>
   </div>
 </div>
@@ -55,13 +55,13 @@ Pengajuan Wallet Transaksi
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Pengajuan Wallet</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Persetujuan Wallet</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/walet/addwtransaksiuser" method="POST" enctype="multipart/form-data">
+                    <form action="/walet/addwtransaksiadmin" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <input type="hidden" name="id" class="form-control" id="id">
 
@@ -128,24 +128,25 @@ Pengajuan Wallet Transaksi
                             <label for="status">status</label>
                             {{-- <input type="status" name="file3" class="form-control" id="status"> --}}
                             <select name="status" class="form-control" id="status">
-                                <option value='DRF'>DRAFT</option>
                                 <option value='AJU'>Pengajuan</option>
+                                <option value='TLK'>Tolak</option>
+                                <option value='STJ'>Setuju</option>
                                 {{-- <option value='SLS'>Selesai</option> --}}
                             </select>
                         </div>   
 
 
                         <div class="form-group">
-                        <label for="file1" id='file1'>file1</label> 
-                            <input type="file" name="file1" class="form-control" id="file1">
+                            <label for="file1" id='file1'></label> 
+                            {{-- <label for="file2" id='file2'>file2</label>
+                            <label for="file3" id='file3'>file3</label> --}}
+                        {{-- <input type="file" name="file1" class="form-control" id="file1"> --}}
                         </div>
                         <div class="form-group">
-                            <label for="file2" id='file2'>file2</label>
-                            <input type="file" name="file2" class="form-control" id="file2">
+                            {{-- <input type="file" name="file2" class="form-control" id="file2"> --}}
                         </div>
                         <div class="form-group">
-                            <label for="file3" id='file3'>file3</label>
-                            <input type="file" name="file3" class="form-control" id="file3">
+                            {{-- <input type="file" name="file3" class="form-control" id="file3"> --}}
                         </div>  
                         
                         <div class="modal-footer">
@@ -173,7 +174,7 @@ Pengajuan Wallet Transaksi
         responsive: true,
         processing: true,
         serverSide: true,
-        ajax: '/walet/getwtransaksiuser/',
+        ajax: '/walet/getwtransaksiadmin/',
         columns: [
             { data: 'periode_kode', name: 'periode_kode' },
             { data: 'user_id', name: 'user_id' },
@@ -206,7 +207,8 @@ Pengajuan Wallet Transaksi
     });
 } );
 
-async function viewFunction($id) {   
+async function viewFunction($id) {
+   
     $.ajax({
                type:'GET',
                async: false,
@@ -224,17 +226,15 @@ async function viewFunction($id) {
                 $("#jml_lain").val(data.jml_lain); 
                 $("#jml_total").val(data.jml_total); 
                 $("#status").val(data.status); 
+                $("#file1").empty();
                 if(data.file1 != null){
-                    $("#file1").empty();
-                    $("#file1").append('File :  <a href="/images/'+data.file1+'" target=\"_blank\"">'+data.file1+'</a>');
+                    $("#file1").append('File :<br><a href="/images/'+data.file1+'" target=\"_blank\"">'+data.file1+'</a><br>');
                 }
                 if(data.file2 != null){
-                    $("#file2").empty();
-                    $("#file2").append('File :  <a href="/images/'+data.file2+'" target=\"_blank\"">'+data.file2+'</a>');
+                    $("#file1").append('<a href="/images/'+data.file2+'" target=\"_blank\"">'+data.file2+'</a><br>');
                 }
                 if(data.file3 != null){
-                    $("#file3").empty();
-                    $("#file3").append('File :  <a href="/images/'+data.file3+'" target=\"_blank\"">'+data.file3+'</a>');
+                    $("#file1").append('<a href="/images/'+data.file3+'" target=\"_blank\"">'+data.file3+'</a><br>');
                 }
                 $('#id').attr('readonly', true);
                 $('#btnsubmit').prop("disabled",true);   
@@ -261,12 +261,28 @@ function addFunction() {
 }
 async function editFunction($id) {    
     await viewFunction($id);
-    // $('#id').attr('readonly', true);  
-    if($("#status").val() == "DRF"){
+    $('#id').attr('readonly', true);  
+    $('#periode_kode').attr('readonly', true); 
+    $('#user_id').attr('readonly', true); 
+    $('#jenis').attr('readonly', true); 
+    $('#keterangan').attr('readonly', true); 
+    $('#mulai').attr('readonly', true); 
+    $('#akhir').attr('readonly', true); 
+    $('#lokasi').attr('readonly', true); 
+    $('#jml_training').attr('readonly', true); 
+    $('#jml_lain').attr('readonly', true); 
+    $('#jml_total').attr('readonly', true); 
+    $('#status').attr('readonly', false); 
+    // $('#id').attr('readonly', true); 
+    // $('#id').attr('readonly', true); 
+    // $('#id').attr('readonly', true); 
+    // $('#id').attr('readonly', true); 
+    // $('#id').attr('readonly', true); 
+    // if($("#status").val() == "DRF"){
+    //     $('#btnsubmit').prop("disabled",false); 
+    // }else{
         $('#btnsubmit').prop("disabled",false); 
-    }else{
-        $('#btnsubmit').prop("disabled",true); 
-    }      
+    // }      
 }
 
 </script>

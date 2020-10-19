@@ -8,6 +8,7 @@ use App\WPeriode;
 use DataTables;
 use App\User;
 use Auth;
+use Carbon;
 
 class WTransaksiUserController extends Controller
 {
@@ -33,15 +34,30 @@ class WTransaksiUserController extends Controller
         
         
         if($request->hasfile('file1')){
-            $request->file('file1')->move('images/',$request->file('file1')->getClientOriginalName());
-            // $prokertask->doc_path =$request->file('file1')->getClientOriginalName();
+            $request->file('file1')
+            ->move('images/',Carbon\Carbon::now()->timestamp.'_'.($request->file('file1')->getClientOriginalName()));
+            $model->file1 =Carbon\Carbon::now()->timestamp.'_'.($request->file('file1')->getClientOriginalName());//$request->file1;
         }
         
-        $model->file1 =$request->file('file1')->getClientOriginalName();//$request->file1;
-        $model->file2 =$request->file2;
-        $model->file3 =$request->file3;
+        if($request->hasfile('file2')){
+            $request->file('file2')->move('images/',Carbon\Carbon::now()->timestamp.'_'.($request->file('file2')->getClientOriginalName()));
+            $model->file2 =Carbon\Carbon::now()->timestamp.'_'.($request->file('file2')->getClientOriginalName());//$request->file1;
+        }
+
+        if($request->hasfile('file3')){
+            $request->file('file3')->move('images/',Carbon\Carbon::now()->timestamp.'_'.($request->file('file3')->getClientOriginalName()));
+            $model->file3 =Carbon\Carbon::now()->timestamp.'_'.($request->file('file3')->getClientOriginalName());//$request->file1;
+        }
+
+
+
         $model->status =$request->status;
-        $model->save();
+        if($request->id == null ){
+            $model->save();
+        }else{
+            $modelUpdate = WTransaksiUser::find($request->id);
+            $modelUpdate->update($model->toArray());
+        }
 
 
         return redirect('/walet/wtransaksiuser')->with('sukses','Data Berhasil di Simpan');
@@ -75,8 +91,12 @@ class WTransaksiUserController extends Controller
 
 
 
-    public function getwtransaksiuser(){        
-        return Datatables::of(WTransaksiUser::all())
+    public function getwtransaksiuser(){    
+        $user = User::where('user_id','=',Auth::user()->user_id)->first();    
+        // dd($user);
+        return Datatables::of(WTransaksiUser::whereIn('status',['DRF','AJU'])
+        ->where('user_id','=',$user->user_id)
+        ->get())//kasih where draft dan pengauan hanya di gunakan di pengajuan page
         ->addColumn('action', function($row){       
             $btn = '<a href="#" onclick="viewFunction(\''.$row->id.'\');" class="edit btn btn-info btn-sm">View</a> ';
             $btn = $btn.' <a href="#" onclick="editFunction(\''.$row->id.'\');" class="edit btn btn-primary btn-sm">Edit</a>';

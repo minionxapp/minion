@@ -14,7 +14,6 @@
           <img src="../dist/img/minion/minion5.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          {{-- <a href="#" class="d-block">Alexander Pierce</a> --}}
           <a href="#" class="d-block">{{auth()->user()->name}}</a>
         </div>
       </div>
@@ -29,7 +28,7 @@
                 <a href="#" class="nav-link">{{-- active --}}
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
-                    Dashboard
+                    Dashboard 
                     <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
@@ -39,39 +38,40 @@
                       <i class="far fa-circle nav-icon"></i>
                       <p>Dashboard v1</p>
                     </a>
-                  </li>
+                  </li>                                 
                 </ul>
               </li>
-            <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                Admin
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/admin/user" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>User</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/admin/divisi" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Divisi</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/admin/departement" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Departement</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-    
+              @if(in_array(Auth::user()->role,['ADM']))                  
+                <li class="nav-item has-treeview">
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-chart-pie"></i>
+                    <p>
+                      Admin
+                      <i class="right fas fa-angle-left"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="/admin/user" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>User</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/admin/divisi" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Divisi</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/admin/departement" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Departement</p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              @endif 
             
           
           <li class="nav-item has-treeview">
@@ -83,24 +83,38 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/walet/wperiode" class="nav-link" >
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Setup Periode</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/walet/wmember" class="nav-link" >
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Wallet Member</p>
-                </a>
-              </li>
+              @if(in_array(Auth::user()->role,['ADM'])) 
+                <li class="nav-item">
+                  <a href="/walet/wperiode" class="nav-link" >
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Setup Periode</p>
+                  </a>
+                </li>
+              
+                <li class="nav-item">
+                  <a href="/walet/wmember" class="nav-link" >
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Wallet Member</p>
+                  </a>
+                </li>
+
+              @endif
               <li class="nav-item">
                 <a href="/walet/wtransaksiuser" class="nav-link" >
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Pengajuan Wallet Transaksi</p>
+                  <p>Pengajuan Wallet Trans</p>
                 </a>
               </li>
+
+              @if(in_array(Auth::user()->role,['ADM'])) 
+                <li class="nav-item">
+                  <a href="/walet/wtransaksiadmin" class="nav-link" >
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Approval Wallet Trans</p>
+                  </a>
+                </li>
+              @endif
+              
             </ul>
 
 
