@@ -101,6 +101,8 @@ Route::group(['middleware' => ['auth','checkRole:ADM,USR']], function () {
     Route::post('/walet/addwtransaksiuser','WTransaksiUserController@addwtransaksiuser');
     Route::get('/walet/getwtransaksiuser_byid/{id}','WTransaksiUserController@getwtransaksiuser_byid');
     Route::get('/walet/delwtransaksiuserbyid/{id}','WTransaksiUserController@delwtransaksiuserbyid');
+    Route::get('/walet/getwtransaksiuser_byuserid/{id}','WTransaksiUserController@getwtransaksiuser_byuserid');
+    
  
     //Walet TransaksiAdmin
     Route::get('/walet/wtransaksiadmin','WTransaksiAdminController@wtransaksiadmin');

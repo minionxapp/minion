@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Divisi;
 use App\Departement;
+use App\WMember;
+use App\WPeriode;
+use Auth;
+use App\User;
 class DashboardController extends Controller
 {
     public function dashboard(){
@@ -15,7 +19,14 @@ class DashboardController extends Controller
         // foreach ($epent as $ep) {
         //     dd($ep->departement->nama);
         // }
-        // dd($epent);
-        return view('/dashboard',['epentlist'=>$epent]);
+        $periode = WPeriode::where('status','=','A')->first();
+        $user = User::where('user_id','=',Auth::user()->user_id)->first();
+        $member = WMember::where('periode_kode','=',$periode->kode)
+        ->where('user_id','=',$user->user_id)->first();
+        if($member == null){
+            return view('/dashboard',['epentlist'=>$epent,'saldo'=>0]);
+        }else{
+            return view('/dashboard',['epentlist'=>$epent,'saldo'=>$member->sakhir]);
+        }
     }
 }

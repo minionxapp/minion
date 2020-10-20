@@ -37,6 +37,10 @@
         {{ csrf_field() }}
          <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Iser Id" name="user_id" value="admin">
+          {{-- <select name="user_id" class="form-control" id="user_id">
+            <option value='admin'>Admin</option>
+            <option value='mugi'>Mugi</option>
+          </select> --}}
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\WTransaksiUser;
+use  App\WTransaksi;
 use App\WPeriode;
+use App\WMember;
 use DataTables;
 use App\User;
 use Auth;
@@ -52,10 +54,44 @@ class WTransaksiUserController extends Controller
         $model->status =$request->status;
         if($request->id == null ){
             $model->save();
-        }else{
-            $modelUpdate = WTransaksiUser::find($request->id);
-            $modelUpdate->update($model->toArray());
-        }
+            //insert transaksi ke wtransaksi
+            if($request->status=="AJU"){
+                $trans = new WTransaksi;
+                $trans->periode_kode = $request->periode_kode;
+                $trans->user_id = $request->user_id;
+                $trans->keterangan=$request->keterangan;
+                $trans->keluar= $request->jml_total;
+                $trans->masuk=0;
+                $trans->save();
+                // 'periode_kode','user_id','keterangan','masuk','keluar'
+                // Buat pengurangan saldo ya.....................
+                $member = WMember::where('periode_kode','=',$request->periode_kode)
+                ->where('user_id','=',$request->user_id)->first();
+                $saldo_akhir = $member->sakhir - $request->jml_total;
+                $member->sakhir = $saldo_akhir;
+                $member->update($member->toArray());
+            }
+            }else{
+                if($request->status=="AJU"){
+                    $trans = new WTransaksi;
+                    $trans->periode_kode = $request->periode_kode;
+                    $trans->user_id = $request->user_id;
+                    $trans->keterangan=$request->keterangan;
+                    $trans->keluar= $request->jml_total;
+                    $trans->masuk=0;
+                    $trans->save();
+
+                    // Buat pengurangan saldo ya.....................
+                    $member = WMember::where('periode_kode','=',$request->periode_kode)
+                    ->where('user_id','=',$request->user_id)->first();
+                    $saldo_akhir = $member->sakhir - $request->jml_total;
+                    $member->sakhir = $saldo_akhir;
+                    $member->update($member->toArray());
+                }
+                $modelUpdate = WTransaksiUser::find($request->id);
+                $modelUpdate->update($model->toArray());
+            }
+//update saldo di wmember
         return redirect('/walet/wtransaksiuser')->with('sukses','Data Berhasil di Simpan');
     }
 
@@ -83,11 +119,17 @@ class WTransaksiUserController extends Controller
         return WTransaksiUser::find($id);
     }
 
+    public function getwtransaksiuser_byuserid($id){  
+        $periode = WPeriode::where('status','=','A')->first();
+        $wmember = WMember::where('user_id','=',Auth::user()->user_id)
+                            ->where('periode_kode','=',$periode->kode)->first();
+        return $wmember;
+    }
+
     public function delwtransaksiuserbyid($id)
     {
         $model =WTransaksiUser::find($id);
         if($model->user_id == (Auth::user())->user_id){
-
             $model->delete();
             return redirect('/walet/wtransaksiuser')->with('sukses','Data Berhasil dihapus');
         }else{

@@ -19,8 +19,7 @@ Pengajuan Wallet Transaksi
 <div class="row text-nowrap">
   <div class="col-12" style="padding-top: 5px;">
     <button type="button" class="btn btn-primary btn-sm float-left"  
-    data-toggle="modal" onclick="addFunction();" >Add
-</button>
+    data-toggle="modal" onclick="addFunction();" >Add</button>
   </div>
 </div>
 
@@ -55,7 +54,10 @@ Pengajuan Wallet Transaksi
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Pengajuan Wallet</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Pengajuan Wallet : 
+                    <label id="saldo">0</label>
+                </h5>
+              
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -64,7 +66,6 @@ Pengajuan Wallet Transaksi
                     <form action="/walet/addwtransaksiuser" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <input type="hidden" name="id" class="form-control" id="id">
-
                         <div class="div row">
                             <div class="form-group col-md-6">
                                 <label for="periode_kode">periode_kode</label>
@@ -243,10 +244,24 @@ async function viewFunction($id) {
     $('#formData').modal('show');    
 }
 function addFunction() {
+    
+    $.ajax({
+               type:'GET',
+               async: false,
+               url:'/walet/getwtransaksiuser_byuserid/'+"{{$user->user_id}}", //    data:'_token = <?php echo csrf_token() ?>',
+               success:function(data) {
+                    $("#saldo").empty();
+                    $("#saldo").append(" Saldo :"+new Intl.NumberFormat().format(data.sakhir));
+                    $("#periode_kode").val(data.periode_kode);
+                    $("#periode_kode option:first").attr('selected','selected');
+               }
+    });
+
+
     $('#formData').modal('show');   
     $("#file1").empty();
     $("#file1").append('File :');
-    $("#periode_kode").val(""); 
+    // $("#periode_kode").val(""); 
     $("#user_id").val("{{$user->user_id}}"); 
     $("#jenis").val(""); 
     $("#keterangan").val(""); 
@@ -264,8 +279,14 @@ async function editFunction($id) {
     await viewFunction($id);
     // $('#id').attr('readonly', true);  
     if($("#status").val() == "DRF"){
+        $('#jml_training').prop("disabled",false); 
+        $('#jml_lain').prop("disabled",false); 
+        $('#jml_total').prop("disabled",true); 
         $('#btnsubmit').prop("disabled",false); 
     }else{
+        $('#jml_training').prop("disabled",true); 
+        $('#jml_lain').prop("disabled",true); 
+        $('#jml_total').prop("disabled",true); 
         $('#btnsubmit').prop("disabled",true); 
     }      
 }
