@@ -50,15 +50,15 @@ class WTransaksiAdminController extends Controller
     public function addwtransaksiadmin(Request $request){
             $modelUpdate = WTransaksiUser::find($request->id);
             $modelUpdate->approve_by = (Auth::user())->user_id;
-            if($request->status == 'TLA'){
+            if($request->status == 'TLA'||$request->status == 'STA'){
                 $modelUpdate->tgl_atasan_approve = Carbon\Carbon::now();
             }
-            if($request->status == 'TLD'){
+            if($request->status == 'TLD' || $request->status == 'STD'){
                 $modelUpdate->tgl_approve = Carbon\Carbon::now();
             }
 
             $modelUpdate->status = $request->status;
-            if($request->status == 'TLA' ||$request->status == 'TLD'){
+            if($request->status == 'TLA' ||$request->status == 'TLD'){//pengembalian saldo
                 //kembalikan saldo 
                     $trans = new WTransaksi;
                     $trans->periode_kode = $request->periode_kode;
@@ -66,6 +66,7 @@ class WTransaksiAdminController extends Controller
                     $trans->keterangan="Tolak ".$request->keterangan;
                     $trans->masuk= $request->jml_total;
                     $trans->keluar=0;
+                    $trans->id_trans = $modelUpdate->id;
                     $trans->save();
 
                     // Buat pengurangan saldo ya.....................
