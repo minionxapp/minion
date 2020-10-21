@@ -121,7 +121,7 @@
                       </li>
                     @endif
 
-                    @if(in_array(Auth::user()->role,['ADM'])) 
+                    @if(in_array(Auth::user()->role,['ADM','USR'])) 
                       <li class="nav-item">
                         <a href="/walet/wtransaksiadmin" class="nav-link {!! Request::is('walet/wtransaksiadmin') ? 'active' : '' !!}" >
                           <i class="far fa-circle nav-icon"></i>

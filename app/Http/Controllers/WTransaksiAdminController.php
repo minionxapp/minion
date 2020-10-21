@@ -21,31 +21,44 @@ class WTransaksiAdminController extends Controller
     }
 
     public function getwtransaksiadmin(){    
-        return Datatables::of(WTransaksiUser::whereIn('status',['AJU'])
-        ->get())//kasih where draft dan pengauan hanya di gunakan di pengajuan page
-        ->addColumn('action', function($row){       
-            $btn = '<a href="#" onclick="viewFunction(\''.$row->id.'\');" class="edit btn btn-info btn-sm">View</a> ';
-            $btn = $btn.' <a href="#" onclick="editFunction(\''.$row->id.'\');" class="edit btn btn-primary btn-sm">Edit</a>';
-            // $btn = $btn.' <a href="/walet/delwtransaksiuserbyid/'.$row->id.'" class="edit btn btn-danger btn-sm" onclick="return confirm(\'Yakin mau dihapus\');">Delete</a>';
-            return $btn;
-        })
-        ->rawColumns(['action'])
-        ->make(true);
+        if(Auth::user()->role =='ADM'){
+            return Datatables::of(WTransaksiUser::whereIn('status',['STA'])
+            ->get())//kasih where draft dan pengauan hanya di gunakan di pengajuan page
+            ->addColumn('action', function($row){       
+                $btn = '<a href="#" onclick="viewFunction(\''.$row->id.'\');" class="edit btn btn-info btn-sm">View</a> ';
+                $btn = $btn.' <a href="#" onclick="editFunction(\''.$row->id.'\');" class="edit btn btn-primary btn-sm">Edit</a>';
+                // $btn = $btn.' <a href="/walet/delwtransaksiuserbyid/'.$row->id.'" class="edit btn btn-danger btn-sm" onclick="return confirm(\'Yakin mau dihapus\');">Delete</a>';
+                return $btn;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+        }else{//unutk atasan
+            return Datatables::of(WTransaksiUser::whereIn('status',['AJA'])
+            ->where('nik_atasan','=',Auth::user()->user_id)
+            ->get())//kasih where draft dan pengauan hanya di gunakan di pengajuan page
+            ->addColumn('action', function($row){       
+                $btn = '<a href="#" onclick="viewFunction(\''.$row->id.'\');" class="edit btn btn-info btn-sm">View</a> ';
+                $btn = $btn.' <a href="#" onclick="editFunction(\''.$row->id.'\');" class="edit btn btn-primary btn-sm">Edit</a>';
+                // $btn = $btn.' <a href="/walet/delwtransaksiuserbyid/'.$row->id.'" class="edit btn btn-danger btn-sm" onclick="return confirm(\'Yakin mau dihapus\');">Delete</a>';
+                return $btn;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+        }
     }
-
-
-
-
-
-
-
 
     public function addwtransaksiadmin(Request $request){
             $modelUpdate = WTransaksiUser::find($request->id);
             $modelUpdate->approve_by = (Auth::user())->user_id;
-            $modelUpdate->tgl_approve = Carbon\Carbon::now();
+            if($request->status == 'TLA'){
+                $modelUpdate->tgl_atasan_approve = Carbon\Carbon::now();
+            }
+            if($request->status == 'TLD'){
+                $modelUpdate->tgl_approve = Carbon\Carbon::now();
+            }
+
             $modelUpdate->status = $request->status;
-            if($request->status == 'TLK'){
+            if($request->status == 'TLA' ||$request->status == 'TLD'){
                 //kembalikan saldo 
                     $trans = new WTransaksi;
                     $trans->periode_kode = $request->periode_kode;

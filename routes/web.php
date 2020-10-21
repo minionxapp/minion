@@ -31,7 +31,6 @@ Route::group(['middleware' => ['auth','checkRole:ADM']], function () {
     Route::get('/admin/user','UserController@user');
     Route::get('/admin/getuser','UserController@getUser');
     Route::post('/admin/adduser','UserController@addUser');
-    Route::get('/admin/getuserbyuserid/{id}','UserController@getUserbyUserId');
     Route::get('/admin/getuserbyid/{id}','UserController@getuserbyid');
     Route::get('/admin/delUserbyId/{id}','UserController@delUserbyId');
     //DIVISI
@@ -42,17 +41,18 @@ Route::group(['middleware' => ['auth','checkRole:ADM']], function () {
     Route::get('/admin/getdivisibydivisi_kode/{id}','DivisiController@getdivisibydivisi_kode');
     
     Route::get('/admin/deldivisibyid/{id}','DivisiController@deldivisibyid');
-
+    
     //Deparetement
     Route::get('/admin/departement','DepartementController@departement');
     Route::post('/admin/adddepartement','DepartementController@adddepartement');
     Route::get('/admin/getdepartement','DepartementController@getdepartement');
-
-
+    
+    
     
 });
 
 Route::group(['middleware' => ['auth','checkRole:ADM,USR']], function () {
+    Route::get('/admin/getuserbyuserid/{id}','UserController@getUserbyUserId');
     Route::get('/dashboard','DashboardController@dashboard')->name('dashboard');
     Route::get('/awal','AwalController@awal');
     Route::get('/parameter','ParameterController@parameter');

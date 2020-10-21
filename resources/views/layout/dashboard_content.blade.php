@@ -1,44 +1,7 @@
-{{-- <div class="container-fluid"> --}}
-    <!-- Info boxes -->
-
-
- <div class="row">
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header">
-            <h5 class="card-title">Event Calendar</h5> 
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <div id='calendar'></div>
-          </div>         
-        </div>
-      </div>
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <div class="row">
       <div class="col-12 col-sm-6 col-md-3">
         <div class="info-box">
           <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
-
           <div class="info-box-content">
             <span class="info-box-text">My Wallet</span>
             <span class="info-box-number">
@@ -96,6 +59,20 @@
       <!-- /.col -->
     </div>
     <!-- /.row -->
+
+ <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Event Calendar</h5> 
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div id='calendar'></div>
+          </div>         
+        </div>
+      </div>
+    </div>
 
     <div class="row">
       <div class="col-md-12">

@@ -35,6 +35,10 @@ class CreateWTransaksiUsersTable extends Migration
             $table->string('file1')->nullable();
             $table->string('file2')->nullable();
             $table->string('file3')->nullable();
+
+            $table->string('nik_atasan');
+            $table->string('nama_atasan');
+            $table->date('tgl_approve_atasan')->nullable();
             // $table->('');
             // $table->('');
             // $table->('');

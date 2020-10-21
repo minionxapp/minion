@@ -17,6 +17,8 @@ class WTransaksiUserController extends Controller
     public function wtransaksiuser(){
         $periode = WPeriode::where('status','=','A')->get();
         $user = User::where('user_id','=',Auth::user()->user_id)->first();
+
+
         return view('/walet/wtransaksiuser',['periode'=>$periode,'user'=>$user]);//,compact('divisi'));
     }
 
@@ -33,6 +35,8 @@ class WTransaksiUserController extends Controller
         $model->jml_training =$request->jml_training;
         $model->jml_lain =$request->jml_lain;
         $model->jml_total =$request->jml_total;
+        $model->nik_atasan = $request->nik_atasan;
+        $model->nama_atasan =$request->nama_atasan;
         
         
         if($request->hasfile('file1')){
@@ -52,10 +56,10 @@ class WTransaksiUserController extends Controller
         }
 
         $model->status =$request->status;
-        if($request->id == null ){
+        if($request->id == null ){//insert
             $model->save();
             //insert transaksi ke wtransaksi
-            if($request->status=="AJU"){
+            if($request->status=="AJA"){
                 $trans = new WTransaksi;
                 $trans->periode_kode = $request->periode_kode;
                 $trans->user_id = $request->user_id;
@@ -71,26 +75,28 @@ class WTransaksiUserController extends Controller
                 $member->sakhir = $saldo_akhir;
                 $member->update($member->toArray());
             }
-            }else{
-                if($request->status=="AJU"){
-                    $trans = new WTransaksi;
-                    $trans->periode_kode = $request->periode_kode;
-                    $trans->user_id = $request->user_id;
-                    $trans->keterangan=$request->keterangan;
-                    $trans->keluar= $request->jml_total;
-                    $trans->masuk=0;
-                    $trans->save();
+        }else{//update
+            if($request->status=="AJA"){
+                $trans = new WTransaksi;
+                $trans->periode_kode = $request->periode_kode;
+                $trans->user_id = $request->user_id;
+                $trans->keterangan=$request->keterangan;
+                $trans->keluar= $request->jml_total;
+                $trans->masuk=0;
+                $trans->save();
 
-                    // Buat pengurangan saldo ya.....................
-                    $member = WMember::where('periode_kode','=',$request->periode_kode)
-                    ->where('user_id','=',$request->user_id)->first();
-                    $saldo_akhir = $member->sakhir - $request->jml_total;
-                    $member->sakhir = $saldo_akhir;
-                    $member->update($member->toArray());
-                }
-                $modelUpdate = WTransaksiUser::find($request->id);
-                $modelUpdate->update($model->toArray());
+                // Buat pengurangan saldo ya.....................
+                $member = WMember::where('periode_kode','=',$request->periode_kode)
+                ->where('user_id','=',$request->user_id)
+                ->first();
+                // dd($member." ".$request->periode_kode." ".$request->user_id);
+                $saldo_akhir = $member->sakhir - $request->jml_total;
+                $member->sakhir = $saldo_akhir;
+                $member->update($member->toArray());
             }
+            $modelUpdate = WTransaksiUser::find($request->id);
+            $modelUpdate->update($model->toArray());
+        }
 //update saldo di wmember
         return redirect('/walet/wtransaksiuser')->with('sukses','Data Berhasil di Simpan');
     }

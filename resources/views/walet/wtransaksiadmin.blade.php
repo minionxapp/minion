@@ -126,13 +126,20 @@ Approval Wallet Transaksi
 
                         <div class="form-group">
                             <label for="status">status</label>
-                            {{-- <input type="status" name="file3" class="form-control" id="status"> --}}
-                            <select name="status" class="form-control" id="status">
-                                <option value='AJU'>Pengajuan</option>
-                                <option value='TLK'>Tolak</option>
-                                <option value='STJ'>Setuju</option>
-                                {{-- <option value='SLS'>Selesai</option> --}}
-                            </select>
+                            @if (Auth::user()->role == 'ADM')                                
+                                <select name="status" class="form-control" id="status">
+                                    <option value='STA'>Pengajuan Atasan</option>
+                                    <option value='TLD'>Tolak Admin</option>
+                                    <option value='STD'>Setuju Admin</option>
+                                </select>
+                            @endif
+                            @if (Auth::user()->role == 'USR')                                
+                                <select name="status" class="form-control" id="status">
+                                    <option value='AJA'>Pengajuan Pegawai</option>
+                                    <option value='TLA'>Tolak Atasan</option>
+                                    <option value='STA'>Setuju Atasan</option>
+                                </select>
+                            @endif
                         </div>   
 
 

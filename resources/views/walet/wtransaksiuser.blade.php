@@ -18,7 +18,7 @@ Pengajuan Wallet Transaksi
 {{-- data-target="#addData" --}}
 <div class="row text-nowrap">
   <div class="col-12" style="padding-top: 5px;">
-    <button type="button" class="btn btn-primary btn-sm float-left"  
+    <button type="button" class="btn btn-primary btn-sm float-left"  id="btn_add"
     data-toggle="modal" onclick="addFunction();" >Add</button>
   </div>
 </div>
@@ -80,23 +80,24 @@ Pengajuan Wallet Transaksi
                                 <input type="text"  value={{$user->user_id}}  name="user_id" class="form-control" id="user_id">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="jenis">jenis</label>
-                            {{-- <input type="text" name="jenis" class="form-control" id="jenis"> --}}
-                            <select name="jenis" class="form-control" id="jenis">
-                                <option value='TR'>Training</option>
-                                <option value='SM'>Seminar</option>
-                                <option value='WB'>Webinar</option>
-                                <option value='EL'>E-Learning</option>
-                                <option value='TT'>Training Tool</option>
-                            </select>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="jenis">jenis</label>
+                                <select name="jenis" class="form-control" id="jenis">
+                                    <option value='TR'>Training</option>
+                                    <option value='SM'>Seminar</option>
+                                    <option value='WB'>Webinar</option>
+                                    <option value='EL'>E-Learning</option>
+                                    <option value='TT'>Training Tool</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="keterangan">keterangan</label>
                             <input type="text" name="keterangan" class="form-control" id="keterangan">
                         </div>
                         <div class="div row">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-sm-6">
                                 <label for="mulai">mulai</label>
                                 <input type="date" name="mulai" class="form-control" id="mulai">
                             </div>
@@ -112,7 +113,6 @@ Pengajuan Wallet Transaksi
                         <div class="div row">
                             <div class="form-group col-md-4">
                                 <label for="jml_training">By Training</label>
-                                {{-- <input type="number" class="form-control text-left" id="currency" name="currency" data-inputmask="'alias': 'numeric', 'groupSeparator': ',', 'autoGroup': true, 'digits': 2, 'digitsOptional': false, 'prefix': 'Rp ', 'placeholder': '0'"> --}}
                                 <input type="number" value="0" name="jml_training" class="form-control" id="jml_training">
                             </div>
                             <div class="form-group col-md-4">
@@ -121,19 +121,32 @@ Pengajuan Wallet Transaksi
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="jml_total">By Total</label>
-                                <input type="number" value="0" name="jml_total" class="form-control" id="jml_total">
+                                <input type="number" value="0" name="jml_total" class="form-control" id="jml_total" readonly>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="status">status</label>
-                            {{-- <input type="status" name="file3" class="form-control" id="status"> --}}
-                            <select name="status" class="form-control" id="status">
-                                <option value='DRF'>DRAFT</option>
-                                <option value='AJU'>Pengajuan</option>
-                                {{-- <option value='SLS'>Selesai</option> --}}
-                            </select>
-                        </div>   
+
+                        <div class="div row">
+                            <div class="form-group col-md-4">
+                                <label for="nik_atasan">nik_atasan</label>
+                                <input type="text" name="nik_atasan" class="form-control" id="nik_atasan">
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label for="nama_atasan">nama_atasan</label>
+                                <input type="text" name="nama_atasan" class="form-control" id="nama_atasan" readonly>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="status">status</label>
+                                <select name="status" class="form-control" id="status">
+                                    <option value='DRF'>DRAFT</option>
+                                    <option value='AJA'>Pengajuan Atasan</option>
+                                    {{-- <option value='SLS'>Selesai</option> --}}
+                                </select>
+                            </div>   
+                        </div>
 
 
                         <div class="form-group">
@@ -190,9 +203,6 @@ Pengajuan Wallet Transaksi
             { data: 'file1', name: 'file1' },
             { data: 'file2', name: 'file2' },
             { data: 'file3', name: 'file3' },
-            // { data: '', name: '' },
-            // { data: '', name: '' },
-            // { data: '', name: '' },
             { data: 'action', name: 'action', orderable: false, searchable: false}
         ],
         
@@ -205,7 +215,34 @@ Pengajuan Wallet Transaksi
     $("#jml_lain").change(function(){
         $("#jml_total").val(parseInt($("#jml_training").val())+parseInt($("#jml_lain").val()));
     });
-} );
+
+    $("#nik_atasan").change(function(){
+        $.ajax({
+               type:'GET',
+               async: false,
+               url:'/admin/getuserbyuserid/'+$("#nik_atasan").val(), 
+               success:function(data) {
+                   $("#nama_atasan").val(data.name);
+            }
+        });
+    });
+
+    $.ajax({
+               type:'GET',
+               async: false,
+               url:'/walet/getwtransaksiuser_byuserid/'+"{{$user->user_id}}", //    data:'_token = <?php echo csrf_token() ?>',
+               success:function(data) {
+                   if (!data){
+                       alert("Anda Belum terdaftar pada Learning Wallet")
+                       $('#btn_add').prop("disabled",true);  
+                   }else{
+                        $('#btn_add').prop("disabled",false);  
+                   }
+               }
+    });
+
+
+} );//end  dokumen ready
 
 async function viewFunction($id) {   
     $.ajax({
@@ -225,6 +262,8 @@ async function viewFunction($id) {
                 $("#jml_lain").val(data.jml_lain); 
                 $("#jml_total").val(data.jml_total); 
                 $("#status").val(data.status); 
+                $("#nik_atasan").val(data.nik_atasan); 
+                $("#nama_atasan").val(data.nama_atasan); 
                 if(data.file1 != null){
                     $("#file1").empty();
                     $("#file1").append('File :  <a href="/images/'+data.file1+'" target=\"_blank\"">'+data.file1+'</a>');
@@ -272,21 +311,21 @@ function addFunction() {
     $("#jml_lain").val("0"); 
     $("#jml_total").val("0"); 
     $("#status").val("DRF"); 
+    $('#jml_total').attr("readonly",true); 
     $('#user_id').attr('readonly', true);
     $('#btnsubmit').prop("disabled",false);   
 }
 async function editFunction($id) {    
     await viewFunction($id);
-    // $('#id').attr('readonly', true);  
     if($("#status").val() == "DRF"){
-        $('#jml_training').prop("disabled",false); 
-        $('#jml_lain').prop("disabled",false); 
-        $('#jml_total').prop("disabled",true); 
+        $('#jml_total').attr("readonly",true); 
+        $('#jml_lain').attr("readonly",true); 
+        $('#jml_training').attr("readonly",true); 
         $('#btnsubmit').prop("disabled",false); 
     }else{
-        $('#jml_training').prop("disabled",true); 
-        $('#jml_lain').prop("disabled",true); 
-        $('#jml_total').prop("disabled",true); 
+        $('#jml_total').attr("readonly",true); 
+        $('#jml_lain').attr("readonly",true); 
+        $('#jml_training').attr("readonly",true); 
         $('#btnsubmit').prop("disabled",true); 
     }      
 }
