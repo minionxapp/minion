@@ -319,8 +319,8 @@ async function editFunction($id) {
     await viewFunction($id);
     if($("#status").val() == "DRF"){
         $('#jml_total').attr("readonly",true); 
-        $('#jml_lain').attr("readonly",true); 
-        $('#jml_training').attr("readonly",true); 
+        $('#jml_lain').attr("readonly",false); 
+        $('#jml_training').attr("readonly",false); 
         $('#btnsubmit').prop("disabled",false); 
     }else{
         $('#jml_total').attr("readonly",true); 

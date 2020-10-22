@@ -130,6 +130,15 @@
                       </li>
                     @endif
 
+                    @if(in_array(Auth::user()->role,['ADM','USR'])) 
+                    <li class="nav-item">
+                      <a href="/walet/wtranshistori" class="nav-link {!! Request::is('walet/wtranshistori') ? 'active' : '' !!}" >
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Histori Wallet Trans</p>
+                      </a>
+                    </li>
+                  @endif
+
               </ul>
             </li>
 

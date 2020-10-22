@@ -39,9 +39,7 @@ class CreateWTransaksiUsersTable extends Migration
             $table->string('nik_atasan');
             $table->string('nama_atasan');
             $table->date('tgl_approve_atasan')->nullable();
-            // $table->('');
-            // $table->('');
-            // $table->('');
+            
 
             $table->timestamps();
         });
