@@ -116,7 +116,7 @@
                       <li class="nav-item">
                         <a href="/walet/wtransaksiuser" class="nav-link {!! Request::is('walet/wtransaksiuser') ? 'active' : '' !!}" >
                           <i class="far fa-circle nav-icon"></i>
-                          <p>Pengajuan Wallet Trans</p>
+                          <p>Pengajuan LW </p>
                         </a>
                       </li>
                     @endif
@@ -125,7 +125,16 @@
                       <li class="nav-item">
                         <a href="/walet/wtransaksiadmin" class="nav-link {!! Request::is('walet/wtransaksiadmin') ? 'active' : '' !!}" >
                           <i class="far fa-circle nav-icon"></i>
-                          <p>Approval Wallet Trans</p>
+                          <p>Approval LW</p>
+                        </a>
+                      </li>
+                    @endif
+
+                    @if(in_array(Auth::user()->role,['ADM','USR'])) 
+                      <li class="nav-item">
+                        <a href="/#" class="nav-link {!! Request::is('walet/wtranshistori') ? 'active' : '' !!}" >
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Pertanggung Jawab LW</p>
                         </a>
                       </li>
                     @endif
@@ -134,10 +143,11 @@
                     <li class="nav-item">
                       <a href="/walet/wtranshistori" class="nav-link {!! Request::is('walet/wtranshistori') ? 'active' : '' !!}" >
                         <i class="far fa-circle nav-icon"></i>
-                        <p>Histori Wallet Trans</p>
+                        <p>Histori LW</p>
                       </a>
                     </li>
                   @endif
+
 
               </ul>
             </li>
