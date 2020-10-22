@@ -125,9 +125,12 @@ Pengaturan Divisi
 
 function nmStatus($status){
     if ($status == 'AJA') return 'Pengajuan Atasan';
-    if ($status == 'TLA') return 'Tolak Atasan';
-    if ($status == 'TLD') return 'Tolak Admin';
+    if ($status == 'TLA') return 'Tolak by Atasan';
+    if ($status == 'TLD') return 'Tolak by Admin';
     if ($status == 'DRF') return 'Draft';
+    if ($status == 'STD') return 'Setuju by Admin';
+    // if ($status == '') return '';
+    // if ($status == '') return '';
     // if ($status == '') return '';
 }
 
