@@ -75,7 +75,7 @@
     </div>
 
     <div class="row">
-      <div class="col-md-12">
+      {{-- <div class="col-md-12">
         <div class="card">
           <div class="card-header">
             <h5 class="card-title">Monthly Recap Report</h5>
@@ -205,13 +205,13 @@
           <!-- /.card-footer -->
         </div>
         <!-- /.card -->
-      </div>
+      </div> --}}
       <!-- /.col -->
     </div>
     <!-- /.row -->
 
     <!-- Main row -->
-    <div class="row">
+    {{-- <div class="row">
       <!-- Left col -->
       <div class="col-md-8">
         <!-- MAP & BOX PANE -->
@@ -789,6 +789,6 @@
         <!-- /.card -->
       </div>
       <!-- /.col -->
-    </div>
+    </div> --}}
     <!-- /.row -->
   {{-- </div><!--/. container-fluid --> --}}
