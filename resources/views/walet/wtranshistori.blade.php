@@ -136,7 +136,7 @@ function jenis($jenis){
     if ($jenis == 'SM') return 'Seminar';
     if ($jenis == 'EL') return 'E-Learning';
     if ($jenis == 'TT') return 'Training Tool';
-    // if ($jenis == '') return '';
+    if ($jenis == 'WB') return 'Webinar';
     // if ($jenis == '') return '';
 }
 
