@@ -114,9 +114,9 @@ Pengaturan Divisi
             { data: 'mulai', name: 'mulai' },
             { data: 'akhir', name: 'akhir' },
             { data: 'lokasi', name: 'lokasi' },
-            { data: 'jml_training', name: 'jml_training' },
-            { data: 'jml_lain', name: 'jml_lain' },
-            { data: 'jml_total', name: 'jml_total' },
+            { data: 'jml_training', className: "text-right", render: $.fn.dataTable.render.number( ',', '.', 0, '' )  },
+            { data: 'jml_lain', className: "text-right",render: $.fn.dataTable.render.number( ',', '.', 0, '' )  },
+            { data: 'jml_total', className: "text-right", render: $.fn.dataTable.render.number( ',', '.', 0, '' ) },
             { data: 'status', render: function ( data, type, row ) {  return nmStatus(data); }  },
         ],
         
