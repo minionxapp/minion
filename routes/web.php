@@ -121,9 +121,9 @@ Route::group(['middleware' => ['auth','checkRole:ADM,USR']], function () {
     // Walet trans  TanggungJawabController
     Route::get('/walet/wtranstanggungjawab','WTransTanggungJawabController@wtranstanggungjawab');
     Route::get('/walet/getwtranstanggungjawab','WTransTanggungJawabController@getwtranstanggungjawab');
-    // Route::post('/walet/addwtransaksiadmin','WTransHistoriController@addwtransaksiadmin');
-    // Route::get('/walet/wtransaksiadmin/{id}','WTransHistoriController@getwtransaksiuser_byid');
-    // Route::get('/walet/wtransaksiadmin/{id}','WTransHistoriController@delwtransaksiuserbyid');
+    Route::post('/walet/addwtranstanggungjawab','WTransTanggungJawabController@addwtranstanggungjawab');
+    // Route::get('/walet/wtransaksiadmin/{id}','WTransTanggungJawabController@getwtransaksiuser_byid');
+    // Route::get('/walet/wtransaksiadmin/{id}','WTransTanggungJawabController@delwtransaksiuserbyid');
 
 
     

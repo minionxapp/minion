@@ -35,6 +35,9 @@ class CreateWTransaksiUsersTable extends Migration
             $table->string('file1')->nullable();
             $table->string('file2')->nullable();
             $table->string('file3')->nullable();
+            $table->string('file1_jwb')->nullable();
+            $table->string('file2_jwb')->nullable();
+            $table->string('file3_jwb')->nullable();
 
             $table->string('nik_atasan');
             $table->string('nama_atasan');

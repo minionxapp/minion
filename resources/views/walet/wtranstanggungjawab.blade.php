@@ -60,7 +60,7 @@ Pertanggung Jawaban Lerning Wallet
                 </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/walet/addwtransaksiuser" method="POST" enctype="multipart/form-data">
+                    <form action="/walet/addwtranstanggungjawab" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <input type="hidden" name="id" class="form-control" id="id">
                         <div class="div row">
@@ -159,7 +159,7 @@ Pertanggung Jawaban Lerning Wallet
                             <input type="file" name="file3_jwb" class="form-control" id="file3_jwb">
                         </div>  
                         
-                        
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="submit" id="btnsubmit" class="btn btn-primary">Submit</button>
@@ -264,9 +264,9 @@ async function viewFunction($id) {
         $('#formData').modal('show');    
         $("#file1").empty();
         $("#file1").append('File :');
-        $("#periode_kode").attr("disabled",true);
+        $("#periode_kode").attr("readonly",true);
         $("#user_id").attr("readonly",true);
-        $("#jenis").attr("disabled",true);
+        $("#jenis").attr("readonly",true);
         $("#keterangan").attr("readonly",true);
         $("#mulai").attr("readonly",true); 
         $("#akhir").attr("readonly",true);
@@ -275,7 +275,7 @@ async function viewFunction($id) {
         $("#jml_training").attr("readonly",true);
         $("#jml_lain").attr("readonly",true); 
         $("#jml_total").attr("readonly",true);
-        $("#status").attr("disabled",true);
+        $("#status").attr("readonly",true);
         $('#jml_total').attr("readonly",true); 
         $('#user_id').attr('readonly', true);
 

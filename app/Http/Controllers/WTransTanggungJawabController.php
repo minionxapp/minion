@@ -8,6 +8,7 @@ use Auth;
 use App\User;
 use DataTables;
 use App\WTransaksiUser;
+use Carbon;
 
 class WTransTanggungJawabController extends Controller
 {
@@ -33,6 +34,29 @@ class WTransTanggungJawabController extends Controller
         })
         ->rawColumns(['action'])      
         ->make(true);
+    }
+
+    public function addwtranstanggungjawab(Request $request){
+        $model = WTransaksiUser::find($request->id);
+        if($request->hasfile('file1_jwb')){
+            $request->file('file1_jwb')
+            ->move('images/',Carbon\Carbon::now()->timestamp.'_'.($request->file('file1_jwb')->getClientOriginalName()));
+            $model->file1_jwb =Carbon\Carbon::now()->timestamp.'_'.($request->file('file1_jwb')->getClientOriginalName());//$request->file1;
+        }
+        
+        if($request->hasfile('file2_jwb')){
+            $request->file('file2_jwb')->move('images/',Carbon\Carbon::now()->timestamp.'_'.($request->file('file2_jwb')->getClientOriginalName()));
+            $model->file2_jwb =Carbon\Carbon::now()->timestamp.'_'.($request->file('file2_jwb')->getClientOriginalName());//$request->file1;
+        }
+
+        if($request->hasfile('file3_jwb')){
+            $request->file('file3_jwb')->move('images/',Carbon\Carbon::now()->timestamp.'_'.($request->file('file3_jwb')->getClientOriginalName()));
+            $model->file3_jwb =Carbon\Carbon::now()->timestamp.'_'.($request->file('file3_jwb')->getClientOriginalName());//$request->file1;
+        }
+
+        $model->status =$request->status;
+            $model->update($model->toArray());
+        return redirect('/walet/wtranstanggungjawab')->with('sukses','Data Berhasil di Simpan');
     }
 
 
