@@ -132,7 +132,7 @@
 
                     @if(in_array(Auth::user()->role,['ADM','USR'])) 
                       <li class="nav-item">
-                        <a href="/walet/wtranstanggungjawab" class="nav-link {!! Request::is('walet/wtranshistori') ? 'active' : '' !!}" >
+                        <a href="/walet/wtranstanggungjawab" class="nav-link {!! Request::is('walet/wtranstanggungjawab') ? 'active' : '' !!}" >
                           <i class="far fa-circle nav-icon"></i>
                           <p>Pertanggung Jawab LW</p>
                         </a>

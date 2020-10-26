@@ -138,24 +138,40 @@ Pertanggung Jawaban Lerning Wallet
                             <div class="form-group col-md-6">
                                 <label for="status">status</label>
                                 <select name="status" class="form-control" id="status" readonly>
-                                    <option value='STD'>Setujju Admin</option>
-                                    {{-- <option value='AJA'>Pengajuan Atasan</option> --}}
-                                    {{-- <option value='SLS'>Selesai</option> --}}
+                                    <option value='STD'>Setuju Admin</option>
                                 </select>
                             </div>   
+                            <div class="form-group col-md-6">
+                                <label for="status">status Pertanggung Jawaban</label>
+                                <select name="status_jwb" class="form-control" id="status_jwb" readonly>
+                                    <option value='DRF'>Draft</option>
+                                    <option value='AJU'>Pengajuan</option>
+                                    {{-- <option value='STD'>Setuju Admin</option>
+                                    <option value='KMB'>Kembalikan</option>
+                                    <option value='TLK'>Tolak</option> --}}
+                                </select>
+                            </div>  
+                            {{-- <div class="form-group col-md-12">
+                                <label for="catatan_jwb">Catatan</label>
+                                <input type="text" name="catatan_jwb" class="form-control" id="catatan_jwb" >
+                            </div>    --}}
+
+                        </div>
+                        <div class="form-group">
+                            <label for="file1" id='file1'>File : </label> 
+                                {{-- <input type="file" name="file1" class="form-control" id="file1"> --}}
                         </div>
 
-
                         <div class="form-group">
-                        <label for="file1_jwb" id='file1_jwb'>file1_jwb</label> 
+                        <label for="file1_jwb" id='file1_jwb'>File Pendukung 1</label> 
                             <input type="file" name="file1_jwb" class="form-control" id="file1_jwb">
                         </div>
                         <div class="form-group">
-                            <label for="file2_jwb" id='file2_jwb'>file2_jwb</label>
+                            <label for="file2_jwb" id='file2_jwb'>File Pendukung 2</label>
                             <input type="file" name="file2_jwb" class="form-control" id="file2_jwb">
                         </div>
                         <div class="form-group">
-                            <label for="file3_jwb" id='file3_jwb'>file3_jwb</label>
+                            <label for="file3_jwb" id='file3_jwb'>File Pendukung 3</label>
                             <input type="file" name="file3_jwb" class="form-control" id="file3_jwb">
                         </div>  
                         
@@ -226,6 +242,8 @@ function jenis($jenis){
 
 
 async function viewFunction($id) {   
+    $("#file1").empty();
+    $("#file1").append("File : ");
     $.ajax({
                type:'GET',
                async: false,
@@ -245,25 +263,36 @@ async function viewFunction($id) {
                 $("#status").val(data.status); 
                 $("#nik_atasan").val(data.nik_atasan); 
                 $("#nama_atasan").val(data.nama_atasan); 
+                
                 if(data.file1 != null){
-                    $("#file1").empty();
-                    $("#file1").append('File :  <a href="/images/'+data.file1+'" target=\"_blank\"">'+data.file1+'</a>');
+                    $("#file1").append(' <a href="/images/'+data.file1+'" target=\"_blank\"">'+data.file1.substring(11)+'</a>');
                 }
                 if(data.file2 != null){
-                    $("#file2").empty();
-                    $("#file2").append('File :  <a href="/images/'+data.file2+'" target=\"_blank\"">'+data.file2+'</a>');
+                    $("#file1").append(' <a href="/images/'+data.file2+'" target=\"_blank\"">'+data.file2.substring(11)+'</a>');
                 }
                 if(data.file3 != null){
-                    $("#file3").empty();
-                    $("#file3").append('File :  <a href="/images/'+data.file3+'" target=\"_blank\"">'+data.file3+'</a>');
+                    $("#file1").append(' <a href="/images/'+data.file3+'" target=\"_blank\"">'+data.file3.substring(11)+'</a>');
                 }
+
+
+                if(data.file1_jwb != null){
+                    $("#file1_jwb").empty();
+                    $("#file1_jwb").append('File : <a href="/images/'+data.file1_jwb+'" target=\"_blank\"">'+(data.file1_jwb).substring(11)+'</a>');
+                }
+                if(data.file2_jwb != null){
+                    $("#file2_jwb").empty();
+                    $("#file2_jwb").append('File : <a href="/images/'+data.file2_jwb+'" target=\"_blank\"">'+data.file2_jwb.substring(11)+'</a>');
+                }
+                if(data.file3_jwb != null){
+                    $("#file3_jwb").empty();
+                    $("#file3_jwb").append(' <a href="/images/'+data.file3_jwb+'" target=\"_blank\"">'+data.file3_jwb.substring(11)+'</a>');
+                }
+                $("#status_jwb").val(data.status_jwb); 
                 $('#id').attr('readonly', true);
                 $('#btnsubmit').prop("disabled",true);   
                }
             });    
         $('#formData').modal('show');    
-        $("#file1").empty();
-        $("#file1").append('File :');
         $("#periode_kode").attr("readonly",true);
         $("#user_id").attr("readonly",true);
         $("#jenis").attr("readonly",true);
