@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\User;
 class LoginController extends Controller
 {
     public function login(){
-        return view('/login');
+        $users = User::all();
+        return view('/login',['users'=>$users]);
     }
 
     public function loginProses(Request $request){

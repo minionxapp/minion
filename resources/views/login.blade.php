@@ -36,12 +36,15 @@
       <form action="/loginProses" method="post">
         {{ csrf_field() }}
          <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Iser Id" name="user_id" value="admin">
-          {{-- <select name="user_id" class="form-control" id="user_id">
-            <option value='admin'>Admin</option>
-            <option value='mugi'>Mugi</option>
-            <option value='user2'>User</option>
-          </select> --}}
+          {{-- <input type="text" class="form-control" placeholder="Iser Id" name="user_id" value="admin"> --}}
+          
+         
+          
+          <select name="user_id" class="form-control" id="user_id">
+            @foreach ($users as $user)
+              <option value={{$user->user_id}}>{{$user->name}}</option>              
+            @endforeach
+          </select>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
