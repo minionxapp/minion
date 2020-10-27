@@ -235,13 +235,13 @@ async function viewFunction($id) {
                 $("#status").val(data.status); 
                 $("#file1").empty();
                 if(data.file1 != null){
-                    $("#file1").append('File :<br><a href="/images/'+data.file1+'" target=\"_blank\"">'+data.file1+'</a><br>');
+                    $("#file1").append('File :<br><a href="/images/'+data.file1+'" target=\"_blank\"">'+data.file1.substring(11)+'</a><br>');
                 }
                 if(data.file2 != null){
-                    $("#file1").append('<a href="/images/'+data.file2+'" target=\"_blank\"">'+data.file2+'</a><br>');
+                    $("#file1").append('<a href="/images/'+data.file2+'" target=\"_blank\"">'+data.file2.substring(11)+'</a><br>');
                 }
                 if(data.file3 != null){
-                    $("#file1").append('<a href="/images/'+data.file3+'" target=\"_blank\"">'+data.file3+'</a><br>');
+                    $("#file1").append('<a href="/images/'+data.file3+'" target=\"_blank\"">'+data.file3.substring(11)+'</a><br>');
                 }
                 $('#id').attr('readonly', true);
                 $('#btnsubmit').prop("disabled",true);   

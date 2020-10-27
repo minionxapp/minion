@@ -139,6 +139,18 @@
                       </li>
                     @endif
 
+                    @if(in_array(Auth::user()->role,['ADM'])) 
+                      <li class="nav-item">
+                        <a href="/walet/wtransjwbverifikasi" class="nav-link {!! Request::is('walet/wtransjwbverifikasi') ? 'active' : '' !!}" >
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Verifikasi LW</p>
+                        </a>
+                      </li>
+                    @endif
+
+
+                    
+
                     @if(in_array(Auth::user()->role,['ADM','USR'])) 
                     <li class="nav-item">
                       <a href="/walet/wtranshistori" class="nav-link {!! Request::is('walet/wtranshistori') ? 'active' : '' !!}" >

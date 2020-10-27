@@ -25,21 +25,7 @@ class WTransTanggungJawabController extends Controller
     public function getwtranstanggungjawab(){    
         return Datatables::of(WTransaksiUser::where('user_id','=',Auth::user()->user_id)
         ->where('status','=','STD') 
-        ->whereNotIn('status_jwb',['AJU'])
-        // ->where('status_jwb','=',function())
-
-
-
-//         $first = Code::whereNull('to_be_used_by_user_id');
-
-// $code = Code::where('to_be_used_by_user_id', '!=' , 2)
-//         ->union($first)
-//         ->get();
-        // ====================
-
-
-        
-        // ->orWhereNull('status_jwb')
+        ->whereNotIn('status_jwb',['AJU','STD'])
         ->get())//kasih where draft dan pengauan hanya di gunakan di pengajuan page  
         ->addColumn('action', function($row){       
             $btn = '<a href="#" onclick="viewFunction(\''.$row->id.'\');" class="edit btn btn-info btn-sm">View</a> ';

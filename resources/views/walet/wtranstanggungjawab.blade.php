@@ -38,6 +38,7 @@ Pertanggung Jawaban Lerning Wallet
             <th>jml_lain</th> --}}
             <th>jml_total</th>  
             <th>status</th>  
+            <th>Catatan</th> 
             <th>Action</th>  
         </tr>
     </thead>
@@ -144,17 +145,19 @@ Pertanggung Jawaban Lerning Wallet
                             <div class="form-group col-md-6">
                                 <label for="status">status Pertanggung Jawaban</label>
                                 <select name="status_jwb" class="form-control" id="status_jwb" readonly>
+                                    <option value=''>N/A</option>
                                     <option value='DRF'>Draft</option>
                                     <option value='AJU'>Pengajuan</option>
+                                    <option value='KMB'>Kembalikan</option>
                                     {{-- <option value='STD'>Setuju Admin</option>
                                     <option value='KMB'>Kembalikan</option>
                                     <option value='TLK'>Tolak</option> --}}
                                 </select>
                             </div>  
-                            {{-- <div class="form-group col-md-12">
+                            <div class="form-group col-md-12">
                                 <label for="catatan_jwb">Catatan</label>
-                                <input type="text" name="catatan_jwb" class="form-control" id="catatan_jwb" >
-                            </div>    --}}
+                                <input type="text" name="catatan_jwb" class="form-control" id="catatan_jwb" readonly >
+                            </div>   
 
                         </div>
                         <div class="form-group">
@@ -212,7 +215,8 @@ Pertanggung Jawaban Lerning Wallet
             // { data: 'jml_training', className: "text-right", render: $.fn.dataTable.render.number( ',', '.', 0, '' )  },
             // { data: 'jml_lain', className: "text-right",render: $.fn.dataTable.render.number( ',', '.', 0, '' )  },
             { data: 'jml_total', className: "text-right", render: $.fn.dataTable.render.number( ',', '.', 0, '' ) },
-            { data: 'status', render: function ( data, type, row ) {  return nmStatus(data); }  },
+            { data: 'status_jwb', render: function ( data, type, row ) {  return nmStatus(data); }  },
+            { data: 'catatan_jwb', name: 'catatan_jwb' },
             { data: 'action', name: 'action', orderable: false, searchable: false}
         ],
         
@@ -224,8 +228,9 @@ function nmStatus($status){
     if ($status == 'TLA') return 'Tolak by Atasan';
     if ($status == 'TLD') return 'Tolak by Admin';
     if ($status == 'DRF') return 'Draft';
+    if ($status == 'KMB') return 'Di Kembalikan';
     if ($status == 'STD') return 'Setuju by Admin';
-    // if ($status == '') return '';
+    if ($status.length == 0) return 'N/A';
     // if ($status == '') return '';
     // if ($status == '') return '';
 }
@@ -263,6 +268,7 @@ async function viewFunction($id) {
                 $("#status").val(data.status); 
                 $("#nik_atasan").val(data.nik_atasan); 
                 $("#nama_atasan").val(data.nama_atasan); 
+                $("#catatan_jwb").val(data.catatan_jwb);
                 
                 if(data.file1 != null){
                     $("#file1").append(' <a href="/images/'+data.file1+'" target=\"_blank\"">'+data.file1.substring(11)+'</a>');
@@ -285,7 +291,7 @@ async function viewFunction($id) {
                 }
                 if(data.file3_jwb != null){
                     $("#file3_jwb").empty();
-                    $("#file3_jwb").append(' <a href="/images/'+data.file3_jwb+'" target=\"_blank\"">'+data.file3_jwb.substring(11)+'</a>');
+                    $("#file3_jwb").append('File : <a href="/images/'+data.file3_jwb+'" target=\"_blank\"">'+data.file3_jwb.substring(11)+'</a>');
                 }
                 $("#status_jwb").val(data.status_jwb); 
                 $('#id').attr('readonly', true);

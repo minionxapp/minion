@@ -126,7 +126,14 @@ Route::group(['middleware' => ['auth','checkRole:ADM,USR']], function () {
     // Route::get('/walet/wtransaksiadmin/{id}','WTransTanggungJawabController@delwtransaksiuserbyid');
 
 
-    
+    //WTransJwbVerifikasi
+    // Walet trans  TanggungJawabController
+    Route::get('/walet/wtransjwbverifikasi','WTransJwbVerifikasiController@wtransjwbverifikasi');
+    Route::get('/walet/getwtransjwbverifikasi','WTransJwbVerifikasiController@getwtransjwbverifikasi');
+    Route::post('/walet/addwtransjwbverifikasi','WTransJwbVerifikasiController@addwtransjwbverifikasi');
+    // Route::get('/walet/wtransaksiadmin/{id}','WTransJwbVerifikasiController@getwtransaksiuser_byid');
+    // Route::get('/walet/wtransaksiadmin/{id}','WTransJwbVerifikasiController@delwtransaksiuserbyid');
+
     // Route::get('/admin/divisi/{id}/divisiedit','DivisiController@divisiedit');
     // Route::post('/admin/divisi/{id}/divisiupdate','DivisiController@divisiupdate');
     // Route::get('/admin/divisi/{id}/divisidelete','DivisiController@divisidelete');
