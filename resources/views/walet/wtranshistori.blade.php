@@ -129,6 +129,8 @@ function nmStatus($status){
     if ($status == 'TLD') return 'Tolak by Admin';
     if ($status == 'DRF') return 'Draft';
     if ($status == 'STD') return 'Setuju by Admin';
+    if ($status == 'STA') return 'Setuju by Atasan';
+    
     // if ($status == '') return '';
     // if ($status == '') return '';
     // if ($status == '') return '';
