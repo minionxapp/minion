@@ -20,6 +20,8 @@ class CreateWTransaksisTable extends Migration
             $table->string('keterangan');
             $table->decimal('masuk', 12, 0);
             $table->decimal('keluar', 12, 0);
+            $table->string('id_trans')->nullable();
+            
             $table->timestamps();
         });
     }

@@ -58,8 +58,8 @@ Wallet Periode Setup
                     <form action="/walet/addwperiode" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group">
-                            <label for="id">id</label>
-                            <input type="text" name="id" class="form-control" id="id">
+                            {{-- <label for="id">id</label> --}}
+                            <input type="hidden" name="id" class="form-control" id="id">
                         </div>
                         <div class="form-group">
                             <label for="kode">kode</label>
@@ -87,7 +87,7 @@ Wallet Periode Setup
                         </div>
                         <div class="form-group">
                             <label for="sakhir">sakhir</label>
-                            <input type="text" name="sakhir" class="form-control" id="sakhir">
+                            <input type="text" name="sakhir" class="form-control" id="sakhir" readonly>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="status">status</label>

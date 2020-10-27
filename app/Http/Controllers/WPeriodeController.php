@@ -35,7 +35,7 @@ class WPeriodeController extends Controller
         $model->awal =$request->awal;
         $model->akhir =$request->akhir;
         $model->sawal =$request->sawal;
-        $model->sakhir =$request->sakhir; 
+        $model->sakhir =$request->sawal; 
         $model->status =$request->status;       
         if($request->id == null ){
             $model->save();

@@ -26,7 +26,7 @@ class CreateWTransaksiUsersTable extends Migration
             $table->decimal('jml_lain', 12, 0);
             $table->decimal('jml_total', 12, 0);
             
-            $table->string('status')->nullable();
+            $table->string('status')->nullable()->default('');;
             $table->string('approve_by')->nullable();
             $table->date('tgl_pengajuan')->nullable();
             $table->date('tgl_approve')->nullable();
@@ -41,7 +41,10 @@ class CreateWTransaksiUsersTable extends Migration
 
             $table->string('nik_atasan');
             $table->string('nama_atasan');
-            $table->date('tgl_approve_atasan')->nullable();
+            $table->date('tgl_atasan_approve')->nullable();
+
+            $table->string('status_jwb')->default('');
+            $table->string('catatan_jwb')->default('');;
             
 
             $table->timestamps();
