@@ -83,7 +83,7 @@ class WTransaksiUserController extends Controller
                 $trans->user_id = $request->user_id;
                 $trans->keterangan=$request->keterangan;
                 $trans->keluar= $request->jml_total;
-                $trans->id_trans = $model->id;
+                $trans->id_trans = $request->id;
                 $trans->masuk=0;
                 $trans->save();
 

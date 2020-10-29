@@ -134,8 +134,8 @@ Route::group(['middleware' => ['auth','checkRole:ADM,USR']], function () {
     // Route::get('/walet/wtransaksiadmin/{id}','WTransJwbVerifikasiController@getwtransaksiuser_byid');
     // Route::get('/walet/wtransaksiadmin/{id}','WTransJwbVerifikasiController@delwtransaksiuserbyid');
 
-    // Route::get('/admin/divisi/{id}/divisiedit','DivisiController@divisiedit');
-    // Route::post('/admin/divisi/{id}/divisiupdate','DivisiController@divisiupdate');
-    // Route::get('/admin/divisi/{id}/divisidelete','DivisiController@divisidelete');
-    // Route::get('/job/proker/{id}/prokeredit','ProkerController@prokeredit');
+    //WDaftarBayarController
+    Route::get('/walet/wdaftarbayar','WDaftarBayarController@wdaftarbayar');
+    // Route::post('/walet/divisi/{id}/divisiupdate','WDaftarBayarController@divisiupdate');
+    // Route::get('/walet/divisi/{id}/divisidelete','WDaftarBayarController@divisidelete');
 });

@@ -302,7 +302,7 @@ function addFunction() {
     $("#file1").append('File :');
     // $("#periode_kode").val(""); 
     $("#user_id").val("{{$user->user_id}}"); 
-    $("#jenis").val(""); 
+    $("#jenis").val("TR"); 
     $("#keterangan").val(""); 
     $("#mulai").val(""); 
     $("#akhir").val(""); 

@@ -67,7 +67,7 @@ Wallet Member
                                 <select name="periode_kode" class="form-control" id="periode_kode">
                                     {{-- <option value="">Periode</option> --}}
                                     @foreach ($periode as $period)
-                                    <option value={{$period->kode}}>{{$period->nama}}</option>
+                                    <option value={{$period->kode}} selected>{{$period->nama}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -244,7 +244,7 @@ async function viewFunction($id) {
 
 function addFunction() {
     $('#formData').modal('show');   
-    $("#periode_kode").val("");
+    // $("#periode_kode").val("");
     $("#user_id").val("");
     $("#user_name").val("");
     $("#divisi_kode").val("");

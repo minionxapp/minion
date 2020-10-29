@@ -25,8 +25,8 @@ class WTransaksiAdminController extends Controller
             return Datatables::of(WTransaksiUser::whereIn('status',['STA'])
             ->get())//kasih where draft dan pengauan hanya di gunakan di pengajuan page
             ->addColumn('action', function($row){       
-                $btn = '<a href="#" onclick="viewFunction(\''.$row->id.'\');" class="edit btn btn-info btn-sm">View</a> ';
-                $btn = $btn.' <a href="#" onclick="editFunction(\''.$row->id.'\');" class="edit btn btn-primary btn-sm">Edit</a>';
+                $btn = '<a href="#" onclick="viewFunction(\''.$row->id.'\');" class="edit btn btn-info btn-sm">Info</a> ';
+                $btn = $btn.' <a href="#" onclick="editFunction(\''.$row->id.'\');" class="warning btn btn-warning btn-sm">Approve</a>';
                 // $btn = $btn.' <a href="/walet/delwtransaksiuserbyid/'.$row->id.'" class="edit btn btn-danger btn-sm" onclick="return confirm(\'Yakin mau dihapus\');">Delete</a>';
                 return $btn;
             })
@@ -37,8 +37,8 @@ class WTransaksiAdminController extends Controller
             ->where('nik_atasan','=',Auth::user()->user_id)
             ->get())//kasih where draft dan pengauan hanya di gunakan di pengajuan page
             ->addColumn('action', function($row){       
-                $btn = '<a href="#" onclick="viewFunction(\''.$row->id.'\');" class="edit btn btn-info btn-sm">View</a> ';
-                $btn = $btn.' <a href="#" onclick="editFunction(\''.$row->id.'\');" class="edit btn btn-primary btn-sm">Edit</a>';
+                $btn = '<a href="#" onclick="viewFunction(\''.$row->id.'\');" class="edit btn btn-info btn-sm">Info</a> ';
+                $btn = $btn.' <a href="#" onclick="editFunction(\''.$row->id.'\');" class="warning btn btn-warning btn-sm">Persetujuan</a>';
                 // $btn = $btn.' <a href="/walet/delwtransaksiuserbyid/'.$row->id.'" class="edit btn btn-danger btn-sm" onclick="return confirm(\'Yakin mau dihapus\');">Delete</a>';
                 return $btn;
             })

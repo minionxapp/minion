@@ -38,6 +38,15 @@ Pengaturan Divisi
             <th>jml_lain</th>
             <th>jml_total</th>  
             <th>status</th>  
+
+            <th>approve_by</th>
+            <th>tgl_approve</th>
+            <th>nik_atasan</th>
+            <th>nama_atasan</th>
+            <th>tgl_atasan_approve</th>
+            <th>status_jwb</th>
+            <th>catatan_jwb</th>
+
         </tr>
     </thead>
     {{-- @foreach ($wtrans as $item)
@@ -118,7 +127,23 @@ Pengaturan Divisi
             { data: 'jml_lain', className: "text-right",render: $.fn.dataTable.render.number( ',', '.', 0, '' )  },
             { data: 'jml_total', className: "text-right", render: $.fn.dataTable.render.number( ',', '.', 0, '' ) },
             { data: 'status', render: function ( data, type, row ) {  return nmStatus(data); }  },
+       
+            { data: 'approve_by', name: 'approve_by' },
+            { data: 'tgl_approve', name: 'tgl_approve' },
+            { data: 'nik_atasan', name: 'nik_atasan' },
+            { data: 'nama_atasan', name: 'nama_atasan' },
+            { data: 'tgl_atasan_approve', name: 'tgl_atasan_approve' },
+            { data: 'status_jwb', name: 'status_jwb' },
+            { data: 'catatan_jwb', name: 'catatan_jwb' },
         ],
+
+    //     ['periode_kode','user_id',
+    // 'jenis','keterangan','mulai','akhir','lokasi',
+    // 'jml_training','jml_lain','jml_total','file1','file2','file3',
+    // 'status',
+    // 'approve_by','tgl_pengajuan','tgl_approve','nik_atasan','nama_atasan','tgl_atasan_approve',
+    // 'file1_jwb','file2_jwb','file3_jwb','status_jwb','catatan_jwb'
+   
         
     });  
 } );

@@ -144,12 +144,12 @@ Pertanggung Jawaban Lerning Wallet
                             </div>   
                             <div class="form-group col-md-6">
                                 <label for="status">status Pertanggung Jawaban</label>
-                                <select name="status_jwb" class="form-control" id="status_jwb" readonly>
+                                <select name="status_jwb" class="form-control" id="status_jwb" >
                                     <option value=''>N/A</option>
                                     <option value='DRF'>Draft</option>
                                     <option value='AJU'>Pengajuan</option>
                                     <option value='KMB'>Kembalikan</option>
-                                    {{-- <option value='STD'>Setuju Admin</option>
+                                    {{-- <option value='STD'>Setuju Admin</option>  readonly
                                     <option value='KMB'>Kembalikan</option>
                                     <option value='TLK'>Tolak</option> --}}
                                 </select>
