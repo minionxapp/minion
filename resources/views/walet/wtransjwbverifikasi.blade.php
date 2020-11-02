@@ -144,6 +144,15 @@ Verifikasi Lerning Wallet
                                     <option value='STD'>Setuju Admin</option>
                                 </select>
                             </div>  
+
+                            <div class="form-group col-md-12">
+                                <label for="status">Daftar Bayar</label>
+                                <select name="daftar_bayar_id" class="form-control" id="daftar_bayar_id" readonly>
+                                    <option value=''>Daftar Bayar</option>
+                                </select>
+                            </div>  
+
+
                             <div class="form-group col-md-12">
                                 <label for="catatan_jwb">Catatan</label>
                                 <input type="text" name="catatan_jwb" class="form-control" id="catatan_jwb" >
@@ -159,15 +168,6 @@ Verifikasi Lerning Wallet
                             <label for="file1_jwb" id='file1_jwb'>File Pendukung </label> 
                             {{-- <input type="file" name="file1_jwb" class="form-control" id="file1_jwb"> --}}
                         </div>
-                        {{-- <div class="form-group">
-                            <label for="file2_jwb" id='file2_jwb'>File Pendukung 2</label>
-                            <input type="file" name="file2_jwb" class="form-control" id="file2_jwb">
-                        </div>
-                        <div class="form-group">
-                            <label for="file3_jwb" id='file3_jwb'>File Pendukung 3</label>
-                            <input type="file" name="file3_jwb" class="form-control" id="file3_jwb">
-                        </div>   --}}
-                        
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -196,20 +196,49 @@ Verifikasi Lerning Wallet
         serverSide: true,
         ajax: '/walet/getwtransjwbverifikasi',
         columns: [
-            // { data: 'periode_kode', name: 'periode_kode' },
             { data: 'jenis',  render: function ( data, type, row ) {  return jenis(data); }  },
             { data: 'keterangan', name: 'keterangan' },
             { data: 'mulai', name: 'mulai' },
             { data: 'akhir', name: 'akhir' },
             { data: 'lokasi', name: 'lokasi' },
-            // { data: 'jml_training', className: "text-right", render: $.fn.dataTable.render.number( ',', '.', 0, '' )  },
-            // { data: 'jml_lain', className: "text-right",render: $.fn.dataTable.render.number( ',', '.', 0, '' )  },
             { data: 'jml_total', className: "text-right", render: $.fn.dataTable.render.number( ',', '.', 0, '' ) },
             { data: 'status', render: function ( data, type, row ) {  return nmStatus(data); }  },
             { data: 'action', name: 'action', orderable: false, searchable: false}
         ],
         
     });  
+
+    $("#status_jwb").change(function(){
+        $('select[name="daftar_bayar_id"]').empty();
+        if($("#status_jwb").val()=='STD'){
+            $("#daftar_bayar_id").attr("readonly",false);
+            $.ajax({
+            url: '/walet/getdaftarbayarbystatus/',
+            type: "GET",
+            async: false,
+            dataType: "json",
+            success:function(data) {
+                // alert(data);
+                if(data == ''){
+                    alert("Daftar Pembayaran tidak ada");
+                    $('#btnsubmit').prop("disabled",true);
+                }else{
+                    $('select[name="daftar_bayar_id"]').empty();
+                    $.each(data, function(key, value) {
+                            $('select[name="daftar_bayar_id"]').append('<option value="'+ value.id +'" selected="true">'+ value.judul +'</option>');
+                    });
+                    $('#btnsubmit').prop("disabled",false);
+                }
+            }
+        });
+        }else{
+            $("#daftar_bayar_id").val('') 
+            $("#daftar_bayar_id").attr("readonly",true);
+            $('select[name="daftar_bayar_id"]').append('<option value="'+'" selected="true">'+ 'Daftar Bayar'+'</option>');
+            $('#btnsubmit').prop("disabled",false);
+        }
+    });
+
 } );
 
 function nmStatus($status){

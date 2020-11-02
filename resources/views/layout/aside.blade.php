@@ -138,6 +138,14 @@
                         </a>
                       </li>
                     @endif
+                    @if(in_array(Auth::user()->role,['ADM'])) 
+                    <li class="nav-item">
+                      <a href="/walet/wdaftarbayar" class="nav-link {!! Request::is('walet/wdaftarbayar') ? 'active' : '' !!}" >
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Daftar Pembayaran</p>
+                      </a>
+                    </li>
+                    @endif
 
                     @if(in_array(Auth::user()->role,['ADM'])) 
                       <li class="nav-item">
@@ -148,14 +156,6 @@
                       </li>
                     @endif
 
-                    @if(in_array(Auth::user()->role,['ADM'])) 
-                    <li class="nav-item">
-                      <a href="/walet/wdaftarbayar" class="nav-link {!! Request::is('walet/wdaftarbayar') ? 'active' : '' !!}" >
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Daftar Pembayaran</p>
-                      </a>
-                    </li>
-                    @endif
 
                     
 

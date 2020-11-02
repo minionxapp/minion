@@ -45,6 +45,7 @@ class CreateWTransaksiUsersTable extends Migration
 
             $table->string('status_jwb')->default('');
             $table->string('catatan_jwb')->default('');;
+            $table->string('daftar_bayar_id')->default('');;
             
 
             $table->timestamps();

@@ -136,6 +136,11 @@ Route::group(['middleware' => ['auth','checkRole:ADM,USR']], function () {
 
     //WDaftarBayarController
     Route::get('/walet/wdaftarbayar','WDaftarBayarController@wdaftarbayar');
+    Route::post('/walet/addwdaftarbayar','WDaftarBayarController@addwdaftarbayar');
+    Route::get('/walet/getwdaftarbayar','WDaftarBayarController@getwdaftarbayar');
+    Route::get('/walet/getwdaftarbayarbyid/{id}','WDaftarBayarController@getwdaftarbayarbyid');
+    Route::get('/walet/getdaftarbayarbystatus','WDaftarBayarController@getdaftarbayarbystatus');
+    Route::get('/walet/repwdaftarbayar/{id}','WDaftarBayarController@repwdaftarbayar');
+    
     // Route::post('/walet/divisi/{id}/divisiupdate','WDaftarBayarController@divisiupdate');
-    // Route::get('/walet/divisi/{id}/divisidelete','WDaftarBayarController@divisidelete');
 });

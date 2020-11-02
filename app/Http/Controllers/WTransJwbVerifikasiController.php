@@ -40,6 +40,8 @@ class WTransJwbVerifikasiController extends Controller
         $model = WTransaksiUser::find($request->id);
         $model->status_jwb = $request->status_jwb;
         $model->catatan_jwb = $request->catatan_jwb;
+        $model->daftar_bayar_id = $request->daftar_bayar_id;
+        
         $model->update($model->toArray());
         return redirect('/walet/wtransjwbverifikasi')->with('sukses','Data Berhasil di Simpan');
     }
