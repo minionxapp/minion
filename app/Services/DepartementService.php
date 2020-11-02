@@ -11,8 +11,8 @@ class DepartementService{
     }
 
     public function addDepartement(Departement $departement){
-        if($departement->id == null ){
-            $departement->id = (Departement::max('id'))+1;
+        if($departement->id == null || $departement->id=='' ){
+            // $departement->id = (Departement::max('id'))+1;
             $departement->save();
             return 'Data Berhasil di Simpan';
         }else{

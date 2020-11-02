@@ -23,7 +23,11 @@ class DepartementController extends Controller
         $departement->nik_kadept =$request->nik_kadept;
         $departement->nama_kadept =$request->nama_kadept;
         $departement->divisi_kode =$request->divisi_kode;
-        $departement->id =$request->id;
+        if($request->id == null || $request->id == ''){
+
+        }else{
+            $departement->id =$request->id;
+        }
         $simpan = (new \App\Services\DepartementService)->addDepartement($departement);
         return redirect('/admin/departement')->with('sukses',$simpan);
     }
