@@ -23,7 +23,7 @@ class WDaftarBayarController extends Controller
     public function addwdaftarbayar(Request $request){
         // ['judul','keterangan','status','jml_total','tgl_pembayaran'];       
         $model = new WDaftarBayar;
-        $model->id =$request->id;
+        // $model->id =$request->id;
         $model->judul =$request->judul;
         $model->keterangan =$request->keterangan;
         $model->status =$request->status;
