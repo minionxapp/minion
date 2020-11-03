@@ -24,7 +24,6 @@ class DepartementController extends Controller
         $departement->nama_kadept =$request->nama_kadept;
         $departement->divisi_kode =$request->divisi_kode;
         if($request->id == null || $request->id == ''){
-
         }else{
             $departement->id =$request->id;
         }

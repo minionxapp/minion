@@ -156,6 +156,16 @@
                       </li>
                     @endif
 
+                    @if(in_array(Auth::user()->role,['ADM'])) 
+                    <li class="nav-item">
+                      <a href="/walet/winputdaftarbayar" class="nav-link {!! Request::is('walet/winputdaftarbayar') ? 'active' : '' !!}" >
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Input Pembayaran</p>
+                      </a>
+                    </li>
+                  @endif
+
+
 
                     
 

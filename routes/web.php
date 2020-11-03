@@ -131,7 +131,7 @@ Route::group(['middleware' => ['auth','checkRole:ADM,USR']], function () {
     Route::get('/walet/wtransjwbverifikasi','WTransJwbVerifikasiController@wtransjwbverifikasi');
     Route::get('/walet/getwtransjwbverifikasi','WTransJwbVerifikasiController@getwtransjwbverifikasi');
     Route::post('/walet/addwtransjwbverifikasi','WTransJwbVerifikasiController@addwtransjwbverifikasi');
-    // Route::get('/walet/wtransaksiadmin/{id}','WTransJwbVerifikasiController@getwtransaksiuser_byid');
+    
     // Route::get('/walet/wtransaksiadmin/{id}','WTransJwbVerifikasiController@delwtransaksiuserbyid');
 
     //WDaftarBayarController
@@ -140,7 +140,10 @@ Route::group(['middleware' => ['auth','checkRole:ADM,USR']], function () {
     Route::get('/walet/getwdaftarbayar','WDaftarBayarController@getwdaftarbayar');
     Route::get('/walet/getwdaftarbayarbyid/{id}','WDaftarBayarController@getwdaftarbayarbyid');
     Route::get('/walet/getdaftarbayarbystatus','WDaftarBayarController@getdaftarbayarbystatus');
-    Route::get('/walet/repwdaftarbayar/{id}','WDaftarBayarController@repwdaftarbayar');
-    
-    // Route::post('/walet/divisi/{id}/divisiupdate','WDaftarBayarController@divisiupdate');
+    Route::get('/walet/repwdaftarbayar/{id}','WDaftarBayarController@repwdaftarbayar');    
+    Route::get('/walet/delwdaftarbayarbyid/{id}','WDaftarBayarController@delwdaftarbayarbyid');
+    Route::post('/walet/updaterepwdaftarbayar','WDaftarBayarController@updaterepwdaftarbayar');
+    Route::get('/walet/winputdaftarbayar','WDaftarBayarController@winputdaftarbayar');
+    Route::get('/walet/getwinputdaftarbayar','WDaftarBayarController@getwinputdaftarbayar');
+    Route::post('/walet/updatedaftarbayar','WDaftarBayarController@updatedaftarbayar');
 });
