@@ -93,5 +93,15 @@
 <script src='../dist/calendar/lib/main.js'></script>
 <script src="../plugins/moment/moment.min.js"></script>
 @yield('js')
+
+<script type="text/javascript">
+$(document).keypress(
+  function(event){
+    if (event.which == '13') {
+      event.preventDefault();
+    }
+});
+
+</script>
 </body>
 </html>
