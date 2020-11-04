@@ -24,15 +24,15 @@ Input Pembayaran
   <table id="myTable" class="display nowrap" style="width:100%" >
     <thead>
         <tr>
-            <th>jenis</th>
-            <th>keterangan</th>
-            <th>mulai</th>
-            <th>akhir</th>
-            <th>lokasi</th>               
+            <th>Jenis</th>
+            <th>Keterangan</th>
+            <th>Mulai</th>
+            <th>Selesai</th>
+            <th>Lokasi</th>               
             {{-- <th>jml_training</th>
             <th>jml_lain</th> --}}
-            <th>jml_total</th>  
-            <th>status</th>  
+            <th>Total Biaya</th>  
+            <th>Status</th>  
             <th>Action</th>  
         </tr>
     </thead>
@@ -46,7 +46,7 @@ Input Pembayaran
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Pertanggung Jawaban Wallet : 
+                <h5 class="modal-title" id="staticBackdropLabel">Input daftar Pembayaran : 
                     <label id="saldo">0</label>
                 </h5>
               
@@ -60,7 +60,7 @@ Input Pembayaran
                         <input type="hidden" name="id" class="form-control" id="id">
                         <div class="div row">
                             <div class="form-group col-md-6">
-                                <label for="periode_kode">periode_kode</label>
+                                <label for="periode_kode">Periode</label>
                                 <select name="periode_kode" class="form-control" id="periode_kode">
                                     @foreach ($periode as $period)
                                     <option value={{$period->kode}}>{{$period->nama}}</option>
@@ -68,13 +68,13 @@ Input Pembayaran
                                 </select>
                             </div>                            
                             <div class="form-group col-md-6">
-                                <label for="user_id">user_id</label>
+                                <label for="user_id">User Id</label>
                                 <input type="text"  value={{$user->user_id}}  name="user_id" class="form-control" id="user_id">
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-md-4">
-                                <label for="jenis">jenis</label>
+                                <label for="jenis">Jenis</label>
                                 <select name="jenis" class="form-control" id="jenis">
                                     <option value='TR'>Training</option>
                                     <option value='SM'>Seminar</option>
@@ -85,21 +85,21 @@ Input Pembayaran
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="keterangan">keterangan</label>
+                            <label for="keterangan">Keterangan</label>
                             <input type="text" name="keterangan" class="form-control" id="keterangan">
                         </div>
                         <div class="div row">
                             <div class="form-group col-sm-6">
-                                <label for="mulai">mulai</label>
+                                <label for="mulai">Mulai</label>
                                 <input type="date" name="mulai" class="form-control" id="mulai">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="akhir">akhir</label>
+                                <label for="akhir">Selesai</label>
                                 <input type="date" name="akhir" class="form-control" id="akhir">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="lokasi">lokasi</label>
+                            <label for="lokasi">Lokasi</label>
                             <input type="text" name="lokasi" class="form-control" id="lokasi">
                         </div>
                         <div class="div row">
@@ -120,28 +120,28 @@ Input Pembayaran
 
                         <div class="div row">
                             <div class="form-group col-md-4">
-                                <label for="nik_atasan">nik_atasan</label>
+                                <label for="nik_atasan">Nik Atasan</label>
                                 <input type="text" name="nik_atasan" class="form-control" id="nik_atasan">
                             </div>
                             <div class="form-group col-md-8">
-                                <label for="nama_atasan">nama_atasan</label>
+                                <label for="nama_atasan">Nama Atasan</label>
                                 <input type="text" name="nama_atasan" class="form-control" id="nama_atasan" readonly>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="form-group col-md-6">
-                                <label for="status">status</label>
+                            <div class="form-group col-md-4">
+                                <label for="status">Persetujuan Usulan</label>
                                 <select name="status" class="form-control" id="status" readonly>
-                                    <option value='STD'>Setuju Admin</option>
+                                    <option value='STD'>Setuju</option>
                                 </select>
                             </div>   
-                            <div class="form-group col-md-6">
-                                <label for="status">status Pertanggung Jawaban</label>
+                            <div class="form-group col-md-8">
+                                <label for="status">Persetujuan Pertanggung Jawaban</label>
                                 <select name="status_jwb" class="form-control" id="status_jwb">
                                     <option value='AJU'>Pengajuan</option>
                                     <option value='KMB'>Kembalikan</option>
-                                    <option value='STD'>Setuju Admin</option>
+                                    <option value='STD'>Setuju</option>
                                 </select>
                             </div>  
 
@@ -160,7 +160,7 @@ Input Pembayaran
 
                         </div>
                         <div class="form-group">
-                            <label for="file1" id='file1'>File : </label> 
+                            <label for="file1" id='file1'>File Usulan: </label> 
                                 {{-- <input type="file" name="file1" class="form-control" id="file1"> --}}
                         </div>
 
@@ -224,8 +224,9 @@ Input Pembayaran
                     $('#btnsubmit').prop("disabled",true);
                 }else{
                     $('select[name="daftar_bayar_id"]').empty();
+                    $('select[name="daftar_bayar_id"]').append('<option value="' +'" >'+ "-Daftar Pembayaran-" +'</option>');
                     $.each(data, function(key, value) {
-                            $('select[name="daftar_bayar_id"]').append('<option value="'+ value.id +'" selected="true">'+ value.judul +'</option>');
+                            $('select[name="daftar_bayar_id"]').append('<option value="'+ value.id +'" >'+ value.judul +'</option>');
                     });
                     $('#btnsubmit').prop("disabled",false);
                 }

@@ -21,7 +21,7 @@ class WTransaksiAdminController extends Controller
     }
 
     public function getwtransaksiadmin(){    
-        if(Auth::user()->role =='ADM'){
+        if(Auth::user()->role =='ADM'||Auth::user()->role =='ADLW'){
             return Datatables::of(WTransaksiUser::whereIn('status',['STA'])
             ->get())//kasih where draft dan pengauan hanya di gunakan di pengajuan page
             ->addColumn('action', function($row){       

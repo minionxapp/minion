@@ -107,15 +107,13 @@ class WDaftarBayarController extends Controller
 
     // ================================================================
     public function winputdaftarbayar(){
-
         $periode = WPeriode::where('status','=','A')->get();
         $user = User::where('user_id','=',Auth::user()->user_id)->first();
         return view("/walet/winputdaftarbayar",['periode'=>$periode,'user'=>$user]);
 
-        // return view("/walet/winputdaftarbayar");
     }
 
-
+    
 
     public function getwinputdaftarbayar(){    
         return Datatables::of(WTransaksiUser::
@@ -125,7 +123,7 @@ class WDaftarBayarController extends Controller
         ->get())//kasih where draft dan pengauan hanya di gunakan di pengajuan page  
         ->addColumn('action', function($row){       
             $btn = '<a href="#" onclick="viewFunction(\''.$row->id.'\');" class="edit btn btn-info btn-sm">View</a> ';
-            $btn = $btn.' <a href="#" onclick="editFunction(\''.$row->id.'\');" class="warning btn btn-warning btn-sm">Verifikasi</a>';
+            $btn = $btn.' <a href="#" onclick="editFunction(\''.$row->id.'\');" class="warning btn btn-warning btn-sm">Bayar</a>';
             // $btn = $btn.' <a href="/walet/delwtransaksiuserbyid/'.$row->id.'" class="edit btn btn-danger btn-sm" onclick="return confirm(\'Yakin mau dihapus\');">Delete</a>';
             return $btn;
         })

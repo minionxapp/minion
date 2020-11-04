@@ -125,19 +125,19 @@ Approval Wallet Transaksi
                         </div>
 
                         <div class="form-group">
-                            <label for="status">status</label>
-                            @if (Auth::user()->role == 'ADM')                                
+                            <label for="status">Persetujuan</label>
+                            @if (Auth::user()->role == 'ADM'||Auth::user()->role =='ADLW')                                
                                 <select name="status" class="form-control" id="status">
-                                    <option value='STA'>Pengajuan Atasan</option>
-                                    <option value='TLD'>Tolak Admin</option>
-                                    <option value='STD'>Setuju Admin</option>
+                                    <option value='STA'>Pengajuan</option>
+                                    <option value='TLD'>Tolak</option>
+                                    <option value='STD'>Setuju</option>
                                 </select>
                             @endif
                             @if (Auth::user()->role == 'USR')                                
                                 <select name="status" class="form-control" id="status">
-                                    <option value='AJA'>Pengajuan Pegawai</option>
-                                    <option value='TLA'>Tolak Atasan</option>
-                                    <option value='STA'>Setuju Atasan</option>
+                                    <option value='AJA'>Pengajuan</option>
+                                    <option value='TLA'>Tolak</option>
+                                    <option value='STA'>Setuju</option>
                                 </select>
                             @endif
                         </div>   

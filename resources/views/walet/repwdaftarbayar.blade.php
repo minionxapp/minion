@@ -63,14 +63,14 @@
           <tr>
             <th class="text-center">No</th>
             <th class="text-center">ID</th>
-            <th class="text-center">periode_kode</th>
-            <th class="text-center">user_id</th>
-            <th class="text-center">jenis</th>
-            <th class="text-center">keterangan</th>
-            <th class="text-center">mulai</th>
-            <th class="text-center">akhir</th>
-            <th class="text-center">jml_total</th>  
-            <th class="text-center">status</th>  
+            <th class="text-center">Periode</th>
+            <th class="text-center">User Id</th>
+            <th class="text-center">Jenis</th>
+            <th class="text-center">Keterangan</th>
+            <th class="text-center">Mulai</th>
+            <th class="text-center">Selesai</th>
+            <th class="text-center">Total Biaya</th>  
+            <th class="text-center">Status</th>  
             <th class="text-center">Bank</th>
             <th class="text-center">No Rekening</th>
           </tr>
@@ -88,9 +88,7 @@
           <td>{{$bayar->keterangan}}</td>
           <td>{{$bayar->mulai}}</td>
           <td>{{$bayar->akhir}}</td>
-          {{-- <td><script type="text/javascript">document.documentElement.innerHTML= formatNumber({{$bayar->jml_total}});</script></td> --}}
           <td align="right" class="contribution">{{$bayar->jml_total}}</td>
-          {{-- {{!!$tot = $tot + $bayar->jml_total}} --}}
           <?php $tot = $tot + $bayar->jml_total
           ?>
           <td>{{$bayar->status}}</td>
@@ -126,7 +124,7 @@ aria-labelledby="addDataLabel" aria-hidden="true">
                 <input type="hidden" name="id" class="form-control" id="id">
                 <div class="div row">
                     <div class="form-group col-md-6">
-                        <label for="periode_kode">periode_kode</label>
+                        <label for="periode_kode">Periode</label>
                         <select name="periode_kode" class="form-control" id="periode_kode">
                             @foreach ($periode as $period)
                             <option value={{$period->kode}}>{{$period->nama}}</option>
@@ -134,13 +132,13 @@ aria-labelledby="addDataLabel" aria-hidden="true">
                         </select>
                     </div>                            
                     <div class="form-group col-md-6">
-                        <label for="user_id">user_id</label>
+                        <label for="user_id">User Id</label>
                         <input type="text"  value={{$user->user_id}}  name="user_id" class="form-control" id="user_id">
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-4">
-                        <label for="jenis">jenis</label>
+                        <label for="jenis">Jenis</label>
                         <select name="jenis" class="form-control" id="jenis">
                             <option value='TR'>Training</option>
                             <option value='SM'>Seminar</option>
@@ -151,21 +149,21 @@ aria-labelledby="addDataLabel" aria-hidden="true">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="keterangan">keterangan</label>
+                    <label for="keterangan">Keterangan</label>
                     <input type="text" name="keterangan" class="form-control" id="keterangan">
                 </div>
                 <div class="div row">
                     <div class="form-group col-sm-6">
-                        <label for="mulai">mulai</label>
+                        <label for="mulai">Mulai</label>
                         <input type="date" name="mulai" class="form-control" id="mulai">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="akhir">akhir</label>
+                        <label for="akhir">Selesai</label>
                         <input type="date" name="akhir" class="form-control" id="akhir">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="lokasi">lokasi</label>
+                    <label for="lokasi">Lokasi</label>
                     <input type="text" name="lokasi" class="form-control" id="lokasi">
                 </div>
                 <div class="div row">
@@ -186,35 +184,35 @@ aria-labelledby="addDataLabel" aria-hidden="true">
 
                 <div class="div row">
                     <div class="form-group col-md-4">
-                        <label for="nik_atasan">nik_atasan</label>
+                        <label for="nik_atasan">Nik Atasan</label>
                         <input type="text" name="nik_atasan" class="form-control" id="nik_atasan">
                     </div>
                     <div class="form-group col-md-8">
-                        <label for="nama_atasan">nama_atasan</label>
+                        <label for="nama_atasan">Nama Atasan</label>
                         <input type="text" name="nama_atasan" class="form-control" id="nama_atasan" readonly>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="form-group col-md-6">
-                        <label for="status">status</label>
+                    <div class="form-group col-md-4">
+                        <label for="status">Persetujuan Usulan</label>
                         <select name="status" class="form-control" id="status" readonly>
-                            <option value='STD'>Setuju Admin</option>
+                            <option value='STD'>Setuju</option>
                         </select>
                     </div>   
-                    <div class="form-group col-md-6">
-                        <label for="status">status Pertanggung Jawaban</label>
+                    <div class="form-group col-md-8">
+                        <label for="status">Persetujuan Pertanggung Jawaban</label>
                         <select name="status_jwb" class="form-control" id="status_jwb" readonly>
                             {{-- <option value='AJU'>Pengajuan</option>
                             <option value='KMB'>Kembalikan</option> --}}
-                            <option value='STD'>Setuju Admin</option>
+                            <option value='STD'>Setuju</option>
                         </select>
                     </div>  
 
                     <div class="form-group col-md-12">
                         <label for="status">Daftar Bayar</label>
                         <select name="daftar_bayar_id" class="form-control" id="daftar_bayar_id" readonly>
-                            <option value=''>Keluar</option>
+                            <option value=''>Keluarkan Dari Daftar Bayar</option>
                         </select>
                     </div>  
 
@@ -226,7 +224,7 @@ aria-labelledby="addDataLabel" aria-hidden="true">
 
                 </div>
                 <div class="form-group">
-                    <label for="file1" id='file1'>File : </label> 
+                    <label for="file1" id='file1'>File Usulan : </label> 
                 </div>
 
                 <div class="form-group">

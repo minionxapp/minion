@@ -27,7 +27,7 @@ Route::get('/logout','LoginController@logout')->name('logout');;
 Route::get('/hello','HelloController@hello');
 
 Route::get('/calendar','CalendarController@calendar');
-Route::group(['middleware' => ['auth','checkRole:ADM']], function () {
+Route::group(['middleware' => ['auth','checkRole:ADM,ADLW']], function () {
     Route::get('/admin/user','UserController@user');
     Route::get('/admin/getuser','UserController@getUser');
     Route::post('/admin/adduser','UserController@addUser');
@@ -51,7 +51,7 @@ Route::group(['middleware' => ['auth','checkRole:ADM']], function () {
     
 });
 
-Route::group(['middleware' => ['auth','checkRole:ADM,USR']], function () {
+Route::group(['middleware' => ['auth','checkRole:ADM,ADLW,USR']], function () {
     Route::get('/admin/getuserbyuserid/{id}','UserController@getUserbyUserId');
     Route::get('/dashboard','DashboardController@dashboard')->name('dashboard');
     Route::get('/awal','AwalController@awal');
