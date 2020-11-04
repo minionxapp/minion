@@ -72,10 +72,21 @@ Pengaturan User
                             <label for="email">Email</label>
                             <input type="email" name="email" class="form-control" id="email" required>
                         </div>
-                        {{-- <div class="form-group">
-                            <label for="nama_unit_kerja">Nama Unit Kerja</label>
-                            <input type="text" name="nama_unit_kerja" class="form-control" id="nama_unit_kerja">
-                        </div> --}}
+                        <div class="form-group">
+                            <label for="bank">Bank</label>
+                            {{-- <input type="text" name="bank" class="form-control" id="bank"> --}}
+                            <select name="bank" class="form-control" id="bank">
+                                <option value="">BANK</option>
+                                <option value="BNI">BNI</option>
+                                <option value="BRI">BRI</option>
+                                <option value="MAN">MANDIRI</option>
+                                <option value="BCA">BCA</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="norek">norek</label>
+                            <input type="text" name="norek" class="form-control" id="norek">
+                        </div>
 
 
                         {{-- <div class="form-group">
@@ -205,6 +216,8 @@ async function viewFunction($id) {
                 $("#divisi_kode").val(data.divisi_kode);  
                 $("#departemen").val(data.departemen);
 
+                $("#bank").val(data.bank);  
+                $("#norek").val(data.norek);  
                 // Departemen
                 var divisi_kode = data.divisi_kode;
                 var dept = data.departemen;
@@ -236,6 +249,8 @@ async function viewFunction($id) {
                 $('#departemen').attr('readonly', true); 
                 $('#role').attr('readonly', true); 
                 $('#divisi_kode').attr('readonly', true); 
+                $('#bank').attr('readonly', true); 
+                $('#norek').attr('readonly', true); 
                 $('#btnsubmit').prop("disabled",true); 
                }
             });    
@@ -258,6 +273,8 @@ function addFunction() {
     $('#departemen').attr('readonly', false); 
     $('#role').attr('readonly', false); 
     $('#divisi_kode').attr('readonly', false); 
+    $('#bank').attr('readonly', false); 
+    $('#norek').attr('readonly', false); 
     $('#btnsubmit').prop("disabled",false);  
 }
 async function editFunction($id) {
@@ -270,6 +287,8 @@ async function editFunction($id) {
     $('#divisi_kode').attr('readonly', false); 
     $('#departemen').attr('readonly', false); 
     $('#role').attr('readonly', false); 
+    $('#bank').attr('readonly', false); 
+    $('#norek').attr('readonly', false); 
     $('#btnsubmit').prop("disabled",false); 
    unit = $('#divisi_kode').val();
 // ajak option divisi
@@ -291,23 +310,23 @@ async function editFunction($id) {
             }
         });
 // option Role
-        $.ajax({
-            url: '/admin/getallrole/',
-            type: "GET",
-            async: false,
-            dataType: "json",
-            success:function(data) {
-                $('select[name="role"]').empty();
-                $.each(data, function(key, value) {
-                    if(unit== value.kode ){
-                        $('select[name="role"]').append('<option value="'+ value.role_id +'" selected="true">'+ value.desc +'</option>');
-                    }else{
-                        $('select[name="role"]').append('<option value="'+ value.role_id +'">'+ value.desc +'</option>');
+        // $.ajax({
+        //     url: '/admin/getallrole/',
+        //     type: "GET",
+        //     async: false,
+        //     dataType: "json",
+        //     success:function(data) {
+        //         $('select[name="role"]').empty();
+        //         $.each(data, function(key, value) {
+        //             if(unit== value.kode ){
+        //                 $('select[name="role"]').append('<option value="'+ value.role_id +'" selected="true">'+ value.desc +'</option>');
+        //             }else{
+        //                 $('select[name="role"]').append('<option value="'+ value.role_id +'">'+ value.desc +'</option>');
                 
-                    }
-                });
-            }
-        });
+        //             }
+        //         });
+        //     }
+        // });
 
 }
 

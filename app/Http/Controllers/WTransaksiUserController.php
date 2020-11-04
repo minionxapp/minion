@@ -37,6 +37,8 @@ class WTransaksiUserController extends Controller
         $model->jml_total =$request->jml_total;
         $model->nik_atasan = $request->nik_atasan;
         $model->nama_atasan =$request->nama_atasan;
+        $model->bank = Auth::user()->bank;
+        $model->norek = Auth::user()->norek;
         
         
         if($request->hasfile('file1')){

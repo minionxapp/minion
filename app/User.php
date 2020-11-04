@@ -16,7 +16,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','departemen','nama_unit_kerja','role','divisi_kode'
+        'name', 'email', 'password','departemen','nama_unit_kerja','role','divisi_kode',
+        'foto','bank','norek'
     ];
 
     /**
@@ -50,4 +51,14 @@ class User extends Authenticatable
         return $this->belongsTo('App\Departement','departemen','kode');
         // FK-->divisi_kode pada table departement, ID --> dari divisi
     }
+
+    public function wtransaksiuser()//masternya
+    {
+        return $this->hasMany('App\WTransasksiUser','user_id','user_id');
+    }
+    // public function wtransaksiuser()//childnya
+    // {
+    //     return $this->belongsTo('App\WTransasksiUser','divisi_kode','kode');
+    //     // FK-->divisi_kode pada table Chlid, kode -->PK dari divisi
+    // }
 }

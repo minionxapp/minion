@@ -31,13 +31,15 @@ class UserController extends Controller
         $user->role =$request->role;
         $user->departemen =$request->departemen;
         $user->divisi_kode =$request->divisi_kode;
+        $user->bank =$request->bank;
+        $user->norek =$request->norek;
+        // $user->role =$request->role;
         
         if($request->id == null  ){
             $user->password =bcrypt('123');
             $user->save();
             return redirect('admin/user')->with('sukses','Data Berhasil di Simpan');
         }else{
-            // $user->id =$request->id;
             $userUpdate = new \App\User;
             $userUpdate = \App\User::find($request->id);
             $userUpdate->update($request->all());

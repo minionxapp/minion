@@ -15,7 +15,16 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
   
 
+  <script type="text/javascript">
 
+    function formatNumber(number){
+        // var number = 25153.3;
+        result=number.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
+        alert(result);
+        return result;
+    }
+        
+    </script>
 
 
 <style>
@@ -47,42 +56,57 @@
 <body>
 
 <div>  <h1 style="text-align:center">Daftar Pembayaran LW</h1>
-      <h1 style="text-align:center">--------------------------</h1>
+      <h1 style="text-align:center">{{$masterdaftar->judul}}  ({{$masterdaftar->id}}) </h1>
     {{!!$no = 0}}
     <table id="myTable" class="display nowrap" style="width:80%; overflow-x:auto;">
       <thead>
           <tr>
-            <th>No</th>
-            <th>ID</th>
-            <th>periode_kode</th>
-            <th>user_id</th>
-            <th>jenis</th>
-            <th>keterangan</th>
-            <th>mulai</th>
-            <th>akhir</th>
-            <th>jml_total</th>  
-            <th>status</th>  
+            <th class="text-center">No</th>
+            <th class="text-center">ID</th>
+            <th class="text-center">periode_kode</th>
+            <th class="text-center">user_id</th>
+            <th class="text-center">jenis</th>
+            <th class="text-center">keterangan</th>
+            <th class="text-center">mulai</th>
+            <th class="text-center">akhir</th>
+            <th class="text-center">jml_total</th>  
+            <th class="text-center">status</th>  
+            <th class="text-center">Bank</th>
+            <th class="text-center">No Rekening</th>
           </tr>
       </thead>
+      {{-- {{! $tot=0 }}s --}}
+      <?php $tot=0 ?>
       @foreach ($daftar_bayar as $bayar)
           {{!++$no }}
         <tr>
           <td>{{$no}}</td>
           <td><a href="#" onclick="javascript:editFunction({{$bayar->id}})">   {{$bayar->id}}</a></td>
           <td>{{$bayar->periode_kode}}</td>
-          <td>{{$bayar->user_id}}</td>
+          <td>{{$bayar->user_id}} - {{$bayar->user->name}}</td>
           <td>{{$bayar->jenis}}</td>
           <td>{{$bayar->keterangan}}</td>
           <td>{{$bayar->mulai}}</td>
           <td>{{$bayar->akhir}}</td>
-          <td>{{$bayar->jml_total}}</td>
+          {{-- <td><script type="text/javascript">document.documentElement.innerHTML= formatNumber({{$bayar->jml_total}});</script></td> --}}
+          <td align="right" class="contribution">{{$bayar->jml_total}}</td>
+          {{-- {{!!$tot = $tot + $bayar->jml_total}} --}}
+          <?php $tot = $tot + $bayar->jml_total
+          ?>
           <td>{{$bayar->status}}</td>
-          
+          <td>{{$bayar->bank}}</td>
+          <td>{{$bayar->norek}}</td>          
         </tr>
     @endforeach
+        <tr>
+            <td align="center" colspan = "8">Total </td>
+            <td align="right" class="contribution">{{$tot}}</td>
+            <td colspan ="3"></td>
+
+        </tr>
   </table>
   </div>
-<!-- Modal -->
+<!-- Modal className: "text-right", render: $.fn.dataTable.render.number( ',', '.', 0, '' ) -->
 <div class="modal fade" id="editModal" data-backdrop="static" tabindex="-1" role="dialog"
 aria-labelledby="addDataLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -229,6 +253,21 @@ aria-labelledby="addDataLabel" aria-hidden="true">
 
 
 <script type="text/javascript">
+// $(document).ready(function () {            
+//             $("td.contribution").each(function () {
+//                 $(this).text($(this).text().toLocaleString('en-US'));
+//             })
+//         });
+$(document).ready( function() {
+  $("td.contribution").each(function() { $(this).html(parseFloat($(this).text()).toLocaleString('en-US')); })
+})
+
+function formatNumber(number){
+    // var number = 25153.3;
+    result="$ " + number.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
+    return result;
+}
+
     function editFunction($id) {
       $("#editModal").modal('show'); 
       viewFunction($id);  

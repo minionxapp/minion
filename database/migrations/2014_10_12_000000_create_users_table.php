@@ -28,7 +28,10 @@ class CreateUsersTable extends Migration
             $table->string('role');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('divisi_kode')->nullable();;
+            $table->string('divisi_kode')->nullable();
+            $table->string('bank')->nullable();
+            $table->string('norek')->nullable();
+            $table->string('foto')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

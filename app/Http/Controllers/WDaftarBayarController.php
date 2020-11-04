@@ -84,13 +84,13 @@ class WDaftarBayarController extends Controller
 
     
     public function repwdaftarbayar($id_daftar){
-
+        $masterDaftar = WDaftarBayar::find($id_daftar);
         $periode = WPeriode::where('status','=','A')->get();
         $user = User::where('user_id','=',Auth::user()->user_id)->first();
 
         // return view("/walet/wtransjwbverifikasi",['periode'=>$periode,'user'=>$user]);
         $daftarbayar = \App\WTransaksiUser::where('daftar_bayar_id','=',$id_daftar)->get();//find($status);
-        return view("/walet/repwdaftarbayar",["daftar_bayar"=>$daftarbayar,'periode'=>$periode,'user'=>$user]);
+        return view("/walet/repwdaftarbayar",['masterdaftar'=>$masterDaftar,"daftar_bayar"=>$daftarbayar,'periode'=>$periode,'user'=>$user]);
     }
 
     public function updaterepwdaftarbayar(Request $request){
@@ -135,11 +135,8 @@ class WDaftarBayarController extends Controller
 
     public function updatedaftarbayar(Request $request){
             $model = WTransaksiUser::find($request->id);
-            // $model->status_jwb = $request->status_jwb;
-            // $model->catatan_jwb = $request->catatan_jwb;
             $model->daftar_bayar_id = $request->daftar_bayar_id;        
             $model->update($model->toArray());
-            // return redirect('/walet/repwdaftarbayar/'.$model->daftar_bayar_id)->with('sukses','Data Berhasil di Simpan');
 
             return redirect('/walet/winputdaftarbayar')->with('sukses','Data Berhasil di Simpan');
         }
