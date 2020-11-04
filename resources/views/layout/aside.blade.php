@@ -46,7 +46,7 @@
               
               
               <li class="nav-item has-treeview">
-                @if(in_array(Auth::user()->role,['ADM','ADLW']))                  
+                @if(in_array(Auth::user()->role,['ADM']))                  
                   <li class="nav-item has-treeview  {!! Request::is(['admin/*']) ? 'menu-open' : '' !!}">
                     <a href="#" class="nav-link">
                       <i class="nav-icon fas fa-chart-pie"></i>
