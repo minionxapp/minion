@@ -140,26 +140,26 @@
       </div>
       <div class="col-lg-3 col-md-6 mb-4 col-sm-6">
         <div class="card h-100">
-          <img class="card-img-top" src="dist/img/minion/minion3.jpg" alt="">
+          <img class="card-img-top" src="../images/wallet.jpg" alt="">
           <div class="card-body">
             {{-- <h4 class="card-title">Judul</h4> --}}
             {{-- <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p> --}}
           </div>
           <div class="card-footer">
-            <a href="#" class="btn btn-primary">Find Out More!</a>
+            <a href="/login" class="btn btn-primary">Wallet</a>
           </div>
         </div>
       </div>
 
       <div class="col-lg-3 col-md-6 mb-4 col-sm-3">
         <div class="card h-100">
-          <img class="card-img-top" src="dist/img/minion/minion3.jpg" alt="">
+          <img class="card-img-top" src="../images/kita.png" alt="">
           <div class="card-body">
             {{-- <h4 class="card-title">Card title</h4> --}}
             {{-- <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus architecto.</p> --}}
           </div>
           <div class="card-footer">
-            <a href="#" class="btn btn-primary">Find Out More!</a>
+            <a href="https://kita.pegadaian.co.id/home" class="btn btn-primary">Pegadaian Kita</a>
           </div>
         </div>
       </div>
