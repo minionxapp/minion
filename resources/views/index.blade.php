@@ -146,7 +146,7 @@
             {{-- <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p> --}}
           </div>
           <div class="card-footer">
-            <a href="/login" class="btn btn-primary">Wallet</a>
+            <a href="https://sites.google.com/pegadaian.co.id/learningwallet" class="btn btn-primary">Learning Wallet</a>
           </div>
         </div>
       </div>
