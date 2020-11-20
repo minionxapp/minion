@@ -16,15 +16,21 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/test', function () {
 //     return view('awal');
 // });
-Route::get('/test','AwalController@awal');
-// Route::get('/','HomeController@index');
+Route::get('/test2','AwalController@awal');
+Route::get('/','HomeController@index');
 // Route::post('/siswa/create','SiswaController@create'); 
 
 Route::post('/loginProses','LoginController@loginProses');
+// Route::get('/login','LoginController@login')->name('login');
 Route::get('/login','LoginController@login')->name('login');
-Route::get('/','LoginController@login')->name('login');
 Route::get('/logout','LoginController@logout')->name('logout');;
 Route::get('/hello','HelloController@hello');
+//tes UPLOAD FILE
+Route::get('/upload','UploadController@upload');
+// Route::get("create", "ImageController@create");
+Route::post("/store", "UploadController@store")->name("store");
+Route::get("/showimage", "UploadController@showimage");
+//-------------
 
 Route::get('/calendar','CalendarController@calendar');
 Route::group(['middleware' => ['auth','checkRole:ADM,ADLW']], function () {
@@ -47,6 +53,13 @@ Route::group(['middleware' => ['auth','checkRole:ADM,ADLW']], function () {
     Route::post('/admin/adddepartement','DepartementController@adddepartement');
     Route::get('/admin/getdepartement','DepartementController@getdepartement');
     
+
+//GLEADS ADMIN
+    Route::get('/gleads/gleadstraining','GleadsTrainingController@gleadstraining');
+    Route::get('/gleads/listGleadstraining','GleadsTrainingController@listGleadstraining');
+    Route::get('/gleads/getGleadstrainingById/{id}','GleadsTrainingController@getGleadstrainingById');
+    Route::post('/gleads/addGleadstraining','GleadsTrainingController@addGleadstraining');
+    Route::get('/gleads/delGleadstraining/{id}','GleadsTrainingController@delGleadstraining');
     
     
 });

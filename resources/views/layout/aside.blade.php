@@ -22,7 +22,8 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                <li class="nav-item has-treeview {!! Request::is(['dashboard']) ? 'menu-open' : '' !!}">   
-                 @if(in_array(Auth::user()->role,['ADM','ADLW','USR']))  
+                {{-- <li class="nav-item has-treeview">   --}}
+                  @if(in_array(Auth::user()->role,['ADM','ADLW','USR']))  
                     <a href="#" class="nav-link">
                       <i class="nav-icon fas fa-tachometer-alt"></i>
                       <p>
@@ -36,12 +37,36 @@
                   <ul class="nav nav-treeview">
                     <li class="nav-item">
                       <a href="../dashboard" class="nav-link {!! Request::is('dashboard') ? 'active' : '' !!}">
+                        {{-- <a href="../dashboard" class="nav-link"> --}}
                         <i class="far fa-circle nav-icon"></i>
                         <p>Dashboard v1</p>
                       </a>
                     </li>                                 
                   </ul>
                   @endif
+
+                  @if(in_array(Auth::user()->role,['ADM','ADLW','USR']))  
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                          <i class="nav-icon fas fa-chart-pie"></i>
+                          <p>
+                            Training Admin
+                            <i class="right fas fa-angle-left"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="/gleads/gleadstraining" class="nav-link" >
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>Training List</p>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  @endif
+
               </li>
               
               
@@ -204,7 +229,7 @@
               @endif
             </li>
           
-
+            
 
 
 
@@ -247,7 +272,7 @@
                 
               </li>
               @endif
-              @if(in_array(Auth::user()->role,['ADM','ADLW'])) 
+              @if(in_array(Auth::user()->role,['ADM'])) 
                 <li class="nav-item">
                   <a href="https://adminlte.io/docs/3.0" class="nav-link">
                     <i class="nav-icon fas fa-file"></i>
@@ -260,7 +285,14 @@
                     <i class="nav-icon fas fa-file"></i>
                     <p>Calendar</p>
                   </a>
-                </li>          
+                </li>   
+                
+                <li class="nav-item">
+                  <a href="/upload" class="nav-link">
+                    <i class="nav-icon fas fa-file"></i>
+                    <p>Upload File</p>
+                  </a>
+                </li>   
               @endif
               <li class="nav-item">
                 <a href="/logout" class="nav-link">
@@ -268,7 +300,6 @@
                   <p>Logout</p>
                 </a>
               </li>
-
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

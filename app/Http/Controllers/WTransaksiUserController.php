@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\WTransaksiUser;
-use  App\WTransaksi;
+use App\WTransaksi;
 use App\WPeriode;
 use App\WMember;
 use DataTables;
@@ -42,18 +43,26 @@ class WTransaksiUserController extends Controller
         
         
         if($request->hasfile('file1')){
-            $request->file('file1')
-            ->move('images/',Carbon\Carbon::now()->timestamp.'_'.($request->file('file1')->getClientOriginalName()));
+            // $request->file('file1')
+            // ->move('images/',Carbon\Carbon::now()->timestamp.'_'.($request->file('file1')
+            // ->getClientOriginalName()));
+            $fileName = Carbon\Carbon::now()->timestamp."_".$request->file('file1')->getClientOriginalName(); //Get Image Name
+            $path = Storage::putFileAs(config('constant.imagePath'), $request->file('file1') , $fileName);
             $model->file1 =Carbon\Carbon::now()->timestamp.'_'.($request->file('file1')->getClientOriginalName());//$request->file1;
         }
         
         if($request->hasfile('file2')){
-            $request->file('file2')->move('images/',Carbon\Carbon::now()->timestamp.'_'.($request->file('file2')->getClientOriginalName()));
+            // $request->file('file2')->move('images/',Carbon\Carbon::now()->timestamp.'_'.($request->file('file2')->getClientOriginalName()));
+            $fileName = Carbon\Carbon::now()->timestamp."_".$request->file('file2')->getClientOriginalName(); //Get Image Name
+            $path = Storage::putFileAs(config('constant.imagePath'), $request->file('file2') , $fileName);
+
             $model->file2 =Carbon\Carbon::now()->timestamp.'_'.($request->file('file2')->getClientOriginalName());//$request->file1;
         }
 
         if($request->hasfile('file3')){
-            $request->file('file3')->move('images/',Carbon\Carbon::now()->timestamp.'_'.($request->file('file3')->getClientOriginalName()));
+            // $request->file('file3')->move('images/',Carbon\Carbon::now()->timestamp.'_'.($request->file('file3')->getClientOriginalName()));
+            $fileName = Carbon\Carbon::now()->timestamp."_".$request->file('file3')->getClientOriginalName(); //Get Image Name
+            $path = Storage::putFileAs(config('constant.imagePath'), $request->file('file3') , $fileName);
             $model->file3 =Carbon\Carbon::now()->timestamp.'_'.($request->file('file3')->getClientOriginalName());//$request->file1;
         }
 
