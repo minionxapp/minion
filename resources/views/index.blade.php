@@ -76,9 +76,9 @@
     <!-- Page Features -->
     <div class="row text-center">
 
-      <div class="col-lg-3 col-md-6 mb-4">
+      <div class="col-lg-3 col-md-6 mb-4  col-sm-3">
         <div class="card h-100">
-          <img class="card-img-top" src="../images/gleads.png" alt="">
+          <img class="card-img-top" src="../images/gleads.jpg" alt="">
           <div class="card-body">
             {{-- <h4 class="card-title">G-Leads</h4> --}}
             {{-- <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p> --}}
@@ -89,7 +89,7 @@
         </div>
       </div>
 
-      <div class="col-lg-3 col-md-6 mb-4">
+      <div class="col-lg-3 col-md-6 mb-4 col-sm-3">
         <div class="card h-100">
           <img class="card-img-top" src="../images/kms.jpg" alt="">
           <div class="card-body">
@@ -102,7 +102,7 @@
         </div>
       </div>
 
-      <div class="col-lg-3 col-md-6 mb-4">
+      <div class="col-lg-3 col-md-6 mb-4 col-sm-3">
         <div class="card h-100">
           <img class="card-img-top" src="../images/indonesiax.jpg" alt="">
           <div class="card-body">
@@ -114,7 +114,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-md-6 mb-4">
+      <div class="col-lg-3 col-md-6 mb-4 col-sm-3">
         <div class="card h-100">
           <img class="card-img-top" src="../images/studilmu.png" alt="">
           <div class="card-body">
@@ -126,19 +126,19 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-md-6 mb-4">
+      <div class="col-lg-3 col-md-6 mb-4 col-sm-3">
         <div class="card h-100">
-          <img class="card-img-top" src="dist/img/minion/minion3.jpg" alt="">
+          <img class="card-img-top" src="../images/google.jpg" alt="">
           <div class="card-body">
             {{-- <h4 class="card-title">Card title</h4> --}}
             {{-- <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p> --}}
           </div>
           <div class="card-footer">
-            <a href="#" class="btn btn-primary">Find Out More!</a>
+            <a href="https://workspace.google.com/dashboard" class="btn btn-primary">Google</a>
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-md-6 mb-4">
+      <div class="col-lg-3 col-md-6 mb-4 col-sm-6">
         <div class="card h-100">
           <img class="card-img-top" src="dist/img/minion/minion3.jpg" alt="">
           <div class="card-body">
@@ -151,7 +151,7 @@
         </div>
       </div>
 
-      <div class="col-lg-3 col-md-6 mb-4">
+      <div class="col-lg-3 col-md-6 mb-4 col-sm-3">
         <div class="card h-100">
           <img class="card-img-top" src="dist/img/minion/minion3.jpg" alt="">
           <div class="card-body">
