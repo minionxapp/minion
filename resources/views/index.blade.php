@@ -68,9 +68,10 @@
 
     <!-- Jumbotron Header -->
     <header class="jumbotron my-4">
-      <h1 class="display-3">A Warm Welcome!</h1>
+      <img class="card-img-top" src="../images/kanpus1.jpeg" alt="">
+      {{-- <h1 class="display-3">A Warm Welcome!</h1> --}}
       {{-- <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p> --}}
-      <a href="#" class="btn btn-primary btn-lg">Call to action!</a>
+      {{-- <a href="#" class="btn btn-primary btn-lg">Call to action!</a> --}}
     </header>
 
     <!-- Page Features -->
@@ -110,7 +111,7 @@
             {{-- <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p> --}}
           </div>
           <div class="card-footer">
-            <a href="#" class="btn btn-primary">GadeX</a>
+            <a href="https://gadex.co.id/" class="btn btn-primary">GadeX</a>
           </div>
         </div>
       </div>
