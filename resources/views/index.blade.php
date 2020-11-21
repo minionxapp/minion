@@ -24,6 +24,18 @@
   
 
   <title>MinionxApp</title>
+  <style>
+.masthead {
+  height: 100vh;
+  min-height: 500px;
+  background-image: url('../images/kanpus1.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 50%;
+}
+
+  </style>
 {{-- 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -67,19 +79,19 @@
   <div class="container">
 
     <!-- Jumbotron Header -->
-    <header class="jumbotron" 
-    style="background-image: url('../images/kanpus1.jpeg');
+    <header class="masthead" 
+    {{-- style="background-image: url('../images/kanpus1.jpeg');
     background-position: center;  
     background-repeat: no-repeat;
-    /* width:100%;  */
+    width:100%; 
     height: auto;
     background-size: cover; 
-    "
+    " --}}
   >
-  <br><br><br><br><br><br><br><br><br><br>
+  {{-- <br><br><br><br><br><br><br><br><br><br>
   <br><br><br>
   <br><br><br>
-  <br><br><br><br>
+  <br><br><br><br> --}}
   {{-- <br><br><br><br><br><br><br><br><br><br>
   <br><br><br><br><br><br><br><br><br><br> --}}
       {{-- <img class="card-img-top" src="../images/kanpus1.jpeg" alt=""> --}}
@@ -90,7 +102,7 @@
       {{-- <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p> --}}
       {{-- <a href="#" class="btn btn-primary btn-lg">Call to action!</a> --}}
     </header>
-
+<div> <h3>Apps</h3></div>
     <!-- Page Features -->
     <div class="row text-center">
 
